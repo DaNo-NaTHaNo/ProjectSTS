@@ -1,0 +1,70 @@
+.row {
+    flex-direction: row;
+    border-bottom-width: 1px;
+    border-bottom-color: rgb(40, 40, 40);
+    height: 25px;
+    flex-shrink: 0;
+    flex-wrap: nowrap;
+}
+
+/* [추가] 헤더 행에만 스크롤바 너비만큼의 오른쪽 여백을 고정으로 추가하여 정렬 문제를 완화합니다. */
+.header-row {
+    padding-right: 17px;
+}
+
+/* 모든 컬럼의 공통 스타일 */
+.col {
+    padding-left: 5px;
+    -unity-text-align: middle-left;
+    overflow: hidden;
+}
+
+/* --- 헤더 컬럼 너비 --- */
+.header-no { width: 30px; }
+.header-sceneName { width: 125px; }
+.header-locationPreset { width: 130px; }
+.header-speakerPortrait { width: 100px; }
+.header-speakerName { width: 110px; }
+.header-speakerGroup { width: 130px; }
+.header-speakerText { width: 180px; min-width: 180px; flex-grow: 1; }
+.header-face { width: 70px; }
+.header-animKey { width: 80px; }
+.header-emote { width: 70px; }
+.header-sfx { width: 100px; }
+.header-spotLight { width: 70px; }
+.header-textSpeed { width: 70px; }
+.header-skippable { width: 70px; }
+.header-autoNext { width: 70px; }
+.header-voice { width: 110px; }
+.header-wait { width: 70px; }
+.header-leftMost { width: 90px; }
+.header-left { width: 85px; }
+.header-center { width: 85px; }
+.header-right { width: 85px; }
+.header-rightMost { width: 90px; }
+.header-105px { width: 105px; }
+
+/* --- 데이터 컬럼 너비 --- */
+.col-no { width: 25px; }
+.col-sceneName { width: 120px; }
+.col-locationPreset { width: 120px; }
+.col-speakerPortrait { width: 100px; }
+.col-speakerName { width: 100px; }
+.col-speakerGroup { width: 120px; }
+.col-speakerText { width: 180px; min-width: 180px; flex-grow: 1; }
+.col-face { width: 60px; }
+.col-animKey { width: 80px; }
+.col-emote { width: 60px; }
+.col-sfx { width: 100px; }
+.col-spotLight { width: 60px; }
+.col-textSpeed { width: 70px; }
+.col-skippable { width: 60px; }
+.col-autoNext { width: 60px; }
+.col-voice { width: 100px; }
+.col-wait { width: 60px; }
+
+.col-leftMost { width: 80px; }
+.col-left { width: 80px; }
+.col-center { width: 80px; }
+.col-right { width: 80px; }
+.col-rightMost { width: 80px; }

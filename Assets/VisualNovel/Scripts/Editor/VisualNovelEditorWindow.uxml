@@ -1,0 +1,54 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements">
+    <uie:Toolbar>
+        <ui:Label text="New File" name="file-name-label" />
+        
+        <ui:VisualElement name="toolbar-separator" />
+        
+        <uie:ToolbarButton text="New" name="new-button" />
+        <uie:ToolbarButton text="Save" name="save-button" />
+        <uie:ToolbarButton text="Load" name="load-button" />
+        
+        <ui:VisualElement name="toolbar-separator" />
+        
+        <uie:ToolbarButton text="DialogueLine" name="dialogueline-button" />
+        <uie:ToolbarButton text="EpisodePortrait" name="episodeportrait-button" />
+        <uie:ToolbarButton text="LocationPreset" name="locationpreset-button" />
+        
+        <ui:VisualElement name="toolbar-separator" />
+
+<!-- 미구현으로 인해 주석처리        
+        <uie:ToolbarButton text="Repository" />
+        
+        <ui:VisualElement name="toolbar-separator" />
+        
+        <uie:ToolbarButton text="-" />
+        <ui:Label text="100%" />
+        <uie:ToolbarButton text="+" />
+
+        <ui:VisualElement name="toolbar-separator" />
+
+        <uie:ToolbarButton text="ResetCamera" />
+        <uie:ToolbarButton text="FindStartNode" />
+미구현으로 인해 주석처리 -->
+
+    </uie:Toolbar>
+
+    <ui:VisualElement name="main-content" style="flex-grow: 1; flex-direction: row;">
+        <ui:VisualElement name="left-panel" style="width: 200px; background-color: rgb(40, 40, 40);">
+            <ui:Label text="Nodes" style="font-size: 16px; -unity-text-align: middle-center; height: 30px;" />
+            <ui:Button text="START" name="start-node-button" />
+            <ui:Button text="END" name="end-node-button" />
+            <ui:Button text="COMMENT" name="comment-node-button" style="background-color: rgb(120, 10, 25);" />
+            <ui:Button text="WAIT" name="wait-node-button" style="background-color: rgb(34, 34, 34);" />
+            <ui:Button text="Text" name="text-node-button" style="background-color: rgb(34, 139, 34);" />
+            <ui:Button text="Branch" name="branch-node-button" style="background-color: rgb(15, 100, 20);" />
+            <ui:Button text="Portrait Enter" name="portrait-enter-node-button" style="background-color: rgb(35, 35, 140);" />
+            <ui:Button text="Portrait Anim" name="portrait-anim-node-button" style="background-color: rgb(15, 15, 115);" />
+            <ui:Button text="Portrait Exit" name="portrait-exit-node-button" style="background-color: rgb(0, 0, 98);" />
+            <ui:Button text="Image" name="image-node-button" style="background-color: rgb(255, 165, 0);" />
+            <ui:Button text="Sound" name="sound-node-button" style="background-color: rgb(200, 120, 0);" />
+        </ui:VisualElement>
+
+        <ui:VisualElement name="graph-view-container" style="flex-grow: 1;" />
+    </ui:VisualElement>
+</ui:UXML>

@@ -1,0 +1,7 @@
+이름,명칭 예시,설명,변수 값
+룰 ID,ruleId,해당 컨디션이 적용될 패턴 룰 ID,(string 값)
+컨디션 타입,conditionType,해당 컨디션의 동작 방식,"TurnCount(현재 턴이 ~~일 때), TurnMod(~~턴 마다), HpPercent(HP가 ~~% ~~일 때), EnemyHpPercent(플레이어의 HP가 ~~% ~~일 때),HasCard(특정 카드를 보유했을 때), StatusActive(특정 상태이상이 적용되어 있을 때)"
+부등호,comparisonOperator,변수 값을 비교할 부등호,"Equal, NotEqual, GreaterThan, LessThen, GreaterOrEqual, LessOrEqual"
+변수,value,"컨디션 타입에 대입할 변수 값(수치, cardId, statusEffectId)",(string 값)
+패턴 주기,divisor,TurnMod 타입에서 해당 패턴들 발동하는 턴 주기,(int 값)
+패턴 개시 턴,remainder,"TurnMod 타입에서 해당 패턴을 처음 발동하는 턴 (divisor=3 remainder=1 일 때 > 1,4,7… / divisor=3 remainder=0 일 때 > 3,6,9…)",(int 값)

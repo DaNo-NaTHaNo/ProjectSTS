@@ -1,0 +1,4 @@
+locationPreset,leftMost,left,center,right,rightMost,ease,duration
+아이카중앙,,,아이카,,,OutQuad,1
+아이카왼쪽,아이카,,,,,OutQuad,1
+아이카오른쪽,,,,,아이카,OutQuad,1

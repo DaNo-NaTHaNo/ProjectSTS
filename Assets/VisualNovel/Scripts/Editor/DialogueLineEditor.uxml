@@ -1,0 +1,18 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" editor-extension-mode="False">
+    <uie:Toolbar>
+        <uie:ToolbarButton text="New" name="new-button" />
+        <uie:ToolbarButton text="Import" name="import-button" />
+        <uie:ToolbarButton text="Export" name="export-button" />
+    </uie:Toolbar>
+    <ui:VisualElement style="flex-grow: 1;">
+        <ui:VisualElement name="empty-view" style="flex-grow: 1; justify-content: center; align-items: center;">
+            <ui:Label text="CSV가 import 되지 않았습니다." />
+        </ui:VisualElement>
+        <ui:VisualElement name="data-view" style="flex-grow: 1;" />
+    </ui:VisualElement>
+    <ui:VisualElement name="action-bar" style="flex-direction: row; height: 25px; border-top-width: 1px; border-top-color: rgb(40, 40, 40); background-image: url(&quot;project://database/Assets/Plugins/Demigiant/DemiLib/Core/Editor/Imgs/blackSquare.png?fileID=2800000&amp;guid=7ba4b2810f605d945af87e032ca2957b&amp;type=3#blackSquare&quot;);">
+        <uie:ToolbarSpacer style="flex-grow: 1;" />
+        <ui:Button text="+" name="add-row-button" style="width: 25px;" />
+        <ui:Button text="-" name="remove-row-button" style="width: 25px;" />
+    </ui:VisualElement>
+</ui:UXML>

@@ -1,0 +1,13 @@
+이름,명칭 예시,설명,변수 값
+누적 탐험 출발 횟수,countDepart,지금까지 탐험에 출발한 횟수,(int 값)
+누적 탐험 성공 횟수,countComplete,지금까지 탐험에 성공해 귀환한 횟수,(int 값)
+도합 이벤트 카운터_전투,countBattleAll,지금까지 완료한 전투 이벤트의 횟수,(int 값)
+도합 이벤트 카운터_노벨,countVisualNovelAll,지금까지 완료한 비주얼 노벨 이벤트의 횟수,(int 값)
+도합 이벤트 카운터_조우,countEncountAll,지금까지 완료한 조우 이벤트의 횟수,(int 값)
+이번 이벤트 카운터_전투,countBattleNow,이번 탐험에서 완료한 전투 이벤트의 횟수,(int 값)
+이번 이벤트 카운터_노벨,countVisualNovelNow,이번 탐험에서 완료한 비주얼 노벨 이벤트의 횟수,(int 값)
+이번 이벤트 카운터_조우,countEncountNow,이번 탐험에서 완료한 조우 이벤트의 횟수,(int 값)
+적 유닛 토벌 수,countEnemyEliminated,지금까지 토벌한 적 유닛의 수,(int 값)
+토벌한 보스 ID,eliminatedBossId,지금까지 토벌한 보스의 유닛 ID(복수 입력 가능),(string 값)
+탐험한 구역 ID,visitedAreaId,지금까지 탐험한 적이 있는 Area ID(복수 입력 가능),(string 값)
+이번 귀환 보상 갯수,countRewardComplete,이번 탐험에서 획득할 수 있는 귀환 보상의 갯수,(int 값)

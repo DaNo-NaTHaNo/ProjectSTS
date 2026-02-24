@@ -1,0 +1,14 @@
+이름,명칭 예시,설명,변수 값
+분류,cathegory,해당 소지품이 카드인지 아이템인지,"Card, Item"
+소지품 ID,productId,시스템 상에서 참조하는 카드 혹은 아이템 테이블에서의 ID 값,(string 값)
+소지품 이름,productName,UI 상에 표시되는 소지품의 이름 (cathegory에 따른 테이블에서 해당 id의 ~Name 값을 참조),(string 값)
+소지품 설명,description,UI 상에 표시되는 소지품의 설명문 (cathegory에 따른 테이블에서 해당 id의 description 값을 참조),(string 값)
+레어도,rarity,해당 소지품의 표시 레어도 (cathegory에 따른 테이블에서 해당 id의 rarity 값을 참조),"Uncommon, Common, Rare, Unique, Epic"
+보유 스택,ownStack,해당 소지품의 미사용(장비) 보유 수,(int 값)
+장비 스택,useStack,해당 소지품이 사용(장비)되고 있는 수,(int 값)
+카드 속성,cardElement,"Card 소지품의 필터링을 위한 속성 정보 (cathegory가 Card일 때, 카드 테이블에서 해당 id의 element 값을 참조)","Sword(바람), Medal(흙), Baton(불), Grail(물), Sol(빛), Luna(어둠), Wild(무속성)"
+카드 타입,cardType,"Card 소지품의 필터링을 위한 효과 포맷 형식 (cathegory가 Card일 때, 카드 테이블에서 해당 id의 cardType 값을 참조)","Attack, Defend, StatusEffect, InHandEffect"
+카드 코스트,cardCost,"Card 소지품의 필터링을 위한 코스트 정보 (cathegory가 Card일 때, 카드 테이블에서 해당 id의 cost 값을 참조)",(int 값)
+아이템 타입,itemType,"Item 소지품의 필터링을 위한 효과 포맷 형식 (cathegory가 Item일 때, 카드 테이블에서 해당 id의 itemType 값을 참조)","epuipment(상시 효과 발동), HasDamage(장착 유닛이 대미지를 입었을 경우), HasDown(장착 유닛의 HP가 0이 될 경우) (+추가 예정)"
+아이템의 대상 스탯,targetStatus,"Item 소지품의 필터링을 위한 효과 적용 스탯 종류 (cathegory가 Item일 때, 카드 테이블에서 해당 id의 targetStatus 값을 참조)","MaxAP(행동력 최대치), NowAP(현재 행동력), MaxHP(HP 최대치), NowHP(현재 HP), MaxEnergy(에너지 최대치), NowEnergy(현재 에너지), CostInHand(손패 카드의 코스트), StatusEffect(상태이상 부여), AddCard(손패에 카드 추가), AddDeck(덱에 카드 추가)"
+소모형 아이템 여부,isDisposable,"Item 소지품의 필터링을 위한 아이템의 소모 여부 (cathegory가 Item일 때, 카드 테이블에서 해당 id의 isDisposable 값을 참조)","true, false"

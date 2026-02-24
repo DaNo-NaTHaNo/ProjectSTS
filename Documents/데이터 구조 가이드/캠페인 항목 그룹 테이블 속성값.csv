@@ -1,0 +1,11 @@
+이름,명칭 예시,설명,변수 값
+그룹 ID,groupId,캠페인 목표 순서를 묶는 그룹 ID 값,(string 값)
+목표 실행 순서,sequence,해당 그룹에서 몇 번째로 수행하여야 하는 목표인지,(int 값)
+목표 이름,name,UI 상에 표시될 수행 목표의 제목 텍스트,(string 값)
+목표 설명,description,UI 상에 표시될 수행 목표에 대한 설명 텍스트,(string 값)
+필수 목표인지,isEssencial,필수로 완료해야 하는 목표인지(해당 목표의 완료를 기다린 후 다음 시퀀스를 진행하는지),"true, false"
+목표 타입,triggerType,해당 목표 완수의 트리거를 감지할 대상,"ClearCampaign(특정 캠페인을 클리어), ClearEvent(특정 이벤트를 클리어), EarnUnit(특정 유닛을 획득), EarnCard(특정 카드를 획득), EarnItem(특정 아이템을 획득), EarnSkill(특정 스킬을 획득), BattleCount(배틀을 ~회 완료), MoveCount(월드맵 상에서 ~회 이동), EventCount(이벤트를 ~회 완료)"
+목표 값,triggerValue,목표 완수 트리거의 변수 값,(string 값)
+추가 보상,additianalRewards,"해당 목표를 완수할 시 캠페인 완료 보상에 추가할 유닛이나 스킬, 혹은 아이템의 ID",(string 값)
+완료 지점,isClearTrigger,해당 그룹의 마지막 목표인지(트리거 감지 시 해당 행동 그룹의 캠페인을 완료 처리),"true, false"
+완료 여부,isCompleted,해당 목표를 완료했는지,"true, false"

@@ -1,0 +1,9 @@
+이름,명칭 예시,설명,변수 값
+타임라인 ID,id,시스템 상에서 참조하는 ID 값,(string 값)
+이벤트 ID,eventId,해당 타임라인이 적용될 이벤트 ID,(string 값)
+발동 조건 대상,triggerTarget,발동 트리거를 감지할 대상 (TurnCount 등 유닛보다 상위의 정보일 경우 공란),(string 값)
+발동 조건 타입,triggerType,발동 트리거가 되는 상태의 타입,"TurnCount(현재 턴 수가 ~일 경우), HpPercent(Target의 HP가 ~% 이하일 경우), UnitDown(Target의 HP가 0이 되었을 경우), UnitSpawn(Target 유닛이 전투에 등장했을 경우), OnStatus(Target에게 ~ 상태이상이 부여되었을 경우), EnemyCount(적 유닛의 수가 ~일 경우), PartyCount(HP가 1 이상인 아군 파티 유닛 수가 ~일 경우)"
+발동 조건 변수,triggerValue,조건에 필요한 값,(string 값)
+우선도,priority,조건 중복 시 실행 우선순위,(int 값)
+반복 실행 여부,isRepeatable,반복 실행 여부 (1회성일 경우 false),"true, false"
+행동 그룹 ID,actionGrorpId,조건을 만족 시 실행할 전투 연출 행동 그룹 테이블 ID,(string 값)

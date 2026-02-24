@@ -1,0 +1,11 @@
+이름,명칭 예시,설명,변수 값
+캠페인 ID,id,시스템 상에서 참조하는 ID 값,(string 값)
+캠페인 이름,name,UI 상에 표시될 캠페인의 제목 텍스트,(string 값)
+캠페인 설명,description,UI 상에 표시될 캠페인에 대한 설명 텍스트,(string 값)
+아트 리소스,artworkPath,UI에 표시될 아트 리소스의 어드레서블 ID,(string 값)
+해금 트리거 타입,unlockType,해당 캠페인을 해금하기 위한 트리거의 타입,"ClearCampaign(특정 캠페인을 클리어), ClearEvent(특정 이벤트를 클리어), EarnUnit(특정 유닛을 획득), EarnCard(특정 카드를 획득), EarnItem(특정 아이템을 획득), EarnSkill(특정 스킬을 획득), BattleCount(배틀을 ~회 완료), MoveCount(월드맵 상에서 ~회 이동), EventCount(이벤트를 ~회 완료)"
+해금 트리거 ID,unlockId,"해금 트리거의 변수 값(대상 캠페인, 미션, 유닛, 횟수 등)",(string 값)
+캠페인 항목 그룹 ID,groupId,캠페인 내 달성 항목 그룹 ID,(string 값)
+캠페인 완료 보상,rewards,"캠페인 완료 보상 유닛이나 스킬, 혹은 아이템의 ID(복수 입력 가능)",(string 값)
+완료 여부,isCompleted,해당 캠페인을 완료했는지,"true, false"
+완료 후 연출,afterComplete,"해당 캠페인 완료 직후 재생할 연출 파일(비주얼 노벨, 동영상 등)의 어드레서블 ID (없으면 공란)",(string 값)

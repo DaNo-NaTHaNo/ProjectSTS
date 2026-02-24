@@ -1,0 +1,8 @@
+﻿sceneName,locationPreset,speakerPortrait,speakerName,speakerGroup,speakerText,face,animKey,emote,sfx,spotLight,textSpeed,skippable,autoNext,voice,wait
+테스트1,아이카중앙,아이카,아이카,8UP 시부야점,테스트용 DialogueLine.csv입니다.,default,,,,False,20,True,False,,0.125
+테스트1,아이카중앙,아이카,아이카,8UP 시부야점,2행 출력이 가능합니다.\n최대 행수는 3행을 상정하고 있습니다.,,,,,False,20,True,False,,0.125
+선택지,,,,,테스트용 선택지1,,,,,False,20,True,False,,0
+선택지,,,,,테스트용 선택지2,,,,,False,20,True,False,,0
+테스트2-1,아이카왼쪽,아이카,아이카,8UP 시부야점,선택지 1을 선택하셨습니다,angry,,,,False,20,True,False,,0.125
+테스트2-2,아이카오른쪽,아이카,아이카,8UP 시부야점,선택지 2를 선택하셨습니다,sad,,,,False,20,True,False,,0.125
+테스트3,아이카중앙,아이카,아이카,8UP 시부야점,선택지 분기에서 다음 노드로 정상적으로 이행되었습니다,default,,,,False,20,True,False,,0.125

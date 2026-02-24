@@ -1,0 +1,117 @@
+// TestEpisode.json의 전체 내용
+{
+    "episodeInfo": {
+        "id": "Test01",
+        "title": "첫 테스트",
+        "version": "1.0.0"
+    },
+    "datasets": {
+        "dialogueLines": [
+            {
+                "sceneName": "FirstScene",
+                "speakerName": "테스터",
+                "speakerGroup": "개발팀",
+                "speakerText": "캐릭터 애니메이션을 테스트합니다.",
+                "textSpeed": 20.0
+            }
+        ],
+        "episodePortraits": [
+            {
+                "portraitID": "Chara_Sample_001",
+                "portraitName": "테스트캐릭터"
+            }
+        ]
+    },
+    "nodeGraph": {
+        "nodes": [
+            {
+                "id": "node-1",
+                "type": "start",
+                "fields": "{}"
+            },
+            {
+                "id": "node-2",
+                "type": "sound",
+                "fields": "{\"controlType\":\"Play\", \"display\":\"BGM\", \"soundName\":\"Test_BGM\", \"isLoop\":true, \"volume\":0.8, \"fadeDuration\":2.0}"
+            },
+            {
+                "id": "node-3",
+                "type": "image",
+                "fields": "{\"controlType\":\"Enter\", \"display\":\"Background\", \"imageName\":\"Test_BG\", \"startTint\":{\"r\":0,\"g\":0,\"b\":0,\"a\":1}, \"endTint\":{\"r\":1,\"g\":1,\"b\":1,\"a\":1}, \"duration\":1.5, \"ease\":\"OutQuad\"}"
+            },
+            {
+                "id": "node-4",
+                "type": "portraitEnter",
+                "fields": "{\"portraitName\":\"테스트캐릭터\", \"location\":\"center\"}"
+            },
+            {
+                "id": "node-5",
+                "type": "text",
+                "fields": "{\"display\":\"Bottom\", \"sceneName\":\"FirstScene\"}"
+            },
+            {
+                "id": "node-6",
+                "type": "portraitAnim",
+                "fields": "{\"portraitName\":\"테스트캐릭터\", \"location\":\"left\", \"face\":\"Smile\", \"endTint\":{\"r\":1,\"g\":0.8,\"b\":0.8,\"a\":1}, \"duration\":1.0}"
+            },
+            {
+                "id": "node-7",
+                "type": "portraitExit",
+                "fields": "{\"portraitName\":\"테스트캐릭터\"}"
+            },
+            {
+                "id": "node-8",
+                "type": "image",
+                "fields": "{\"controlType\":\"Exit\", \"display\":\"Background\", \"startTint\":{\"r\":1,\"g\":1,\"b\":1,\"a\":1}, \"endTint\":{\"r\":0,\"g\":0,\"b\":0,\"a\":1}, \"duration\":1.5, \"ease\":\"InQuad\"}"
+            },
+            {
+                "id": "node-9",
+                "type": "sound",
+                "fields": "{\"controlType\":\"Stop\", \"display\":\"BGM\", \"fadeDuration\":2.0}"
+            },
+            {
+                "id": "node-10",
+                "type": "end",
+                "fields": "{}"
+            }
+        ],
+        "connections": [
+            {
+                "sourceNodeId": "node-1",
+                "targetNodeId": "node-2"
+            },
+            {
+                "sourceNodeId": "node-2",
+                "targetNodeId": "node-3"
+            },
+            {
+                "sourceNodeId": "node-3",
+                "targetNodeId": "node-4"
+            },
+            {
+                "sourceNodeId": "node-4",
+                "targetNodeId": "node-5"
+            },
+            {
+                "sourceNodeId": "node-5",
+                "targetNodeId": "node-6"
+            },
+            {
+                "sourceNodeId": "node-6",
+                "targetNodeId": "node-7"
+            },
+            {
+                "sourceNodeId": "node-7",
+                "targetNodeId": "node-8"
+            },
+            {
+                "sourceNodeId": "node-8",
+                "targetNodeId": "node-9"
+            },
+            {
+                "sourceNodeId": "node-9",
+                "targetNodeId": "node-10"
+            }
+        ]
+    }
+}

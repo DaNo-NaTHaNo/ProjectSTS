@@ -1,0 +1,4 @@
+이름,명칭 예시,설명,변수 값
+드랍율 적용 대상,cathegory,드랍율을 적용할 대상,"SpawnEvent, EventReward"
+대상 레어도,rarity,드랍율을 적용할 레어도 ID,"Uncommon, Common, Rare, Unique, Epic"
+합산 드랍율,dropValue,"테이블 내 해당 레어도의 드랍율 합산치 (%, 50>25>15>7.5>2.5)",(float 값)

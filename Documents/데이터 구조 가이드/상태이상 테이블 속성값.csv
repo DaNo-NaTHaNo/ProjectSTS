@@ -1,0 +1,16 @@
+이름,명칭 예시,설명,변수 값
+상태이상 ID,id,상태이상 데이터의 참조 id,(string 값)
+상태이상 이름,effectName,UI에 표시될 상태이상 명칭,(string 값)
+상태이상 설명,description,UI에 표시될 상태이상 설명문,(string 값)
+아이콘 리소스 위치,iconPath,UI에 표시될 아이콘 리소스의 어드레서블 ID,(string 값)
+버프/디버프 타입,statusType,해당 상태이상이 버프인지 디버프인지,"Buff, Debuff"
+트리거 타이밍,triggerTiming,효과를 적용시키는 시점,"TurnStart, TurnEnd, OnAttack, OnDamage"
+효과 적용 타입,effectType,해당 상태이상이 발생시키는 효과의 종류,"DamageOverTime, HealOverTime, ModifyDamage, ModifyBlock, Stun, ReduceDamage, ReflectDamage"
+효과 속성,effectElement,"해당 상태이상이 가하거나 흡수, 반사하는 피해의 속성","Sword(바람), Medal(흙), Baton(불), Grail(물), Sola(빛), Luna(어둠), Wild(무속성)"
+효과 적용 값,value,적용할 효과의 수치,(float 값)
+수치 적용 방식,modifierType,"상태 효과가 수치를 수정하는 방식 (덧셈, 곱셈 등)","Additive, Multiplicative"
+스택 가능 여부,isStackable,"효과의 중첩이 가능한지 (false일 경우, 동일한 상태이상에 걸릴 시 duration을 초기값만큼 가산)","True, False"
+최대 스택 수,maxStacks,중첩 가능한 상한치 값,(int 값)
+스택소비형 여부,isExpendable,효과를 적용하기 위해 스택을 소모하는 상태이상인지,"True, False"
+필요 소비 수,expendCount,효과를 적용하기 위해 소모해야 하는 스택의 최소 수,(int 값)
+상태이상 지속 턴 수,duration,"상태이상이 지속되는 턴(턴 종료 시 숫자가 1 감소하며, 0이 되면 해당 상태이상을 제거)",(int 값)

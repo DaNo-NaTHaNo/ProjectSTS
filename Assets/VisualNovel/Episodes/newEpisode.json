@@ -1,0 +1,382 @@
+{
+  "episodeInfo": {
+    "id": null,
+    "title": "newEpisode",
+    "version": null
+  },
+  "assetManifest": null,
+  "datasets": {
+    "dialogueLines": [
+      {
+        "sceneName": "테스트1",
+        "locationPreset": "아이카중앙",
+        "speakerPortrait": "아이카",
+        "speakerName": "아이카",
+        "speakerGroup": "8UP 시부야점",
+        "speakerText": "테스트용 DialogueLine.csv입니다.",
+        "face": "Default",
+        "animKey": "",
+        "emote": "",
+        "sfx": "",
+        "spotLight": true,
+        "textSpeed": 20.0,
+        "skippable": true,
+        "autoNext": false,
+        "voice": "",
+        "wait": 0.125
+      },
+      {
+        "sceneName": "테스트1",
+        "locationPreset": "아이카중앙",
+        "speakerPortrait": "아이카",
+        "speakerName": "아이카",
+        "speakerGroup": "8UP 시부야점",
+        "speakerText": "2행 출력이 가능합니다.\\n최대 행수는 3행을 상정하고 있습니다.",
+        "face": "Cry",
+        "animKey": "",
+        "emote": "",
+        "sfx": "",
+        "spotLight": true,
+        "textSpeed": 20.0,
+        "skippable": true,
+        "autoNext": false,
+        "voice": "",
+        "wait": 0.125
+      },
+      {
+        "sceneName": "선택지",
+        "locationPreset": "",
+        "speakerPortrait": "",
+        "speakerName": "",
+        "speakerGroup": "",
+        "speakerText": "테스트용 선택지1",
+        "face": "",
+        "animKey": "",
+        "emote": "",
+        "sfx": "",
+        "spotLight": false,
+        "textSpeed": 20.0,
+        "skippable": true,
+        "autoNext": false,
+        "voice": "",
+        "wait": 0.0
+      },
+      {
+        "sceneName": "선택지",
+        "locationPreset": "",
+        "speakerPortrait": "",
+        "speakerName": "",
+        "speakerGroup": "",
+        "speakerText": "테스트용 선택지2",
+        "face": "",
+        "animKey": "",
+        "emote": "",
+        "sfx": "",
+        "spotLight": false,
+        "textSpeed": 20.0,
+        "skippable": true,
+        "autoNext": false,
+        "voice": "",
+        "wait": 0.0
+      },
+      {
+        "sceneName": "테스트2-1",
+        "locationPreset": "아이카왼쪽",
+        "speakerPortrait": "아이카",
+        "speakerName": "아이카",
+        "speakerGroup": "8UP 시부야점",
+        "speakerText": "선택지 1을 선택하셨습니다",
+        "face": "Angry",
+        "animKey": "",
+        "emote": "",
+        "sfx": "",
+        "spotLight": true,
+        "textSpeed": 20.0,
+        "skippable": true,
+        "autoNext": false,
+        "voice": "",
+        "wait": 0.125
+      },
+      {
+        "sceneName": "테스트2-2",
+        "locationPreset": "아이카오른쪽",
+        "speakerPortrait": "아이카",
+        "speakerName": "아이카",
+        "speakerGroup": "8UP 시부야점",
+        "speakerText": "선택지 2를 선택하셨습니다",
+        "face": "Sad",
+        "animKey": "",
+        "emote": "",
+        "sfx": "",
+        "spotLight": true,
+        "textSpeed": 20.0,
+        "skippable": true,
+        "autoNext": false,
+        "voice": "",
+        "wait": 0.125
+      },
+      {
+        "sceneName": "테스트3",
+        "locationPreset": "아이카중앙",
+        "speakerPortrait": "아이카",
+        "speakerName": "아이카",
+        "speakerGroup": "8UP 시부야점",
+        "speakerText": "선택지 분기에서 다음 노드로 정상적으로 이행되었습니다",
+        "face": "Default",
+        "animKey": "",
+        "emote": "",
+        "sfx": "",
+        "spotLight": true,
+        "textSpeed": 20.0,
+        "skippable": true,
+        "autoNext": false,
+        "voice": "",
+        "wait": 0.125
+      }
+    ],
+    "episodePortraits": [
+      {
+        "portraitID": "Chara_Sample_001",
+        "portraitName": "아이카"
+      },
+      {
+        "portraitID": "Chara_Sample_002",
+        "portraitName": "아이카2"
+      }
+    ],
+    "locationPresets": [
+      {
+        "locationPreset": "아이카중앙",
+        "leftMost": "",
+        "left": "",
+        "center": "아이카",
+        "right": "",
+        "rightMost": "",
+        "ease": "OutQuad",
+        "duration": 1.0
+      },
+      {
+        "locationPreset": "아이카왼쪽",
+        "leftMost": "아이카",
+        "left": "",
+        "center": "",
+        "right": "",
+        "rightMost": "",
+        "ease": "OutQuad",
+        "duration": 1.0
+      },
+      {
+        "locationPreset": "아이카오른쪽",
+        "leftMost": "",
+        "left": "",
+        "center": "",
+        "right": "",
+        "rightMost": "아이카",
+        "ease": "OutQuad",
+        "duration": 1.0
+      }
+    ]
+  },
+  "nodeGraph": {
+    "nodes": [
+      {
+        "id": "24f32f56-3a7f-45cf-a87c-7276b1ca2814",
+        "type": "End",
+        "position": {
+          "x": 1326.0,
+          "y": 168.0
+        },
+        "fields": "{}"
+      },
+      {
+        "id": "e2eca729-0691-4785-8987-eb789f5e0363",
+        "type": "Text",
+        "position": {
+          "x": 1110.0,
+          "y": 169.0
+        },
+        "fields": "{\"sceneName\":\"테스트3\",\"display\":\"Bottom\"}"
+      },
+      {
+        "id": "dfb32ae6-0ac2-4791-ad1f-93be72f0708c",
+        "type": "Text",
+        "position": {
+          "x": 879.0,
+          "y": 167.0
+        },
+        "fields": "{\"sceneName\":\"테스트2-1\",\"display\":\"Bottom\"}"
+      },
+      {
+        "id": "71abc187-36a9-428e-9de9-1050725cc543",
+        "type": "Text",
+        "position": {
+          "x": 877.0,
+          "y": 261.0
+        },
+        "fields": "{\"sceneName\":\"테스트2-2\",\"display\":\"Bottom\"}"
+      },
+      {
+        "id": "9ca13d7b-ba59-4352-a0a5-f7fe5acf9764",
+        "type": "Branch",
+        "position": {
+          "x": 638.0,
+          "y": 157.0
+        },
+        "fields": "{\"sceneName\":\"선택지\"}"
+      },
+      {
+        "id": "8a1638f5-eaa8-48c3-b9cb-ff3cf51bbbe5",
+        "type": "Sound",
+        "position": {
+          "x": 415.0,
+          "y": 249.0
+        },
+        "fields": "{\"controlType\":\"Play\",\"display\":\"BGM\",\"soundName\":\"Test_BGM\",\"fadeDuration\":0.125,\"volume\":0.5,\"isLoop\":true,\"skippable\":false}"
+      },
+      {
+        "id": "0a169d79-293a-4149-b58e-dfe3a86cf424",
+        "type": "Text",
+        "position": {
+          "x": 417.0,
+          "y": 159.0
+        },
+        "fields": "{\"sceneName\":\"테스트1\",\"display\":\"Bottom\"}"
+      },
+      {
+        "id": "84c34bf2-3608-421b-b57c-3c4441c15083",
+        "type": "Start",
+        "position": {
+          "x": 249.0,
+          "y": 158.0
+        },
+        "fields": "{}"
+      },
+      {
+        "id": "c26618c4-8209-40e8-bf07-d48b08404a98",
+        "type": "Portrait Enter",
+        "position": {
+          "x": 1101.0,
+          "y": 351.0
+        },
+        "fields": "{\"portraitName\":\"아이카2\",\"location\":\"leftMost\",\"offset\":{\"x\":0.0,\"y\":0.0},\"face\":\"Default\",\"animKey\":\"None\",\"startTint\":{\"r\":0.0,\"g\":0.0,\"b\":0.0,\"a\":0.0},\"endTint\":{\"r\":1.0,\"g\":1.0,\"b\":1.0,\"a\":1.0},\"duration\":1.0,\"ease\":6,\"spotLight\":false,\"skippable\":false}"
+      },
+      {
+        "id": "e902a174-8ffd-45e8-b3b7-ef11886501e6",
+        "type": "Portrait Anim",
+        "position": {
+          "x": 1106.0,
+          "y": 607.0
+        },
+        "fields": "{\"portraitName\":\"아이카2\",\"location\":\"rightMost\",\"offset\":{\"x\":0.0,\"y\":0.0},\"face\":\"Default\",\"animKey\":\"None\",\"endTint\":{\"r\":1.0,\"g\":1.0,\"b\":1.0,\"a\":1.0},\"duration\":1.0,\"ease\":6,\"spotLight\":false,\"skippable\":false}"
+      },
+      {
+        "id": "75d6f734-8f11-478f-a633-13f71ccc5216",
+        "type": "Portrait Anim",
+        "position": {
+          "x": 1104.0,
+          "y": 844.0
+        },
+        "fields": "{\"portraitName\":\"아이카2\",\"location\":\"leftMost\",\"offset\":{\"x\":0.0,\"y\":0.0},\"face\":\"Default\",\"animKey\":\"None\",\"endTint\":{\"r\":1.0,\"g\":1.0,\"b\":1.0,\"a\":1.0},\"duration\":1.0,\"ease\":6,\"spotLight\":false,\"skippable\":false}"
+      },
+      {
+        "id": "21f279a6-2f72-4852-9576-19f9f158784d",
+        "type": "Wait",
+        "position": {
+          "x": 912.0,
+          "y": 349.0
+        },
+        "fields": "{\"duration\":1.0}"
+      },
+      {
+        "id": "6fb06f12-f330-41c2-a78d-fbe1016e89c2",
+        "type": "Portrait Anim",
+        "position": {
+          "x": 830.0,
+          "y": 655.0
+        },
+        "fields": "{\"portraitName\":\"아이카\",\"location\":\"rightMost\",\"offset\":{\"x\":0.0,\"y\":0.0},\"face\":\"Surprised\",\"animKey\":\"None\",\"endTint\":{\"r\":1.0,\"g\":1.0,\"b\":1.0,\"a\":1.0},\"duration\":1.0,\"ease\":6,\"spotLight\":true,\"skippable\":false}"
+      },
+      {
+        "id": "1c0a4a1b-a5d0-4d1f-a85d-f24fc533f0a3",
+        "type": "Portrait Anim",
+        "position": {
+          "x": 829.0,
+          "y": 412.0
+        },
+        "fields": "{\"portraitName\":\"아이카\",\"location\":\"leftMost\",\"offset\":{\"x\":0.0,\"y\":0.0},\"face\":\"Cry\",\"animKey\":\"None\",\"endTint\":{\"r\":1.0,\"g\":1.0,\"b\":1.0,\"a\":1.0},\"duration\":1.0,\"ease\":6,\"spotLight\":false,\"skippable\":false}"
+      }
+    ],
+    "connections": [
+      {
+        "sourceNodeId": "0a169d79-293a-4149-b58e-dfe3a86cf424",
+        "sourceOutputIndex": 0,
+        "targetNodeId": "9ca13d7b-ba59-4352-a0a5-f7fe5acf9764"
+      },
+      {
+        "sourceNodeId": "9ca13d7b-ba59-4352-a0a5-f7fe5acf9764",
+        "sourceOutputIndex": 0,
+        "targetNodeId": "dfb32ae6-0ac2-4791-ad1f-93be72f0708c"
+      },
+      {
+        "sourceNodeId": "9ca13d7b-ba59-4352-a0a5-f7fe5acf9764",
+        "sourceOutputIndex": 1,
+        "targetNodeId": "71abc187-36a9-428e-9de9-1050725cc543"
+      },
+      {
+        "sourceNodeId": "e2eca729-0691-4785-8987-eb789f5e0363",
+        "sourceOutputIndex": 0,
+        "targetNodeId": "24f32f56-3a7f-45cf-a87c-7276b1ca2814"
+      },
+      {
+        "sourceNodeId": "1c0a4a1b-a5d0-4d1f-a85d-f24fc533f0a3",
+        "sourceOutputIndex": 0,
+        "targetNodeId": "6fb06f12-f330-41c2-a78d-fbe1016e89c2"
+      },
+      {
+        "sourceNodeId": "84c34bf2-3608-421b-b57c-3c4441c15083",
+        "sourceOutputIndex": 0,
+        "targetNodeId": "8a1638f5-eaa8-48c3-b9cb-ff3cf51bbbe5"
+      },
+      {
+        "sourceNodeId": "84c34bf2-3608-421b-b57c-3c4441c15083",
+        "sourceOutputIndex": 0,
+        "targetNodeId": "0a169d79-293a-4149-b58e-dfe3a86cf424"
+      },
+      {
+        "sourceNodeId": "71abc187-36a9-428e-9de9-1050725cc543",
+        "sourceOutputIndex": 0,
+        "targetNodeId": "c26618c4-8209-40e8-bf07-d48b08404a98"
+      },
+      {
+        "sourceNodeId": "c26618c4-8209-40e8-bf07-d48b08404a98",
+        "sourceOutputIndex": 0,
+        "targetNodeId": "e902a174-8ffd-45e8-b3b7-ef11886501e6"
+      },
+      {
+        "sourceNodeId": "dfb32ae6-0ac2-4791-ad1f-93be72f0708c",
+        "sourceOutputIndex": 0,
+        "targetNodeId": "e2eca729-0691-4785-8987-eb789f5e0363"
+      },
+      {
+        "sourceNodeId": "e902a174-8ffd-45e8-b3b7-ef11886501e6",
+        "sourceOutputIndex": 0,
+        "targetNodeId": "75d6f734-8f11-478f-a633-13f71ccc5216"
+      },
+      {
+        "sourceNodeId": "75d6f734-8f11-478f-a633-13f71ccc5216",
+        "sourceOutputIndex": 0,
+        "targetNodeId": "e2eca729-0691-4785-8987-eb789f5e0363"
+      },
+      {
+        "sourceNodeId": "71abc187-36a9-428e-9de9-1050725cc543",
+        "sourceOutputIndex": 0,
+        "targetNodeId": "21f279a6-2f72-4852-9576-19f9f158784d"
+      },
+      {
+        "sourceNodeId": "21f279a6-2f72-4852-9576-19f9f158784d",
+        "sourceOutputIndex": 0,
+        "targetNodeId": "1c0a4a1b-a5d0-4d1f-a85d-f24fc533f0a3"
+      }
+    ]
+  }
+}

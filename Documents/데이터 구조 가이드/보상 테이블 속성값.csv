@@ -1,0 +1,5 @@
+이름,명칭 예시,설명,변수 값
+보상 테이블 ID,id,랜덤 보상 목록의 ID,(string 값)
+테이블에 포함된 보상 ID,itemId,해당 구역의 랜덤 보상에서 드랍시킬 카드 혹은 아이템의 ID (1개씩 작성),(string 값)
+레어도,rarity,해당 아이템의 출현 희귀도,"Uncommon, Common, Rare, Unique, Epic"
+드롭 확률,dropRate,해당 아이템의 출현 확률 보정치,(float 값)

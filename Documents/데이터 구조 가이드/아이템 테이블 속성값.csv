@@ -1,0 +1,14 @@
+이름,명칭 예시, 설명,변수 값
+아이템 ID,id,시스템 상에서 참조하는 ID 값,(string 값)
+아이템 이름,itemName,UI 상에 표시되는 아이템의 이름,(string 값)
+아이템 설명,description,UI 상에 표시되는 아이템 설명문,(string 값)
+아트 리소스,artworkPath,아트 리소스의 어드레서블 ID,(string 값)
+레어도,rarity,아이템의 표시 레어도,"Uncommon, Common, Rare, Unique, Epic"
+아이템 타입,itemType,"아이템 사용 방식에 따른 타입 (상시 효과 발동, 특정 조건 시 자동으로 효과 발동)","epuipment(상시 효과 발동), HasDamage(장착 유닛이 대미지를 입었을 경우), HasDown(장착 유닛의 HP가 0이 될 경우) (+추가 예정)"
+대상 유닛,targetUnit,효과를 적용할 대상 유닛 (행동력 등 유닛보다 상위의 값이 대상인 경우 “player”로 지정),"Self, Player, AllParty, LowestHp (+추가 예정)"
+대상 스탯,targetStatus,효과를 적용할 스탯 종류,"MaxAP(행동력 최대치), NowAP(현재 행동력), MaxHP(HP 최대치), NowHP(현재 HP), MaxEnergy(에너지 최대치), NowEnergy(현재 에너지), CostInHand(손패 카드의 코스트), StatusEffect(상태이상 부여), AddCard(손패에 카드 추가), AddDeck(덱에 카드 추가)"
+변동시킬 값,modifyValue,해당 스탯 값에 연산할 값 혹은 상태이상 ID,"(float 수식 값 ; +100, *1.5, -20, *0.01 등), (string 값; cardId 혹은 statusEffectId)"
+소모형 아이템인지,isDisposable,특정 조건 하에 소모되는 아이템인지,"true, false"
+소모 조건,disposeTrigger,아이템이 소모되는 조건 (isDisposable이 false일 때는 공란),"Used(효과가 발동될 경우), HasDamage(장착 유닛이 대미지를 입었을 경우), HasDown(장착 유닛의 HP가 0이 될 경우) (+추가 예정)"
+소모 확률,disposePercentage,"조건을 만족했을 때 아이템이 소모될 확률(0~1, 1일 경우 조건 만족 시 무조건 소모)",(float 값)
+스택 가능 갯수,stackCount,"한 칸에 겹쳐 장비할 수 있는 갯수 (소모품일 경우 1 이상, 소모품이 아닐 경우 1)",(int 값)

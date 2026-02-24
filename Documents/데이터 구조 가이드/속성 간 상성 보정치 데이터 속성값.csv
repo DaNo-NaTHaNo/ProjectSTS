@@ -1,0 +1,4 @@
+이름,명칭 예시,설명,변수 값
+공격 속성 ID,attackElement,공격하는 속성,"Sword(바람), Medal(흙), Baton(불), Grail(물), Sola(빛), Luna(어둠), Wild(무속성)"
+피격 속성 ID,targetElement,공격을 받는 속성,"Sword(바람), Medal(흙), Baton(불), Grail(물), Sola(빛), Luna(어둠), Wild(무속성)"
+피해량 보정치,modValue,공격 시 피해량에 곱해지는 보정치,(float 값)

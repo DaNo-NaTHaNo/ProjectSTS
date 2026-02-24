@@ -1,0 +1,16 @@
+이름,명칭 예시,설명,변수 값
+구역 ID,id,시스템에서 참조하기 위한 ID,(string 값)
+구역 이름,name,UI 상에 표시할 해당 구역의 이름,(string 값)
+구역 설명문,description,UI 상에 표시할 해당 구역에 대한 설명문,(string 값)
+구역 레벨 최소값,areaLevelMin,해당 구역을 배치할 레벨의 최소 값,(int 값)
+구역 레벨 최대값,areaLevelMax,해당 구역을 배치할 레벨의 최대 값,(int 값)
+구역 방향,areaCardinalPoint,해당 구역을 배치할 방향 값 (복수 입력 가능),"N, NE, NW, S, SE, SW"
+로고 이미지 리소스,logoImagePath,해당 구역 진입 시 표시할 로고 이미지의 어드레서블 ID,(string 값)
+바닥 배경 리소스,floarImagePath,해당 구역 진입 시 표시할 바닥 배경 이미지의 어드레서블 ID,(string 값)
+스카이박스 리소스,skyboxPath,해당 구역 진입 시 표시할 스카이박스의 어드레서블 ID,(string 값)
+비주얼 노벨 칸 모델 리소스,cellVisualNovelPath,해당 구역에서 출현하는 비주얼 노벨 이벤트 칸에 배치할 모델의 어드레서블 ID,(string 값)
+조우 칸 모델 리소스,cellEncountPath,해당 구역에서 출현하는 조우 이벤트 칸에 배치할 모델의 어드레서블 ID,(string 값)
+일반 전투 칸 모델 리소스,cellBattleNormalPath,해당 구역에서 출현하는 일반 전투 이벤트 칸에 배치할 모델의 어드레서블 ID,(string 값)
+엘리트 전투 칸 모델 리소스,cellBattleElitePath,해당 구역에서 출현하는 엘리트 전투 이벤트 칸에 배치할 모델의 어드레서블 ID,(string 값)
+보스 전투 칸 모델 리소스,cellBattleBossPath,해당 구역에서 출현하는 보스 전투 이벤트 칸에 배치할 모델의 어드레서블 ID,(string 값)
+이벤트 전투 칸 모델 리소스,cellBattleEventPath,해당 구역에서 출현하는 이벤트 전투 이벤트 칸에 배치할 모델의 어드레서블 ID,(string 값)

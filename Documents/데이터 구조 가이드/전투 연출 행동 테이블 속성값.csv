@@ -1,0 +1,7 @@
+이름,명칭 예시,설명,변수 값
+그룹 ID,groupId,실행할 연출들의 그룹 ID,(string 값)
+실행 순서,sequence,"그룹 내의 실행 순서(1, 2, 3…)",(int 값)
+연출 타입,actionType,실행할 연출/기능의 종류,"PlayDialogue(Value와 같은 어드레서블 ID의 비주얼 노벨 json 재생), PlayAnim(targetUnit이 Value 애니메이션을 재생), PlayCutIn(Value와 같은 어드레서블 ID의 컷인 연출 재생), ChangeBGM(Value와 같은 어드레서블 ID의 BGM 파일을 재생), ChangeBGI(Value와 같은 어드레서블 ID의 배경 이미지 프리팹으로 변경), SpawnUnit(Value 위치에 targetUnit과 같은 ID의 유닛을 생성), ChangeAIPattern(targetUnit의 AI 패턴을 Value로 변경), battleEnd(강제 전투 종료)"
+연출 데이터,actionValue,연출에 필요한 데이터,(string 값)
+연출 대상 유닛,targetUnit,연출의 대상 유닛/위치값,(string 값)
+순차적 재생,waitNext,해당 연출이 종료된 후에 다음 sequence를 진행하는지,"true(해당 연출 종료 후 다음 sequence 실행), false(해당 연출 개시 직후 곧바로 다음 sequence 실행)"

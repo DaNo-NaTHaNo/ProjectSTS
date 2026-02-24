@@ -1,0 +1,20 @@
+이름,명칭 예시,설명,변수 값
+스킬 ID,id,시스템 상에서 참조하는 ID 값,(string 값)
+스킬 이름,skillName,UI 상에 표시되는 스킬의 이름,(string 값)
+스킬 설명,discription,UI 상에 표시되는 스킬 효과 설명문,(string 값)
+장비 가능 유닛,unitId,해당 스킬을 장비 가능한 유닛의 ID,(string 값)
+아트 리소스,artworkPath,아트 리소스의 어드레서블 ID,(string 값)
+레어도,rarity,스킬의 표시 레어도,"uncommon, common, rare, unique, epic"
+속성,element,장비 및 상성 시스템에서 참조할 스킬의 속성,"Sword(바람), Medal(흙), Baton(불), Grail(물), Sola(빛), Luna(어둠), Wild(무속성)"
+트리거 대상,triggerTarget,스킬 발동 트리거를 감지할 대상,"Self(스킬을 장비한 유닛), Ally(플레이어 파티 멤버 중 누군가), Enemy(적 유닛 중 누군가), AllAlly(모든 파티 멤버 유닛), AllEnemy(모든 적 유닛), InHand(손패의 카드)"
+트리거할 상태,triggerStatus,스킬 발동 트리거가 되는 상태의 타입,"PlayCard(~의 카드를 사용), CauseDamage(~의 대미지를 가함), HasDamage(~의 대미지를 입음), HasDefend(~의 방어도를 얻음), CauseStatueEffect(~의 상태이상을 가함), HasStatusEffect(~의 상태이상을 얻음), StatusEffectCount(현재 보유한 상태이상의 수가 ~)"
+부등호,comparisonOperator,변수 값을 비교할 부등호,"Equal, NotEqual, GreaterThan, LessThen, GreaterOrEqual, LessOrEqual"
+트리거할 값,triggerValue,스킬 발동 트리거가 되는 상태의 변수 혹은 ID 값,(string 값)
+트리거할 속성,triggerElement,스킬 발동 트리거가 되는 상태의 속성 값,"Sword(바람), Medal(흙), Baton(불), Grail(물), Sola(빛), Luna(어둠), Wild(무속성)"
+효과 ID,cardEffectId,해당 스킬 사용 시 적용할 효과 데이터 ID,(string 값)
+타겟 타입,targetType,"적을 상대로 하는 효과인지, 아군을 상대로 하는 효과인지","Ally, Both, Enemy"
+타겟 필터,targetFilter,타겟으로 지정 가능한 제한 규칙,"None, OnlySelf (+추가 예정)"
+타겟 선택 규칙,targetSelectionRule,타겟을 자동 선택하는 규칙 (수동 선택일 경우 Manual),"Manual, AllTargets, LowestHp, Random (+추가 예정)"
+타겟의 수,targetCount,카드 효과가 적용되는 타겟의 최대 수 (0일 시 상한 없음),(int 값)
+사용 제약 타입,limitType,스킬의 사용횟수를 제약하는 방식,"None(무제한 사용), CoolDown(사용 시 ~턴 간 쿨다운), PerTurn(1 턴에 ~회 사용 가능), PerBattle(전투 당 ~회 사용 가능)"
+사용 제약 값,limitValue,스킬의 사용횟수를 제약하는 변수 값,(int 값)

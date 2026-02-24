@@ -1,0 +1,87 @@
+/* 기존 .unity-button 스타일 아래에 추가 */
+
+#toolbar-separator {
+    /* 구분선의 폭 */
+    /* width: 1px; */
+    /* 구분선 색상 (어두운 회색) */
+    /* background-color: rgb(35, 35, 35); */
+    /* 구분선 좌우 여백 */
+    margin-left: 20px;
+    margin-right: 20px;
+}
+
+/* 노드의 제목 영역(#title) 스타일 */
+.node-view #title {
+    position: relative;        /* 자식의 absolute 기준 */
+    height: 30px;
+    min-height: 30px;
+    align-items: center;
+    justify-content: space-between; /* 포트는 그대로 좌우 배치 */
+}
+
+/* 노드의 제목 라벨(#title-label) 스타일 */
+.node-view #title-label {
+    flex-glow: 1;
+    -unity-text-align: middle-center;
+}
+
+/* 노드의 최소화/확장 버튼(#collapse-button)을 찾아서 숨김 처리 */
+#collapse-button {
+    display: none;
+}
+
+/* 노드의 확장 영역(필드값이 있는 곳)의 배경색을 지정합니다. */
+.node-view #contents {
+    background-color: rgb(50, 50, 50); /* 원하는 배경색 (예: 어두운 회색) */
+}
+
+/* 노드의 메인 컨테이너에서 불필요한 포트 영역 숨기기 */
+.node-view #contents > #input,
+.node-view #contents > #output {
+    display: none;
+}
+
+/* "node-view" 클래스를 가진 요소 내부의 텍스트 필드(TextField)의 라벨 부분 스타일 */
+.node-view .unity-base-text-field__label {
+    min-width: 70px;
+    width: 70px;
+}
+
+/* "node-view" 클래스를 가진 요소 내부의 드롭다운 필드(DropdownField)의 라벨 부분 스타일 */
+.node-view .unity-base-popup-field__label {
+    min-width: 50px;
+    max-width: 50px;
+}
+
+/* 노드의 리사이즈 핸들(.resizer) 숨기기 */
+.node-view .resizer {
+    /* !important를 사용해 다른 모든 스타일을 무시하고 강제로 숨김 처리 */
+    opacity: 0 !important;
+}
+
+/* 1. 모든 필드 라벨의 기본 너비를 늘립니다 (기존 70px -> 100px) */
+.node-view .unity-base-field__label {
+    min-width: 100px;
+    width: 100px;
+}
+
+/* 2. Vector2Field 내부의 X, Y 라벨 너비를 조절하여 공백을 줄입니다 */
+.node-view .custom-vector2-field .unity-base-field__label {
+    min-width: 15px; /* X, Y 라벨의 너비를 최소화 */
+    padding-right: 5px;
+}
+
+/* 3. Vector2Field 내부의 숫자 입력 필드의 최소 너비를 설정합니다 */
+.node-view .custom-vector2-field .unity-float-field {
+    min-width: 50px;
+}
+
+/* [5단계 수정] 현재 재생 중인 노드 하이라이트 스타일 (Glow 느낌) */
+.playing-node #selection-border {
+    /* 유니티 노드의 기본 선택 테두리(#selection-border)를 오버라이드 */
+    border-color: rgb(0, 255, 255); /* 밝은 청록색 (Cyan) */
+    border-width: 2px;
+    border-radius: 8px;
+    /* 그림자 효과가 지원되지 않을 경우를 대비해 배경색 활용 */
+    background-color: rgba(0, 255, 255, 0.05); 
+}

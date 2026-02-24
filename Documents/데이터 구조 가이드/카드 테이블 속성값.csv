@@ -1,0 +1,15 @@
+이름,명칭 예시,설명,변수 값
+카드 ID,id,시스템 상에서 참조하는 ID 값,(string 값)
+카드 명칭,cardName,UI 상에 표시되는 카드의 이름,(string 값)
+카드 설명,description,UI 상에 표시되는 카드 효과 설명문,(string 값)
+아트 리소스,artworkPath,아트 리소스의 어드레서블 ID,(string 값)
+레어도,rarity,해당 카드의 표시 레어도,"uncommon, common, rare, unique, epic"
+속성,element,장비 및 상성 시스템에서 참조할 카드의 속성,"Sword(바람), Medal(흙), Baton(불), Grail(물), Sol(빛), Luna(어둠), Wild(무속성)"
+코스트,cost,해당 카드를 사용하는 데 필요한 에너지 값,(int 값)
+효과 ID,cardEffectId,해당 카드 사용 시 적용할 효과 데이터 ID,(string 값)
+효과 타입,cardType,해당 카드의 효과 포맷 형식 (카드 이펙트 테이블 참조),"Attack, Defend, StatusEffect, InHandEffect"
+타겟 타입,targetType,"적을 상대로 하는 효과인지, 아군을 상대로 하는 효과인지","Ally, Both, Enemy"
+타겟 필터,targetFilter,타겟으로 지정 가능한 제한 규칙,"None, OnlySelf (+추가 예정)"
+타겟 선택 규칙,targetSelectionRule,타겟을 자동 선택하는 규칙 (수동 선택일 경우 Manual),"Manual, AllTargets, LowestHp, Random (+추가 예정)"
+타겟의 수,targetCount,카드 효과가 적용되는 타겟의 최대 수 (0일 시 상한 없음),(int 값)
+일회용 카드인지,isDisposable,손패에서 사용했을 때 묘지로 가지 않고 제거되는 카드인지,"true, false"

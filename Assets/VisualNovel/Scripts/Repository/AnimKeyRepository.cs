@@ -1,0 +1,6 @@
+// DOTween 시퀀스를 담는 Repository는 DOTween Pro 에셋의 Sequence 오브젝트를 참조해야 합니다.
+// 여기서는 일단 GameObject로 예시를 들지만, 실제로는 DOTween 시퀀스 에셋 타입으로 변경해야 합니다.
+using UnityEngine;
+
+[CreateAssetMenu(fileName = "AnimKeyRepository", menuName = "VisualNovel/Repository/AnimKeyRepository")]
+public class AnimKeyRepository : BaseRepository<GameObject> { } // 추후 DOTween Sequence 타입으로 변경

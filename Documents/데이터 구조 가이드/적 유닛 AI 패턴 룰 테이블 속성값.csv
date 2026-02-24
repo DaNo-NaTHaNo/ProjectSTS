@@ -1,0 +1,10 @@
+이름,명칭 예시,설명,변수 값
+패턴 ID,aipatternId,해당 룰이 적용될 AI 패턴 테이블 ID 값,(string 값)
+룰 ID,ruleId,해당 패턴 룰의 ID 값,(string 값)
+우선도,priority,패턴 룰 조건 중복 시 판단 기준이 되는 우선도,(int 값)
+행동 타입,actionType,해당 패턴 룰의 행동 타입,"EarnCard(덱에 없던 카드 추가), PlayCard(덱의 특정 카드를 사용), Pass(행동하지 않음) (+추가 예정)"
+행동 카드,cardId,얻거나 사용할 카드의 ID,(string 값)
+행동 타겟,targetSelection,해당 패턴 룰의 타겟 선정 기준,"LowestHp, HighestHp, Random, Self (+추가 예정)"
+행동 시 대사,speechLine,해당 패턴 룰 행동 시 출력되는 말풍선 대사,(string 값)
+컷 인 효과,cutInEffect,해당 패턴 룰 행동 시 출력되는 컷 인 효과의 어드레서블 ID,(string 값)
+줌 인,zoomIn,해당 패턴 룰 행동 시 유닛을 포커싱+줌 인 하는지,"true, false"

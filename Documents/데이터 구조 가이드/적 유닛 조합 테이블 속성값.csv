@@ -1,0 +1,10 @@
+이름,명칭 예시,설명,변수 값
+적 조합 ID,id,시스템 상에서 참조하는 ID 값,(string 값)
+적 조합 명칭,name,인스펙터 상에 표시되는 해당 조합의 명칭,(string 값)
+적 조합 설명,description,인스펙터 상에 표시되는 해당 조합에 대한 설명,(string 값)
+웨이브 단계,waveCount,해당 조합이 배틀의 몇 번째 웨이브에 등장하는지,(int 값)
+1번째 자리의 적,enemyUnit_1,적 영역 가장 좌측에 위치하는 유닛 ID,(string 값)
+2번째 자리의 적,enemyUnit_2,적 영역 좌측에 위치하는 유닛 ID,(string 값)
+3번째 자리의 적,enemyUnit_3,적 영역 중앙에 위치하는 유닛 ID,(string 값)
+4번째 자리의 적,enemyUnit_4,적 영역 우측에 위치하는 유닛 ID,(string 값)
+5번째 자리의 적,enemyUnit_5,적 영역 가장 우측에 위치하는 유닛 ID,(string 값)

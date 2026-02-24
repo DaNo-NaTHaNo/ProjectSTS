@@ -1,0 +1,7 @@
+이름,명칭 예시,설명,변수 값
+패턴 ID,id,임포터에서 참조할 테이블 내 ID,(string 값)
+패턴 명칭,patternName,인스펙터 상에 표시될 패턴의 명칭,(string 값)
+패턴 설명,description,인스펙터 상에 표시될 패턴에 대한 설명문,(string 값)
+기본 행동 타입,defaultActionType,패턴 항목에 해당하지 않는 기본 행동 타입,"EarnCard(덱에 없던 카드 추가), PlayCard(덱의 특정 카드를 사용), Pass(행동하지 않음) (+추가 예정)"
+기본 행동 카드,defaultCardId,기본 행동 타입에서 사용할 카드 ID,(string 값)
+기본 행동 타겟,defaultTargetSelection,기본 행동 시 타겟 선정 기준,"LowestHp, HighestHp, Random, Self (+추가 예정)"

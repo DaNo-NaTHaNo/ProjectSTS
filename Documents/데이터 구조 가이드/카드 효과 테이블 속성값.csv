@@ -1,0 +1,10 @@
+이름,명칭 예시,설명,변수 값
+효과 ID,id,해당 효과를 적용할 카드 혹은 스킬에서 참조할 ID,(string 값)
+효과 타입,effectType,"데미지, 방어도, 상태이상 등 부여할 효과의 타입","Damage, Block, Heal, Energy, ApplyStatus(캐릭터에게 효과 적용), ModifyCard(손패에 효과 적용), Draw(덱 탑을 드로우), AddCard(특정 카드를 손패에 추가)"
+효과 수치,value,부여할 효과 수치,(float 값)
+상태이상 ID,statusEffectId,"상태이상을 부여할 경우, 부여할 상태이상의 ID",(string 값)
+카드 수치 변경 타입,modificationType,변경할 카드 수치의 타입,"Damage, Block, Cost, Duration, StatusStacks, TargetCount"
+카드 수치 변경 지속 시간,modDuration,카드 수치 변경이 끝나는 타이밍,"untilPlayed(적용된 카드 사용 시까지), Combat(전투 끝까지)"
+수치 변경 카드 타겟 선정 규칙,cardTargetSelection,수치 변경을 적용할 카드를 자동 선정하는 기준,"PlayerSelect(플레이어가 손패에서 선택), RandomInHand(손패 랜덤), AllInHand(손패 전부), TypeInHand(손패의 특정 타입), Element(손패의 특정 속성), AllInDeck(덱 전체)"
+수치 변경할 타겟의 카드 타입,targetCardType,수치 변경을 적용할 카드의 타입,"Attack, Defend, StatusEffect, InHandEffect"
+추가할 카드 ID,AddCardId,"카드 추가 시, 추가할 카드의 ID (복수 기입 가능)",(string 값)

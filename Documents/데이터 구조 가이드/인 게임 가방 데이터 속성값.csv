@@ -1,0 +1,7 @@
+이름,명칭 예시,설명,변수 값
+분류,cathegory,해당 소지품이 카드인지 아이템인지,"Card, Item"
+소지품 ID,productId,시스템 상에서 참조하는 카드 혹은 아이템 테이블에서의 ID 값,(string 값)
+소지품 이름,productName,UI 상에 표시되는 소지품의 이름 (cathegory에 따른 테이블에서 해당 id의 ~Name 값을 참조),(string 값)
+소지품 설명,description,UI 상에 표시되는 소지품의 설명문 (cathegory에 따른 테이블에서 해당 id의 description 값을 참조),(string 값)
+레어도,rarity,해당 소지품의 표시 레어도 (cathegory에 따른 테이블에서 해당 id의 rarity 값을 참조),"Uncommon, Common, Rare, Unique, Epic"
+신규 아이템 여부,isNewForNow,해당 카드 혹은 아이템이 이번 탐험에서 얻은 것인지 (완료 보상 리스트 필터링을 위한 값),"true, false"
