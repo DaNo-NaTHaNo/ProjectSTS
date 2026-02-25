@@ -340,6 +340,34 @@ namespace ProjectStS.Meta
 
         #endregion
 
+        #region Public Methods — 상태 조회 (저장용)
+
+        /// <summary>
+        /// 캠페인 해금 상태 Dictionary의 복사본을 반환한다 (저장용).
+        /// </summary>
+        public Dictionary<string, bool> GetCampaignUnlockedStates()
+        {
+            return new Dictionary<string, bool>(_campaignUnlockedState);
+        }
+
+        /// <summary>
+        /// 캠페인 완료 상태 Dictionary의 복사본을 반환한다 (저장용).
+        /// </summary>
+        public Dictionary<string, bool> GetCampaignCompletionStates()
+        {
+            return new Dictionary<string, bool>(_campaignCompletionState);
+        }
+
+        /// <summary>
+        /// 목표 완료 상태 Dictionary의 복사본을 반환한다 (저장용).
+        /// </summary>
+        public Dictionary<string, bool> GetGoalCompletionStates()
+        {
+            return new Dictionary<string, bool>(_goalCompletionState);
+        }
+
+        #endregion
+
         #region Public Methods — 상태 복원
 
         /// <summary>

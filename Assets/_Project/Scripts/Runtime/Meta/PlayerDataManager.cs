@@ -210,6 +210,23 @@ namespace ProjectStS.Meta
 
         #endregion
 
+        #region Public Methods — 데이터 일괄 복원
+
+        /// <summary>
+        /// 세이브 데이터로부터 보유 유닛, 인벤토리, 탐험 기록을 일괄 복원한다.
+        /// </summary>
+        /// <param name="units">복원할 보유 유닛 목록</param>
+        /// <param name="items">복원할 인벤토리 목록</param>
+        /// <param name="record">복원할 탐험 기록</param>
+        public void LoadData(List<OwnedUnitData> units, List<InventoryItemData> items, ExplorationRecordData record)
+        {
+            _ownedUnits = new List<OwnedUnitData>(units ?? new List<OwnedUnitData>());
+            _inventory = new List<InventoryItemData>(items ?? new List<InventoryItemData>());
+            _explorationRecord = record ?? new ExplorationRecordData();
+        }
+
+        #endregion
+
         #region Public Methods — 유닛 변경
 
         /// <summary>
