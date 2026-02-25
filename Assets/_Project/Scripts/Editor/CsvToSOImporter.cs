@@ -265,6 +265,7 @@ namespace ProjectStS.Editor
                     portraitPath = row.portraitPath,
                     maxHP = row.maxHp,
                     maxEnergy = row.maxEnergy,
+                    maxAP = row.maxAP,
                     initialDeckIds = row.initialDeckIds,
                     initialSkillId = row.initialSkillId,
                     aiPatternId = row.aiPatternId
