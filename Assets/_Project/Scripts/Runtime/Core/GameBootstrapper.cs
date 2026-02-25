@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using ProjectStS.Data;
 
 namespace ProjectStS.Core
 {
@@ -13,6 +14,9 @@ namespace ProjectStS.Core
 
         [Header("Settings")]
         [SerializeField] private string _lobbySceneName = "LobbyScene";
+
+        [Header("Data")]
+        [SerializeField] private DataManager _dataManager;
 
         #endregion
 
@@ -50,6 +54,16 @@ namespace ProjectStS.Core
         private void InitializeServices()
         {
             ServiceLocator.Clear();
+
+            // DataManager 등록
+            if (_dataManager != null)
+            {
+                ServiceLocator.Register(_dataManager);
+            }
+            else
+            {
+                Debug.LogError("[GameBootstrapper] DataManager가 할당되지 않았습니다.");
+            }
 
             // SceneTransitionManager 생성 및 등록
             var sceneTransitionManager = gameObject.AddComponent<SceneTransitionManager>();

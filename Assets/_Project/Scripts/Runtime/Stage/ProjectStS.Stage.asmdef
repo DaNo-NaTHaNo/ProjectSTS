@@ -4,7 +4,8 @@
     "references": [
         "ProjectStS.Data",
         "ProjectStS.Core",
-        "ProjectStS.Utils"
+        "ProjectStS.Utils",
+        "ProjectStS.Meta"
     ],
     "includePlatforms": [],
     "excludePlatforms": [],
