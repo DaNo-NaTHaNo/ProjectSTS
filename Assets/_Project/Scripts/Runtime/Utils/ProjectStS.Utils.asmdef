@@ -1,0 +1,16 @@
+{
+    "name": "ProjectStS.Utils",
+    "rootNamespace": "ProjectStS.Utils",
+    "references": [
+        "ProjectStS.Data"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}
