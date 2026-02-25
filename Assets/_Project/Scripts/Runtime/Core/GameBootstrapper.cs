@@ -44,7 +44,12 @@ namespace ProjectStS.Core
 
         private void Start()
         {
-            LoadLobbyScene();
+            // IntegrationBootstrap이 없는 경우 (독립 실행 등) 직접 로비 씬 로드
+            // IntegrationBootstrap이 있는 경우 해당 컴포넌트가 씬 전환을 관장한다.
+            if (GetComponent("IntegrationBootstrap") == null)
+            {
+                LoadLobbyScene();
+            }
         }
 
         #endregion
@@ -72,16 +77,23 @@ namespace ProjectStS.Core
             Debug.Log("[GameBootstrapper] 서비스 초기화 완료.");
         }
 
-        private void LoadLobbyScene()
+        /// <summary>
+        /// 로비 씬으로 전환한다. 외부에서도 호출 가능하다.
+        /// </summary>
+        public void LoadLobbyScene()
         {
+            string sceneName = (_dataManager != null && _dataManager.Settings != null)
+                ? _dataManager.Settings.LobbySceneName
+                : _lobbySceneName;
+
             if (ServiceLocator.TryGet<SceneTransitionManager>(out var sceneManager))
             {
-                sceneManager.LoadScene(_lobbySceneName);
+                sceneManager.LoadScene(sceneName);
             }
             else
             {
                 Debug.LogError("[GameBootstrapper] SceneTransitionManager를 찾을 수 없습니다. 직접 씬을 로드합니다.");
-                SceneManager.LoadScene(_lobbySceneName);
+                SceneManager.LoadScene(sceneName);
             }
         }
 

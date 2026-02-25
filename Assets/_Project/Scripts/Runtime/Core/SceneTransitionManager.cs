@@ -75,9 +75,33 @@ namespace ProjectStS.Core
             StartCoroutine(LoadSceneAsync(sceneName, mode, onComplete));
         }
 
+        /// <summary>
+        /// 지정된 씬을 비동기로 언로드한다 (Additive 로드된 씬 해제용).
+        /// </summary>
+        public void UnloadScene(string sceneName, Action onComplete = null)
+        {
+            StartCoroutine(UnloadSceneAsync(sceneName, onComplete));
+        }
+
         #endregion
 
         #region Private Methods
+
+        private IEnumerator UnloadSceneAsync(string sceneName, Action onComplete)
+        {
+            var asyncOp = SceneManager.UnloadSceneAsync(sceneName);
+
+            if (asyncOp == null)
+            {
+                Debug.LogError($"[SceneTransition] '{sceneName}' 씬을 언로드할 수 없습니다.");
+                yield break;
+            }
+
+            yield return asyncOp;
+
+            onComplete?.Invoke();
+            Debug.Log($"[SceneTransition] '{sceneName}' 씬 언로드 완료.");
+        }
 
         private IEnumerator LoadSceneAsync(string sceneName, LoadSceneMode mode, Action onComplete = null)
         {

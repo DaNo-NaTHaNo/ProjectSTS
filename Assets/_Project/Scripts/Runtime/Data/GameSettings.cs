@@ -23,7 +23,9 @@ namespace ProjectStS.Data
         [SerializeField] private int _maxItemSlots = 2;
 
         [Header("씬 이름")]
+        [SerializeField] private string _lobbySceneName = "LobbyScene";
         [SerializeField] private string _stageSceneName = "StageScene";
+        [SerializeField] private string _battleSceneName = "BattleScene";
 
         #endregion
 
@@ -65,9 +67,19 @@ namespace ProjectStS.Data
         public int MaxItemSlots => _maxItemSlots;
 
         /// <summary>
+        /// 로비 씬 이름.
+        /// </summary>
+        public string LobbySceneName => _lobbySceneName;
+
+        /// <summary>
         /// 스테이지 씬 이름.
         /// </summary>
         public string StageSceneName => _stageSceneName;
+
+        /// <summary>
+        /// 전투 씬 이름.
+        /// </summary>
+        public string BattleSceneName => _battleSceneName;
 
         #endregion
     }
