@@ -1,10 +1,10 @@
 // ========================================
-// CSV Row Å¬·¡½º Á¤ÀÇ
-// CSV ÆÄ½Ì °á°ú¸¦ ´ã´Â ÀÓ½Ã µ¥ÀÌÅÍ ±¸Á¶
+// CSV Row Å¬ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
+// CSV ï¿½Ä½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ ï¿½Ó½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 // ========================================
 
 /// <summary>
-/// Cards.csvÀÇ Çà µ¥ÀÌÅÍ
+/// Cards.csvï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 /// </summary>
 public class CardRow
 {
@@ -13,6 +13,7 @@ public class CardRow
     public string description;
     public string artworkPath;
     public int cost;
+    public string cardEffectId;
     public string cardType;
     public string rarity;
     public string targetType;
@@ -20,17 +21,15 @@ public class CardRow
     public int targetCount;
     public string targetFilter;
     public string element;
-    public string keywords;
-    public bool canUpgrade;
-    public string upgradedCardId;
+    public bool isDisposable;
 }
 
 /// <summary>
-/// CardEffects.csvÀÇ Çà µ¥ÀÌÅÍ
+/// CardEffects.csvï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 /// </summary>
 public class CardEffectRow
 {
-    public string cardId;
+    public string id;
     public string effectType;
     public int value;
     public string statusEffectId;
@@ -39,10 +38,11 @@ public class CardEffectRow
     public string modDuration;
     public string cardTargetSelection;
     public string targetCardType;
+    public string addCardId;
 }
 
 /// <summary>
-/// StatusEffects.csvÀÇ Çà µ¥ÀÌÅÍ
+/// StatusEffects.csvï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 /// </summary>
 public class StatusEffectRow
 {
@@ -53,30 +53,35 @@ public class StatusEffectRow
     public string statusType;
     public string triggerTiming;
     public string effectType;
+    public string effectElement;
     public float value;
     public string modifierType;
     public bool isStackable;
     public int maxStacks;
+    public bool isExpendable;
+    public int expendCount;
+    public int duration;
 }
 
 /// <summary>
-/// Units.csvÀÇ Çà µ¥ÀÌÅÍ
+/// Units.csvï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 /// </summary>
 public class UnitRow
 {
     public string id;
     public string unitName;
     public string unitType;
+    public string element;
     public string portraitPath;
     public int maxHp;
     public int maxEnergy;
-    public string initialDeckIds;      // ¼¼¹ÌÄİ·Ğ(;) ±¸ºĞ
+    public string initialDeckIds;      // ì„¸ë¯¸ì½œë¡ (;) êµ¬ë¶„
+    public string initialSkillId;
     public string aiPatternId;
-    public string element;
 }
 
 /// <summary>
-/// AIPatterns.csvÀÇ Çà µ¥ÀÌÅÍ
+/// AIPatterns.csvï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 /// </summary>
 public class AIPatternRow
 {
@@ -89,7 +94,7 @@ public class AIPatternRow
 }
 
 /// <summary>
-/// AIPatternRules.csvÀÇ Çà µ¥ÀÌÅÍ
+/// AIPatternRules.csvï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 /// </summary>
 public class AIPatternRuleRow
 {
@@ -99,23 +104,26 @@ public class AIPatternRuleRow
     public string actionType;
     public string cardId;
     public string targetSelection;
+    public string speechLine;
+    public string cutInEffect;
+    public bool zoomIn;
 }
 
 /// <summary>
-/// AIConditions.csvÀÇ Çà µ¥ÀÌÅÍ
+/// AIConditions.csvï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 /// </summary>
 public class AIConditionRow
 {
     public string ruleId;
     public string conditionType;
     public string comparisonOperator;
-    public float value;
-    public int divisor;         // TurnMod Àü¿ë
-    public int remainder;       // TurnMod Àü¿ë
+    public string value;
+    public int divisor;         // TurnMod ì „ìš©
+    public int remainder;       // TurnMod ì „ìš©
 }
 
 /// <summary>
-/// CombatScenarios.csvÀÇ Çà µ¥ÀÌÅÍ (¼ÕÆĞ ¼³Á¤ Á¦°Å)
+/// CombatScenarios.csvï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ (ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½)
 /// </summary>
 public class CombatScenarioRow
 {
@@ -123,5 +131,268 @@ public class CombatScenarioRow
     public string scenarioName;
     public string description;
     public string playerUnitId;
-    public string enemyUnitIds;     // ¼¼¹ÌÄİ·Ğ(;) ±¸ºĞ
+    public string enemyUnitIds;     // ì„¸ë¯¸ì½œë¡ (;) êµ¬ë¶„
+}
+
+/// <summary>
+/// Skills.csvì˜ í–‰ ë°ì´í„°ë¥¼ ë‚˜íƒ€ë‚´ëŠ” í´ë˜ìŠ¤
+/// </summary>
+public class SkillRow
+{
+    public string id;
+    public string skillName;
+    public string description;
+    public string unitId;
+    public string artworkPath;
+    public string rarity;
+    public string element;
+    public string triggerTarget;
+    public string triggerStatus;
+    public string comparisonOperator;
+    public string triggerValue;
+    public string triggerElement;
+    public string cardEffectId;
+    public string targetType;
+    public string targetFilter;
+    public string targetSelectionRule;
+    public int targetCount;
+    public string limitType;
+    public int limitValue;
+}
+
+/// <summary>
+/// Items.csvì˜ í–‰ ë°ì´í„°ë¥¼ ë‚˜íƒ€ë‚´ëŠ” í´ë˜ìŠ¤
+/// </summary>
+public class ItemRow
+{
+    public string id;
+    public string itemName;
+    public string description;
+    public string artworkPath;
+    public string rarity;
+    public string itemType;
+    public string targetUnit;
+    public string targetStatus;
+    public string modifyValue;
+    public bool isDisposable;
+    public string disposeTrigger;
+    public float disposePercentage;
+    public int stackCount;
+}
+
+/// <summary>
+/// Events.csvì˜ í–‰ ë°ì´í„°ë¥¼ ë‚˜íƒ€ë‚´ëŠ” í´ë˜ìŠ¤
+/// </summary>
+public class EventRow
+{
+    public string areaId;
+    public string id;
+    public string eventType;
+    public string eventValue;
+    public string spawnTrigger;
+    public string comparisonOperator;
+    public string spawnTriggerValue;
+    public int minLevel;
+    public int maxLevel;
+    public string rarity;
+    public string rewardId;
+    public int rewardMinCount;
+    public int rewardMaxCount;
+}
+
+/// <summary>
+/// Areas.csvì˜ í–‰ ë°ì´í„°ë¥¼ ë‚˜íƒ€ë‚´ëŠ” í´ë˜ìŠ¤
+/// </summary>
+public class AreaRow
+{
+    public string id;
+    public string name;
+    public string description;
+    public int areaLevelMin;
+    public int areaLevelMax;
+    public string areaCardinalPoint;
+    public string logoImagePath;
+    public string floorImagePath;
+    public string skyboxPath;
+    public string cellVisualNovelPath;
+    public string cellEncountPath;
+    public string cellBattleNormalPath;
+    public string cellBattleElitePath;
+    public string cellBattleBossPath;
+    public string cellBattleEventPath;
+}
+
+/// <summary>
+/// EnemyCombinations.csvì˜ í–‰ ë°ì´í„°ë¥¼ ë‚˜íƒ€ë‚´ëŠ” í´ë˜ìŠ¤
+/// </summary>
+public class EnemyCombinationRow
+{
+    public string id;
+    public string name;
+    public string description;
+    public int waveCount;
+    public string enemyUnit1;
+    public string enemyUnit2;
+    public string enemyUnit3;
+    public string enemyUnit4;
+    public string enemyUnit5;
+}
+
+/// <summary>
+/// RewardTable.csvì˜ í–‰ ë°ì´í„°ë¥¼ ë‚˜íƒ€ë‚´ëŠ” í´ë˜ìŠ¤
+/// </summary>
+public class RewardTableRow
+{
+    public string id;
+    public string itemId;
+    public string rarity;
+    public float dropRate;
+}
+
+/// <summary>
+/// ElementAffinity.csvì˜ í–‰ ë°ì´í„°ë¥¼ ë‚˜íƒ€ë‚´ëŠ” í´ë˜ìŠ¤
+/// </summary>
+public class ElementAffinityRow
+{
+    public string attackElement;
+    public string targetElement;
+    public float modValue;
+}
+
+/// <summary>
+/// BattleActions.csvì˜ í–‰ ë°ì´í„°ë¥¼ ë‚˜íƒ€ë‚´ëŠ” í´ë˜ìŠ¤
+/// </summary>
+public class BattleActionRow
+{
+    public string groupId;
+    public int sequence;
+    public string actionType;
+    public string actionValue;
+    public string targetUnit;
+    public bool waitNext;
+}
+
+/// <summary>
+/// BattleTimelines.csvì˜ í–‰ ë°ì´í„°ë¥¼ ë‚˜íƒ€ë‚´ëŠ” í´ë˜ìŠ¤
+/// </summary>
+public class BattleTimelineRow
+{
+    public string id;
+    public string eventId;
+    public string triggerTarget;
+    public string triggerType;
+    public string triggerValue;
+    public int priority;
+    public bool isRepeatable;
+    public string actionGroupId;
+}
+
+/// <summary>
+/// Campaigns.csvì˜ í–‰ ë°ì´í„°ë¥¼ ë‚˜íƒ€ë‚´ëŠ” í´ë˜ìŠ¤
+/// </summary>
+public class CampaignRow
+{
+    public string id;
+    public string name;
+    public string description;
+    public string artworkPath;
+    public string unlockType;
+    public string unlockId;
+    public string groupId;
+    public string rewards;
+    public bool isCompleted;
+    public string afterComplete;
+}
+
+/// <summary>
+/// CampaignGoalGroups.csvì˜ í–‰ ë°ì´í„°ë¥¼ ë‚˜íƒ€ë‚´ëŠ” í´ë˜ìŠ¤
+/// </summary>
+public class CampaignGoalGroupRow
+{
+    public string groupId;
+    public int sequence;
+    public string name;
+    public string description;
+    public bool isEssential;
+    public string triggerType;
+    public string triggerValue;
+    public string additionalRewards;
+    public bool isClearTrigger;
+    public bool isCompleted;
+}
+
+/// <summary>
+/// DropRates.csvì˜ í–‰ ë°ì´í„°ë¥¼ ë‚˜íƒ€ë‚´ëŠ” í´ë˜ìŠ¤
+/// </summary>
+public class DropRateRow
+{
+    public string category;
+    public string rarity;
+    public float dropValue;
+}
+
+/// <summary>
+/// OwnedUnits.csvì˜ í–‰ ë°ì´í„°ë¥¼ ë‚˜íƒ€ë‚´ëŠ” í´ë˜ìŠ¤ (í”Œë ˆì´ì–´ ë³´ìœ  ìœ ë‹› ë°ì´í„°)
+/// </summary>
+public class OwnedUnitRow
+{
+    public string unitId;
+    public string cardElement;
+    public string editedDeck;
+    public string editedSkill;
+    public string equipItem1;
+    public string equipItem2;
+    public int partyPosition;
+}
+
+/// <summary>
+/// InventoryItems.csvì˜ í–‰ ë°ì´í„°ë¥¼ ë‚˜íƒ€ë‚´ëŠ” í´ë˜ìŠ¤ (ì¸ë²¤í† ë¦¬ ì•„ì´í…œ ë°ì´í„°)
+/// </summary>
+public class InventoryItemRow
+{
+    public string category;
+    public string productId;
+    public string productName;
+    public string description;
+    public string rarity;
+    public int ownStack;
+    public int useStack;
+    public string cardElement;
+    public string cardType;
+    public int cardCost;
+    public string itemType;
+    public string targetStatus;
+    public bool isDisposable;
+}
+
+/// <summary>
+/// InGameBagItems.csvì˜ í–‰ ë°ì´í„°ë¥¼ ë‚˜íƒ€ë‚´ëŠ” í´ë˜ìŠ¤ (ì¸ê²Œì„ ê°€ë°© ì•„ì´í…œ ë°ì´í„°)
+/// </summary>
+public class InGameBagItemRow
+{
+    public string category;
+    public string productId;
+    public string productName;
+    public string description;
+    public string rarity;
+    public bool isNewForNow;
+}
+
+/// <summary>
+/// ExplorationRecords.csvì˜ í–‰ ë°ì´í„°ë¥¼ ë‚˜íƒ€ë‚´ëŠ” í´ë˜ìŠ¤ (íƒí—˜ ê¸°ë¡ ë°ì´í„°)
+/// </summary>
+public class ExplorationRecordRow
+{
+    public int countDepart;
+    public int countComplete;
+    public int countBattleAll;
+    public int countVisualNovelAll;
+    public int countEncountAll;
+    public int countBattleNow;
+    public int countVisualNovelNow;
+    public int countEncountNow;
+    public int countEnemyEliminated;
+    public string eliminatedBossId;
+    public string visitedAreaId;
+    public int countRewardComplete;
 }
