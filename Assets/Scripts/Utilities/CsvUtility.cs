@@ -319,7 +319,7 @@ public static class CsvUtility
         {
             if (string.IsNullOrWhiteSpace(line)) continue;
             var cols = ParseCsvLine(line.Trim());
-            if (cols.Length < 10 || string.IsNullOrEmpty(cols[0])) continue;
+            if (cols.Length < 11 || string.IsNullOrEmpty(cols[0])) continue;
 
             data.Add(new UnitRow
             {
@@ -330,9 +330,10 @@ public static class CsvUtility
                 portraitPath = cols[4],
                 maxHp = int.TryParse(cols[5], out var hp) ? hp : 0,
                 maxEnergy = int.TryParse(cols[6], out var e) ? e : 0,
-                initialDeckIds = cols[7],
-                initialSkillId = cols[8],
-                aiPatternId = cols[9]
+                maxAP = int.TryParse(cols[7], out var ap) ? ap : 0,
+                initialDeckIds = cols[8],
+                initialSkillId = cols[9],
+                aiPatternId = cols[10]
             });
         }
         return data;

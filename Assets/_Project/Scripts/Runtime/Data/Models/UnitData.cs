@@ -28,6 +28,9 @@ namespace ProjectStS.Data
         /// <summary>유닛이 파티 합류 시 가산되는 에너지 수치</summary>
         public int maxEnergy;
 
+        /// <summary>유닛의 행동력 (파티 합류 시 가산)</summary>
+        public int maxAP;
+
         /// <summary>유닛의 초기 덱을 구성하는 카드 ID (세미콜론 구분)</summary>
         public string initialDeckIds;
 

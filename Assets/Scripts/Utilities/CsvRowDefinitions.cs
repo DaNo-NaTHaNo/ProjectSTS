@@ -75,6 +75,7 @@ public class UnitRow
     public string portraitPath;
     public int maxHp;
     public int maxEnergy;
+    public int maxAP;
     public string initialDeckIds;      // 세미콜론(;) 구분
     public string initialSkillId;
     public string aiPatternId;
