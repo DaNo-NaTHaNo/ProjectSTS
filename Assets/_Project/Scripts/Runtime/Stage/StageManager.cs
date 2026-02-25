@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using ProjectStS.Data;
 using ProjectStS.Core;
+using ProjectStS.Meta;
 
 namespace ProjectStS.Stage
 {
@@ -130,6 +131,21 @@ namespace ProjectStS.Stage
             _zoneManager.AssignZones(grid);
 
             _eventPlacement = new EventPlacementSystem(dataManager);
+
+            // 외부 조건 확인 콜백 연결 (OwnCharacter, OwnItem 평가용)
+            if (ServiceLocator.TryGet<PlayerDataManager>(out var playerData))
+            {
+                _eventPlacement.OnExternalConditionCheck = (trigger, value) =>
+                {
+                    switch (trigger)
+                    {
+                        case SpawnTrigger.OwnCharacter: return playerData.HasUnit(value);
+                        case SpawnTrigger.OwnItem: return playerData.HasItem(value);
+                        default: return false;
+                    }
+                };
+            }
+
             _eventPlacement.PlaceEvents(grid, _zoneManager, _state.Record);
 
             _rewardProcessor = new EventRewardProcessor(dataManager);

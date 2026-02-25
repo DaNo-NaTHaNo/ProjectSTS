@@ -43,6 +43,9 @@ namespace ProjectStS.Data
         [SerializeField] private CampaignGoalGroupTableSO _campaignGoalGroupTable;
         [SerializeField] private DropRateTableSO _dropRateTable;
 
+        [Header("Settings")]
+        [SerializeField] private GameSettings _gameSettings;
+
         #endregion
 
         #region Public Properties
@@ -141,6 +144,11 @@ namespace ProjectStS.Data
         /// 레어도별 기본 드랍율 데이터 테이블.
         /// </summary>
         public DropRateTableSO DropRates => _dropRateTable;
+
+        /// <summary>
+        /// 게임 전역 설정.
+        /// </summary>
+        public GameSettings Settings => _gameSettings;
 
         #endregion
 
