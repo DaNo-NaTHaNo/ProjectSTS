@@ -7,6 +7,7 @@ using ProjectStS.Data;
 using ProjectStS.Meta;
 using ProjectStS.Battle;
 using ProjectStS.Stage;
+using EventType = ProjectStS.Data.EventType;
 
 namespace ProjectStS.Integration
 {

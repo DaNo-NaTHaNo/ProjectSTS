@@ -4,6 +4,7 @@ using UnityEngine;
 using ProjectStS.Data;
 using ProjectStS.Core;
 using ProjectStS.Meta;
+using EventType = ProjectStS.Data.EventType;
 
 namespace ProjectStS.Stage
 {
