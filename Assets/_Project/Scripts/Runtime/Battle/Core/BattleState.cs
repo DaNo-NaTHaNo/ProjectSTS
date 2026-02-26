@@ -156,7 +156,11 @@ namespace ProjectStS.Battle
         /// <param name="eventId">전투 이벤트 ID</param>
         public void Initialize(List<OwnedUnitData> party, List<EnemyCombinationData> waves, string eventId)
         {
-            var dataManager = ServiceLocator.Get<DataManager>();
+            if (!ServiceLocator.TryGet<DataManager>(out var dataManager))
+            {
+                Debug.LogError("[BattleState] DataManager를 찾을 수 없습니다.");
+                return;
+            }
 
             Allies.Clear();
             Enemies.Clear();
@@ -214,7 +218,12 @@ namespace ProjectStS.Battle
                 return;
             }
 
-            var dataManager = ServiceLocator.Get<DataManager>();
+            if (!ServiceLocator.TryGet<DataManager>(out var dataManager))
+            {
+                Debug.LogError("[BattleState] DataManager를 찾을 수 없습니다.");
+                return;
+            }
+
             EnemyCombinationData wave = WaveData[waveIndex];
 
             Enemies.Clear();

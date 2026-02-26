@@ -106,7 +106,11 @@ namespace ProjectStS.Battle
                 CleanupBattle();
             }
 
-            var dataManager = ServiceLocator.Get<DataManager>();
+            if (!ServiceLocator.TryGet<DataManager>(out var dataManager))
+            {
+                Debug.LogError("[BattleManager] DataManager를 찾을 수 없습니다.");
+                return;
+            }
 
             _state = new BattleState();
             _state.Initialize(party, waves, eventId);
