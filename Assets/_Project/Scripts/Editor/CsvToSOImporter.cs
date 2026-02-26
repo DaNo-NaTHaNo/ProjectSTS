@@ -4,6 +4,7 @@ using System.IO;
 using UnityEditor;
 using UnityEngine;
 using ProjectStS.Data;
+using EventType = ProjectStS.Data.EventType;
 
 namespace ProjectStS.Editor
 {
