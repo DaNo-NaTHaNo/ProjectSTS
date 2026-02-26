@@ -96,20 +96,19 @@ public static class CsvUtility
         {
             if (string.IsNullOrWhiteSpace(line)) continue;
             var cols = ParseCsvLine(line.Trim());
-            if (cols.Length < 10 || string.IsNullOrEmpty(cols[0])) continue;
+            if (cols.Length < 9 || string.IsNullOrEmpty(cols[0])) continue;
 
             data.Add(new CardEffectRow
             {
                 id = cols[0],
                 effectType = cols[1],
-                value = int.TryParse(cols[2], out var v) ? v : 0,
+                value = float.TryParse(cols[2], out var v) ? v : 0f,
                 statusEffectId = cols[3],
-                duration = int.TryParse(cols[4], out var d) ? d : 0,
-                modificationType = cols[5],
-                modDuration = cols[6],
-                cardTargetSelection = cols[7],
-                targetCardType = cols[8],
-                addCardId = cols[9]
+                modificationType = cols[4],
+                modDuration = cols[5],
+                cardTargetSelection = cols[6],
+                targetCardType = cols[7],
+                addCardId = cols[8]
             });
         }
         return data;

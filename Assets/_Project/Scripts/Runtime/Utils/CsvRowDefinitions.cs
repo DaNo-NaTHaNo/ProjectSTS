@@ -31,9 +31,8 @@ public class CardEffectRow
 {
     public string id;
     public string effectType;
-    public int value;
+    public float value;
     public string statusEffectId;
-    public int duration;
     public string modificationType;
     public string modDuration;
     public string cardTargetSelection;
