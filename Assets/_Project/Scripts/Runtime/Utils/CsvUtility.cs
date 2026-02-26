@@ -69,15 +69,15 @@ public static class CsvUtility
                 cardName = cols[1],
                 description = cols[2].Replace("\\n", "\n"),
                 artworkPath = cols[3],
-                cost = int.TryParse(cols[4], out var cost) ? cost : 0,
-                cardEffectId = cols[5],
-                cardType = cols[6],
-                rarity = cols[7],
-                targetType = cols[8],
-                targetSelectionRule = cols[9],
-                targetCount = int.TryParse(cols[10], out var tc) ? tc : 1,
-                targetFilter = cols[11],
-                element = cols[12],
+                rarity = cols[4],
+                element = cols[5],
+                cost = int.TryParse(cols[6], out var cost) ? cost : 0,
+                cardEffectId = cols[7],
+                cardType = cols[8],
+                targetType = cols[9],
+                targetFilter = cols[10],
+                targetSelectionRule = cols[11],
+                targetCount = int.TryParse(cols[12], out var tc) ? tc : 1,
                 isDisposable = bool.TryParse(cols[13], out var disp) ? disp : false
             });
         }
@@ -96,20 +96,19 @@ public static class CsvUtility
         {
             if (string.IsNullOrWhiteSpace(line)) continue;
             var cols = ParseCsvLine(line.Trim());
-            if (cols.Length < 10 || string.IsNullOrEmpty(cols[0])) continue;
+            if (cols.Length < 9 || string.IsNullOrEmpty(cols[0])) continue;
 
             data.Add(new CardEffectRow
             {
                 id = cols[0],
                 effectType = cols[1],
-                value = int.TryParse(cols[2], out var v) ? v : 0,
+                value = float.TryParse(cols[2], out var v) ? v : 0f,
                 statusEffectId = cols[3],
-                duration = int.TryParse(cols[4], out var d) ? d : 0,
-                modificationType = cols[5],
-                modDuration = cols[6],
-                cardTargetSelection = cols[7],
-                targetCardType = cols[8],
-                addCardId = cols[9]
+                modificationType = cols[4],
+                modDuration = cols[5],
+                cardTargetSelection = cols[6],
+                targetCardType = cols[7],
+                addCardId = cols[8]
             });
         }
         return data;

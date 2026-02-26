@@ -87,8 +87,13 @@ namespace ProjectStS.Integration
                 return;
             }
 
-            var dataManager = ServiceLocator.Get<DataManager>();
-            var sceneManager = ServiceLocator.Get<SceneTransitionManager>();
+            if (!ServiceLocator.TryGet<DataManager>(out var dataManager) ||
+                !ServiceLocator.TryGet<SceneTransitionManager>(out var sceneManager))
+            {
+                Debug.LogError("[GameFlowController] 필수 서비스를 찾을 수 없습니다.");
+                return;
+            }
+
             string stageSceneName = dataManager.Settings.StageSceneName;
 
             sceneManager.LoadScene(stageSceneName);
@@ -236,8 +241,13 @@ namespace ProjectStS.Integration
             _pendingBattleEventData = eventData;
             _pendingBattleWaves = BuildWaveList(eventData.eventValue);
 
-            var dataManager = ServiceLocator.Get<DataManager>();
-            var sceneManager = ServiceLocator.Get<SceneTransitionManager>();
+            if (!ServiceLocator.TryGet<DataManager>(out var dataManager) ||
+                !ServiceLocator.TryGet<SceneTransitionManager>(out var sceneManager))
+            {
+                Debug.LogError("[GameFlowController] 필수 서비스를 찾을 수 없습니다.");
+                return;
+            }
+
             string battleSceneName = dataManager.Settings.BattleSceneName;
 
             sceneManager.LoadScene(battleSceneName, LoadSceneMode.Additive);
@@ -258,8 +268,13 @@ namespace ProjectStS.Integration
                 battleManager.CleanupBattle();
             }
 
-            var dataManager = ServiceLocator.Get<DataManager>();
-            var sceneManager = ServiceLocator.Get<SceneTransitionManager>();
+            if (!ServiceLocator.TryGet<DataManager>(out var dataManager) ||
+                !ServiceLocator.TryGet<SceneTransitionManager>(out var sceneManager))
+            {
+                Debug.LogError("[GameFlowController] 필수 서비스를 찾을 수 없습니다.");
+                return;
+            }
+
             string battleSceneName = dataManager.Settings.BattleSceneName;
 
             sceneManager.UnloadScene(battleSceneName);
@@ -372,7 +387,12 @@ namespace ProjectStS.Integration
         private List<EnemyCombinationData> BuildWaveList(string eventValue)
         {
             var waves = new List<EnemyCombinationData>(4);
-            var dataManager = ServiceLocator.Get<DataManager>();
+
+            if (!ServiceLocator.TryGet<DataManager>(out var dataManager))
+            {
+                Debug.LogError("[GameFlowController] DataManager를 찾을 수 없습니다.");
+                return waves;
+            }
 
             if (string.IsNullOrEmpty(eventValue))
             {
@@ -426,8 +446,13 @@ namespace ProjectStS.Integration
         /// </summary>
         private void ReturnToLobbyInternal()
         {
-            var dataManager = ServiceLocator.Get<DataManager>();
-            var sceneManager = ServiceLocator.Get<SceneTransitionManager>();
+            if (!ServiceLocator.TryGet<DataManager>(out var dataManager) ||
+                !ServiceLocator.TryGet<SceneTransitionManager>(out var sceneManager))
+            {
+                Debug.LogError("[GameFlowController] 필수 서비스를 찾을 수 없습니다.");
+                return;
+            }
+
             string lobbySceneName = dataManager.Settings.LobbySceneName;
 
             sceneManager.LoadScene(lobbySceneName);

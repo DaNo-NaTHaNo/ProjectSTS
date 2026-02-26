@@ -81,7 +81,11 @@ namespace ProjectStS.Battle
         /// <param name="state">전투 상태</param>
         public void BuildBattleDeck(BattleState state)
         {
-            var dataManager = ServiceLocator.Get<DataManager>();
+            if (!ServiceLocator.TryGet<DataManager>(out var dataManager))
+            {
+                Debug.LogError("[DeckManager] DataManager를 찾을 수 없습니다.");
+                return;
+            }
 
             _drawPile.Clear();
             _discardPile.Clear();
@@ -233,7 +237,12 @@ namespace ProjectStS.Battle
         /// <param name="ownerUnitId">소유자 유닛 ID</param>
         public void AddCardToDeck(string cardId, string ownerUnitId)
         {
-            var dataManager = ServiceLocator.Get<DataManager>();
+            if (!ServiceLocator.TryGet<DataManager>(out var dataManager))
+            {
+                Debug.LogError("[DeckManager] DataManager를 찾을 수 없습니다.");
+                return;
+            }
+
             CardData cardData = dataManager.GetCard(cardId);
 
             if (cardData == null)

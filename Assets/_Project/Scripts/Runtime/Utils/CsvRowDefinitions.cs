@@ -12,15 +12,15 @@ public class CardRow
     public string cardName;
     public string description;
     public string artworkPath;
+    public string rarity;
+    public string element;
     public int cost;
     public string cardEffectId;
     public string cardType;
-    public string rarity;
     public string targetType;
+    public string targetFilter;
     public string targetSelectionRule;
     public int targetCount;
-    public string targetFilter;
-    public string element;
     public bool isDisposable;
 }
 
@@ -31,9 +31,8 @@ public class CardEffectRow
 {
     public string id;
     public string effectType;
-    public int value;
+    public float value;
     public string statusEffectId;
-    public int duration;
     public string modificationType;
     public string modDuration;
     public string cardTargetSelection;

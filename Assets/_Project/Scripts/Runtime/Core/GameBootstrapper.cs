@@ -8,6 +8,7 @@ namespace ProjectStS.Core
     /// 게임의 단일 진입점. BootScene에서 1회 실행되며,
     /// 서비스를 초기화하고 LobbyScene으로 전환한다.
     /// </summary>
+    [DefaultExecutionOrder(-100)]
     public class GameBootstrapper : MonoBehaviour
     {
         #region Serialized Fields

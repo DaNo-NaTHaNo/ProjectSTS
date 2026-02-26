@@ -113,7 +113,11 @@ namespace ProjectStS.Stage
                 CleanupStage();
             }
 
-            var dataManager = ServiceLocator.Get<DataManager>();
+            if (!ServiceLocator.TryGet<DataManager>(out var dataManager))
+            {
+                Debug.LogError("[StageManager] DataManager를 찾을 수 없습니다.");
+                return;
+            }
 
             _state = new StageState();
             _state.Initialize(party);
