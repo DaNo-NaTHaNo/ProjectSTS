@@ -191,10 +191,10 @@ public class DialogueLineEditor : EditorWindow
         }
         EventCallback<ChangeEvent<TValue>> newCallback = evt =>
         {
-            // [¼öÁ¤] ÇÊµå °ª º¯°æ ½Ã Undo/Redo¸¦ ±â·ÏÇÕ´Ï´Ù.
+            // [ï¿½ï¿½ï¿½ï¿½] ï¿½Êµï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ Undo/Redoï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Õ´Ï´ï¿½.
             Undo.RegisterCompleteObjectUndo(_targetData, "Change Dialogue Field");
             setter(data, evt.newValue);
-            EditorUtility.SetDirty(_targetData); // SO°¡ º¯°æµÇ¾úÀ½À» ¾Ë¸³´Ï´Ù.
+            EditorUtility.SetDirty(_targetData); // SOï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Ç¾ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ë¸ï¿½ï¿½Ï´ï¿½.
         };
         field.RegisterValueChangedCallback(newCallback);
         field.userData = newCallback;
@@ -205,8 +205,8 @@ public class DialogueLineEditor : EditorWindow
         if (_targetData.dialogueLines.Any())
         {
             int option = EditorUtility.DisplayDialogComplex(
-                "»õ·Î¿î DialogueLine", "±âÁ¸ µ¥ÀÌÅÍ¸¦ Áö¿ì°í »õ·Î ½ÃÀÛÇÏ½Ã°Ú½À´Ï±î?",
-                "È®ÀÎ", "Ãë¼Ò", "Export ÈÄ ÃÊ±âÈ­"
+                "ï¿½ï¿½ï¿½Î¿ï¿½ DialogueLine", "ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Í¸ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ï½Ã°Ú½ï¿½ï¿½Ï±ï¿½?",
+                "È®ï¿½ï¿½", "ï¿½ï¿½ï¿½", "Export ï¿½ï¿½ ï¿½Ê±ï¿½È­"
             );
             switch (option)
             {
@@ -228,26 +228,26 @@ public class DialogueLineEditor : EditorWindow
     {
         if (_targetData == null || !_targetData.dialogueLines.Any())
         {
-            EditorUtility.DisplayDialog("Export ½ÇÆÐ", "³»º¸³¾ µ¥ÀÌÅÍ°¡ ¾ø½À´Ï´Ù.", "È®ÀÎ");
+            EditorUtility.DisplayDialog("Export ï¿½ï¿½ï¿½ï¿½", "ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Í°ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ï´ï¿½.", "È®ï¿½ï¿½");
             return;
         }
         string path = EditorUtility.SaveFilePanel("Export DialogueLine CSV", "", "DialogueLine.csv", "csv");
         if (string.IsNullOrEmpty(path)) return;
         try
         {
-            string csvText = CsvUtility.GenerateDialogueLines(_targetData.dialogueLines);
+            string csvText = CsvUtilityVN.GenerateDialogueLines(_targetData.dialogueLines);
             File.WriteAllText(path, csvText, System.Text.Encoding.UTF8);
-            Debug.Log($"DialogueLine µ¥ÀÌÅÍ°¡ ¼º°øÀûÀ¸·Î Export µÇ¾ú½À´Ï´Ù: {path}");
+            Debug.Log($"DialogueLine ï¿½ï¿½ï¿½ï¿½ï¿½Í°ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ Export ï¿½Ç¾ï¿½ï¿½ï¿½ï¿½Ï´ï¿½: {path}");
         }
         catch (Exception e)
         {
-            Debug.LogError($"CSV Export Áß ¿¡·¯ ¹ß»ý: {e.Message}");
+            Debug.LogError($"CSV Export ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ß»ï¿½: {e.Message}");
         }
     }
 
     private void CreateNewSheet()
     {
-        // [¼öÁ¤] Undo.RegisterCompleteObjectUndo·Î º¯°æÇÏ¿© ÀüÃ¼ »óÅÂ¸¦ ±â·Ï
+        // [ï¿½ï¿½ï¿½ï¿½] Undo.RegisterCompleteObjectUndoï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ï¿ï¿½ ï¿½ï¿½Ã¼ ï¿½ï¿½ï¿½Â¸ï¿½ ï¿½ï¿½ï¿½
         Undo.RegisterCompleteObjectUndo(_targetData, "Create New DialogueLine Sheet");
         _targetData.dialogueLines.Clear();
         _targetData.dialogueLines.Add(new DialogueLine());
@@ -272,17 +272,17 @@ public class DialogueLineEditor : EditorWindow
         {
             return;
         }
-        // [¼öÁ¤] Undo.RegisterCompleteObjectUndo·Î º¯°æ
+        // [ï¿½ï¿½ï¿½ï¿½] Undo.RegisterCompleteObjectUndoï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
         Undo.RegisterCompleteObjectUndo(_targetData, "Import CSV");
         string csvText = File.ReadAllText(path);
-        _targetData.dialogueLines = CsvUtility.ParseDialogueLines(csvText);
+        _targetData.dialogueLines = CsvUtilityVN.ParseDialogueLines(csvText);
         EditorUtility.SetDirty(_targetData);
         RefreshListView();
     }
 
     private void OnAddRowButtonClicked()
     {
-        // [¼öÁ¤] Undo.RegisterCompleteObjectUndo·Î º¯°æ
+        // [ï¿½ï¿½ï¿½ï¿½] Undo.RegisterCompleteObjectUndoï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
         Undo.RegisterCompleteObjectUndo(_targetData, "Add Row");
         var newEntry = new DialogueLine();
         int insertIndex = _targetData.dialogueLines.Count;
@@ -304,7 +304,7 @@ public class DialogueLineEditor : EditorWindow
             return;
         }
         var selectedData = _listView.selectedItem as DialogueLine;
-        // [¼öÁ¤] Undo.RegisterCompleteObjectUndo·Î º¯°æ
+        // [ï¿½ï¿½ï¿½ï¿½] Undo.RegisterCompleteObjectUndoï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
         Undo.RegisterCompleteObjectUndo(_targetData, "Remove Row");
         _targetData.dialogueLines.Remove(selectedData);
         EditorUtility.SetDirty(_targetData);
@@ -314,7 +314,7 @@ public class DialogueLineEditor : EditorWindow
 
     private void OnUndoRedo()
     {
-        // OnEnable¿¡ ÀÌ¹Ì µî·ÏµÇ¾î ÀÖÀ¸¹Ç·Î, ÀÌ ¸Þ¼­µå°¡ Undo/Redo ½Ã È£ÃâµË´Ï´Ù.
+        // OnEnableï¿½ï¿½ ï¿½Ì¹ï¿½ ï¿½ï¿½ÏµÇ¾ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ç·ï¿½, ï¿½ï¿½ ï¿½Þ¼ï¿½ï¿½å°¡ Undo/Redo ï¿½ï¿½ È£ï¿½ï¿½Ë´Ï´ï¿½.
         RefreshListView();
     }
 
