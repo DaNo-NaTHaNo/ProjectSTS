@@ -1,0 +1,14 @@
+﻿<Solution>
+  <Project Path="ProjectStS.Stage.csproj" />
+  <Project Path="Assembly-CSharp-Editor.csproj" />
+  <Project Path="ProjectStS.Data.csproj" />
+  <Project Path="Assembly-CSharp.csproj" />
+  <Project Path="ProjectStS.Battle.csproj" />
+  <Project Path="ProjectStS.Integration.csproj" />
+  <Project Path="Assembly-CSharp-firstpass.csproj" />
+  <Project Path="ProjectStS.Meta.csproj" />
+  <Project Path="ProjectStS.Core.csproj" />
+  <Project Path="Assembly-CSharp-Editor-firstpass.csproj" />
+  <Project Path="ProjectStS.Utils.csproj" />
+  <Project Path="ProjectStS.Editor.csproj" />
+</Solution>
