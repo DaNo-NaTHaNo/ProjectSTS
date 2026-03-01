@@ -4,6 +4,7 @@ using UnityEngine;
 using Newtonsoft.Json;
 using System.Linq;
 using System;
+using ProjectStS.Data;
 
 public class VisualNovelPlayer : MonoBehaviour
 {

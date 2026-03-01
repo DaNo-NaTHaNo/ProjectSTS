@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using Newtonsoft.Json;
 using ProjectStS.Core;
+using ProjectStS.Data;
 
 /// <summary>
 /// IVisualNovelBridge의 구현체.
