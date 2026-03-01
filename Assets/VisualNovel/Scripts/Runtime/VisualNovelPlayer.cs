@@ -28,6 +28,7 @@ public class VisualNovelPlayer : MonoBehaviour
     private Dictionary<string, NodeData> _nodeLookup;
     private int _branchChoice = -1;
     private int _activeBranches = 0;
+    private VNResult _currentResult;
 
     // --- 4�ܰ�: LiveTestHelper ���� ---
     private LiveTestHelper _liveTestHelperInstance;
@@ -63,10 +64,27 @@ public class VisualNovelPlayer : MonoBehaviour
     /// <param name="onCompleted">재생 완료 시 호출될 콜백 (일회성)</param>
     public void PlayEpisode(EpisodeData data, Action onCompleted)
     {
+        PlayEpisode(data, (VNResult _) => onCompleted?.Invoke());
+    }
+
+    /// <summary>
+    /// 외부에서 EpisodeData를 직접 전달하여 에피소드를 재생한다.
+    /// 완료 시 VNResult를 포함한 콜백을 호출한다.
+    /// </summary>
+    /// <param name="data">재생할 에피소드 데이터</param>
+    /// <param name="onCompleted">재생 완료 시 VNResult와 함께 호출될 콜백 (일회성)</param>
+    public void PlayEpisode(EpisodeData data, Action<VNResult> onCompleted)
+    {
         StopAllCoroutines();
         ResetAllControllers();
 
         _currentEpisodeData = data;
+        _currentResult = new VNResult
+        {
+            IsCompleted = false,
+            LastBranchChoice = -1,
+            Commands = new List<CommandRecord>(4)
+        };
 
         if (onCompleted != null)
         {
@@ -74,7 +92,7 @@ public class VisualNovelPlayer : MonoBehaviour
             handler = () =>
             {
                 OnEpisodeCompleted -= handler;
-                onCompleted.Invoke();
+                onCompleted.Invoke(_currentResult);
             };
             OnEpisodeCompleted += handler;
         }
@@ -246,6 +264,11 @@ public class VisualNovelPlayer : MonoBehaviour
         TestModeGlobals.IsFastForwarding = false;
         TestModeGlobals.FastForwardTargetID = null;
 
+        if (_currentResult != null)
+        {
+            _currentResult.IsCompleted = true;
+        }
+
         OnEpisodeCompleted?.Invoke();
     }
 
@@ -280,6 +303,11 @@ public class VisualNovelPlayer : MonoBehaviour
                 else
                 {
                     yield return new WaitUntil(() => _branchChoice != -1);
+                }
+
+                if (_currentResult != null)
+                {
+                    _currentResult.LastBranchChoice = _branchChoice;
                 }
 
                 currentNode = GetNextBranchNode(currentNode, _branchChoice);
@@ -346,6 +374,19 @@ public class VisualNovelPlayer : MonoBehaviour
                 break;
             case "Sound":
                 yield return soundController.ProcessNode(node, isFastForwarding);
+                break;
+
+            case "Command":
+                var cmdFields = JsonConvert.DeserializeObject<CommandNodeFields>(node.fields);
+                if (cmdFields != null && _currentResult != null)
+                {
+                    _currentResult.Commands.Add(new CommandRecord
+                    {
+                        CommandKey = cmdFields.commandKey,
+                        CommandValue = cmdFields.commandValue
+                    });
+                    Debug.Log($"[Player] Command 기록: {cmdFields.commandKey} = {cmdFields.commandValue}");
+                }
                 break;
 
             case "Start":

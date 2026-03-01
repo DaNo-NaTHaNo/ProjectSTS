@@ -1,8 +1,8 @@
 using UnityEngine;
-using DG.Tweening; // Ease Å¸ÀÔÀ» À§ÇØ Ãß°¡
+using DG.Tweening; // Ease Å¸ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ß°ï¿½
 using System.Collections.Generic;
 
-// °¢ ³ëµåÀÇ ÇÊµå µ¥ÀÌÅÍ¸¦ ÀúÀåÇÏ±â À§ÇÑ ºÎ¸ð Å¬·¡½º (½Äº°¿ë)
+// ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Êµï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Í¸ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ï±ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Î¸ï¿½ Å¬ï¿½ï¿½ï¿½ï¿½ (ï¿½Äºï¿½ï¿½ï¿½)
 public abstract class BaseNodeFields { }
 
 public class TextNodeFields : BaseNodeFields
@@ -87,4 +87,10 @@ public class SoundNodeFields : BaseNodeFields
     public float volume;
     public bool isLoop;
     public bool skippable;
+}
+
+public class CommandNodeFields : BaseNodeFields
+{
+    public string commandKey;
+    public string commandValue;
 }

@@ -47,6 +47,7 @@
             <ui:Button text="Portrait Exit" name="portrait-exit-node-button" style="background-color: rgb(0, 0, 98);" />
             <ui:Button text="Image" name="image-node-button" style="background-color: rgb(255, 165, 0);" />
             <ui:Button text="Sound" name="sound-node-button" style="background-color: rgb(200, 120, 0);" />
+            <ui:Button text="Command" name="command-node-button" style="background-color: rgb(128, 0, 128);" />
         </ui:VisualElement>
 
         <ui:VisualElement name="graph-view-container" style="flex-grow: 1;" />

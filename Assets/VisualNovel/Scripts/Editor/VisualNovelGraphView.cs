@@ -5,7 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 using Newtonsoft.Json;
-using UnityEditor; // EditorPrefs »ç¿ëÀ» À§ÇØ ÇÊ¿ä
+using UnityEditor; // EditorPrefs ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ê¿ï¿½
 
 public class VisualNovelGraphView : GraphView
 {
@@ -43,6 +43,7 @@ public class VisualNovelGraphView : GraphView
             case "Portrait Exit": nodeView = new PortraitExitNodeView(); break;
             case "Image": nodeView = new ImageNodeView(); break;
             case "Sound": nodeView = new SoundNodeView(); break;
+            case "Command": nodeView = new CommandNodeView(); break;
         }
 
         if (nodeView != null)
@@ -105,22 +106,22 @@ public class VisualNovelGraphView : GraphView
         return graphViewChange;
     }
 
-    // --- 3´Ü°è ¼öÁ¤: EditorPrefs¸¦ »ç¿ëÇÏ´Â PFH Æ®¸®°Å ---
+    // --- 3ï¿½Ü°ï¿½ ï¿½ï¿½ï¿½ï¿½: EditorPrefsï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Ï´ï¿½ PFH Æ®ï¿½ï¿½ï¿½ï¿½ ---
     public override void BuildContextualMenu(ContextualMenuPopulateEvent evt)
     {
         base.BuildContextualMenu(evt);
 
         if (evt.target is NodeView nodeView)
         {
-            // [¼öÁ¤] End ³ëµå´Â PFH ´ë»ó¿¡¼­ Á¦¿Ü (Start´Â Çã¿ë)
+            // [ï¿½ï¿½ï¿½ï¿½] End ï¿½ï¿½ï¿½ï¿½ PFH ï¿½ï¿½ó¿¡¼ï¿½ ï¿½ï¿½ï¿½ï¿½ (Startï¿½ï¿½ ï¿½ï¿½ï¿½)
             if (nodeView.title == "End") return;
 
             evt.menu.AppendAction("Play from Here", (a) => {
-                // 1. EditorPrefs¿¡ ¿äÃ» ±â·Ï
+                // 1. EditorPrefsï¿½ï¿½ ï¿½ï¿½Ã» ï¿½ï¿½ï¿½
                 EditorPrefs.SetBool("PFH_Requested", true);
                 EditorPrefs.SetString("PFH_TargetID", nodeView.GUID);
 
-                // 2. ÇÃ·¹ÀÌ ¸ðµå ½ÃÀÛ
+                // 2. ï¿½Ã·ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
                 if (!Application.isPlaying)
                 {
                     EditorApplication.isPlaying = true;
@@ -199,6 +200,7 @@ public class VisualNovelGraphView : GraphView
             case "Portrait Exit": return typeof(PortraitExitNodeFields);
             case "Image": return typeof(ImageNodeFields);
             case "Sound": return typeof(SoundNodeFields);
+            case "Command": return typeof(CommandNodeFields);
             default: return null;
         }
     }
