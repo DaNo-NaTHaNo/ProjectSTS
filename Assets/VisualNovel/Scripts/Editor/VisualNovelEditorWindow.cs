@@ -1,5 +1,5 @@
 using UnityEditor;
-using UnityEditor.Experimental.GraphView; // ÇÏÀÌ¶óÀÌÆ® ±â´ÉÀ» À§ÇØ NodeView Å¸ÀÔ ÇÊ¿ä
+using UnityEditor.Experimental.GraphView; // ï¿½ï¿½ï¿½Ì¶ï¿½ï¿½ï¿½Æ® ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ NodeView Å¸ï¿½ï¿½ ï¿½Ê¿ï¿½
 using UnityEngine;
 using UnityEngine.UIElements;
 using Newtonsoft.Json;
@@ -10,10 +10,10 @@ using System;
 
 public class VisualNovelEditorWindow : EditorWindow
 {
-    // [Ãß°¡] ÇÊµå °ª º¯°æÀ» °¨ÁöÇÏ±â À§ÇÑ static ÀÌº¥Æ®
+    // [ï¿½ß°ï¿½] ï¿½Êµï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ï±ï¿½ ï¿½ï¿½ï¿½ï¿½ static ï¿½Ìºï¿½Æ®
     public static event Action<string> OnNodeModified;
 
-    // JSON Á÷·ÄÈ­ ¼³Á¤ (¼øÈ¯ ÂüÁ¶ ¹«½Ã)
+    // JSON ï¿½ï¿½ï¿½ï¿½È­ ï¿½ï¿½ï¿½ï¿½ (ï¿½ï¿½È¯ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½)
     public static readonly JsonSerializerSettings JsonSettings = new JsonSerializerSettings
     {
         ReferenceLoopHandling = ReferenceLoopHandling.Ignore
@@ -28,7 +28,7 @@ public class VisualNovelEditorWindow : EditorWindow
     private string _copyBuffer;
     private Vector2 _mousePosition; // Vector2 -> UnityEngine.Vector2
 
-    // --- 3´Ü°è: ÇÏÀÌ¶óÀÌÆ® ±â´É¿ë ÇÊµå ---
+    // --- 3ï¿½Ü°ï¿½: ï¿½ï¿½ï¿½Ì¶ï¿½ï¿½ï¿½Æ® ï¿½ï¿½É¿ï¿½ ï¿½Êµï¿½ ---
     private NodeView _lastHighlightedNode;
     // ---
 
@@ -46,11 +46,11 @@ public class VisualNovelEditorWindow : EditorWindow
     {
         rootVisualElement.RegisterCallback<KeyDownEvent>(OnKeyDown);
         rootVisualElement.RegisterCallback<MouseMoveEvent>(OnMouseMove);
-        // [Ãß°¡] Undo/Redo ½ÇÇà ½Ã¿Í ÇÊµå °ª º¯°æ ½Ã È£ÃâµÉ ¸Þ¼­µå µî·Ï
+        // [ï¿½ß°ï¿½] Undo/Redo ï¿½ï¿½ï¿½ï¿½ ï¿½Ã¿ï¿½ ï¿½Êµï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ È£ï¿½ï¿½ï¿½ ï¿½Þ¼ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½
         Undo.undoRedoPerformed += OnUndoRedo;
         OnNodeModified += RequestSave;
 
-        // --- 3´Ü°è: ÇÏÀÌ¶óÀÌÆ® ÀÌº¥Æ® ±¸µ¶ (ÃÖÁ¾ ¾ÆÅ°ÅØÃ³) ---
+        // --- 3ï¿½Ü°ï¿½: ï¿½ï¿½ï¿½Ì¶ï¿½ï¿½ï¿½Æ® ï¿½Ìºï¿½Æ® ï¿½ï¿½ï¿½ï¿½ (ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Å°ï¿½ï¿½Ã³) ---
         LiveTestHelper.OnNodeStartProcessing += HandleNodeStartProcessing;
         // ---
 
@@ -59,7 +59,7 @@ public class VisualNovelEditorWindow : EditorWindow
             _currentEpisodeData = AssetDatabase.LoadAssetAtPath<VisualNovelSO>("Assets/VisualNovel/Scripts/Data/CurrentEpisode.asset");
             if (_currentEpisodeData == null)
             {
-                Debug.LogError("CurrentEpisode.assetÀ» Ã£À» ¼ö ¾ø½À´Ï´Ù. Scripts/Data Æú´õ¿¡ »ý¼ºÇß´ÂÁö È®ÀÎÇØÁÖ¼¼¿ä.");
+                Debug.LogError("CurrentEpisode.assetï¿½ï¿½ Ã£ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ï´ï¿½. Scripts/Data ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ß´ï¿½ï¿½ï¿½ È®ï¿½ï¿½ï¿½ï¿½ï¿½Ö¼ï¿½ï¿½ï¿½.");
                 Close();
                 return;
             }
@@ -71,27 +71,27 @@ public class VisualNovelEditorWindow : EditorWindow
     {
         rootVisualElement.UnregisterCallback<KeyDownEvent>(OnKeyDown);
         rootVisualElement.UnregisterCallback<MouseMoveEvent>(OnMouseMove);
-        // [Ãß°¡] µî·Ï ÇØÁ¦
+        // [ï¿½ß°ï¿½] ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
         Undo.undoRedoPerformed -= OnUndoRedo;
         OnNodeModified -= RequestSave;
 
-        // --- 3´Ü°è: ÇÏÀÌ¶óÀÌÆ® ÀÌº¥Æ® ±¸µ¶ ÇØÁ¦ (ÃÖÁ¾ ¾ÆÅ°ÅØÃ³) ---
+        // --- 3ï¿½Ü°ï¿½: ï¿½ï¿½ï¿½Ì¶ï¿½ï¿½ï¿½Æ® ï¿½Ìºï¿½Æ® ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ (ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Å°ï¿½ï¿½Ã³) ---
         LiveTestHelper.OnNodeStartProcessing -= HandleNodeStartProcessing;
         // ---
     }
 
-    // --- 3´Ü°è: ÇÏÀÌ¶óÀÌÆ® Ã³¸® ÇÚµé·¯ ---
+    // --- 3ï¿½Ü°ï¿½: ï¿½ï¿½ï¿½Ì¶ï¿½ï¿½ï¿½Æ® Ã³ï¿½ï¿½ ï¿½Úµé·¯ ---
     private void HandleNodeStartProcessing(string nodeID)
     {
-        // UI Á¶ÀÛÀº ¸ÞÀÎ ½º·¹µå¿¡¼­ ½ÇÇàµÇµµ·Ï º¸Àå
+        // UI ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½å¿¡ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Çµï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
         rootVisualElement.schedule.Execute(() =>
         {
-            // ÀÌÀü¿¡ ÇÏÀÌ¶óÀÌÆ®µÈ ³ëµåÀÇ ½ºÅ¸ÀÏ Á¦°Å
+            // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ì¶ï¿½ï¿½ï¿½Æ®ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Å¸ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
             _lastHighlightedNode?.RemoveFromClassList("playing-node");
 
             if (_graphView == null) return;
 
-            // »õ ³ëµå¸¦ Ã£¾Æ ½ºÅ¸ÀÏ Ãß°¡
+            // ï¿½ï¿½ ï¿½ï¿½å¸¦ Ã£ï¿½ï¿½ ï¿½ï¿½Å¸ï¿½ï¿½ ï¿½ß°ï¿½
             _lastHighlightedNode = _graphView.GetNodeByGuid(nodeID) as NodeView;
             _lastHighlightedNode?.AddToClassList("playing-node");
         });
@@ -107,7 +107,7 @@ public class VisualNovelEditorWindow : EditorWindow
         rootVisualElement.styleSheets.Add(styleSheet);
 
         _graphView = new VisualNovelGraphView();
-        // [¼öÁ¤] GraphViewÀÇ º¯°æ ½ÅÈ£¸¦ RequestSave ¸Þ¼­µå¿¡ ¿¬°á
+        // [ï¿½ï¿½ï¿½ï¿½] GraphViewï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½È£ï¿½ï¿½ RequestSave ï¿½Þ¼ï¿½ï¿½å¿¡ ï¿½ï¿½ï¿½ï¿½
         _graphView.OnGraphModified = RequestSave;
 
         var graphViewContainer = rootVisualElement.Q<VisualElement>("graph-view-container");
@@ -130,6 +130,7 @@ public class VisualNovelEditorWindow : EditorWindow
         rootVisualElement.Q<Button>("portrait-exit-node-button").clicked += () => _graphView.CreateNode("Portrait Exit", GetMousePositionInGraph());
         rootVisualElement.Q<Button>("image-node-button").clicked += () => _graphView.CreateNode("Image", GetMousePositionInGraph());
         rootVisualElement.Q<Button>("sound-node-button").clicked += () => _graphView.CreateNode("Sound", GetMousePositionInGraph());
+        rootVisualElement.Q<Button>("command-node-button").clicked += () => _graphView.CreateNode("Command", GetMousePositionInGraph());
 
         rootVisualElement.Q<Button>("dialogueline-button").clicked += () => DialogueLineEditor.OpenWindow(_currentEpisodeData);
         rootVisualElement.Q<Button>("episodeportrait-button").clicked += () => EpisodePortraitEditor.OpenWindow(_currentEpisodeData);
@@ -144,31 +145,31 @@ public class VisualNovelEditorWindow : EditorWindow
         return _graphView.contentViewContainer.WorldToLocal(_mousePosition);
     }
 
-    // [Ãß°¡] Undo ±â·Ï°ú ÀúÀåÀ» ´ã´çÇÏ´Â ´ÜÀÏ ¸Þ¼­µå
+    // [ï¿½ß°ï¿½] Undo ï¿½ï¿½Ï°ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Ï´ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Þ¼ï¿½ï¿½ï¿½
     private void RequestSave(string undoName)
     {
         if (_currentEpisodeData == null) return;
 
-        // 1. "º¯°æ Àü" »óÅÂ¸¦ Áï½Ã ½º³À¼¦À¸·Î ±â·ÏÇÕ´Ï´Ù.
+        // 1. "ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½" ï¿½ï¿½ï¿½Â¸ï¿½ ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Õ´Ï´ï¿½.
         Undo.RegisterCompleteObjectUndo(_currentEpisodeData, undoName);
 
-        // 2. "º¯°æ ÈÄ" »óÅÂ¸¦ ÀúÀåÇÏ´Â ·ÎÁ÷Àº GraphView°¡ ¾ÈÁ¤È­µÈ ÈÄ(´ÙÀ½ ÇÁ·¹ÀÓ) ½ÇÇàÇÕ´Ï´Ù.
+        // 2. "ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½" ï¿½ï¿½ï¿½Â¸ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ï´ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ GraphViewï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½È­ï¿½ï¿½ ï¿½ï¿½(ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½) ï¿½ï¿½ï¿½ï¿½ï¿½Õ´Ï´ï¿½.
         EditorApplication.delayCall += () =>
         {
-            // ¿¡µðÅÍ Ã¢ÀÌ ´ÝÇû°Å³ª µ¥ÀÌÅÍ°¡ ¾ø´Â °æ¿ì¸¦ ´ëºñÇÑ ¹æ¾î ÄÚµå
+            // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ Ã¢ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Å³ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Í°ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ì¸¦ ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ ï¿½Úµï¿½
             if (this == null || _currentEpisodeData == null)
             {
                 return;
             }
 
-            // 3. ¾ÈÁ¤È­µÈ 'º¯°æ ÈÄ' »óÅÂ¸¦ SO¿¡ ÀúÀåÇÕ´Ï´Ù.
+            // 3. ï¿½ï¿½ï¿½ï¿½È­ï¿½ï¿½ 'ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½' ï¿½ï¿½ï¿½Â¸ï¿½ SOï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Õ´Ï´ï¿½.
             SaveGraphStateToSO();
 
-            // 4. SO¿¡ º¯°æ»çÇ×ÀÌ ÀÖÀ½À» Unity¿¡ ¸í½ÃÀûÀ¸·Î ¾Ë¸³´Ï´Ù. (µð½ºÅ© ÀúÀå¿ë)
+            // 4. SOï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ Unityï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ë¸ï¿½ï¿½Ï´ï¿½. (ï¿½ï¿½Å© ï¿½ï¿½ï¿½ï¿½ï¿½)
             EditorUtility.SetDirty(_currentEpisodeData);
         };
     }
-    // [Ãß°¡] Undo/Redo ½ÇÇà ½Ã È­¸éÀ» ´Ù½Ã ±×¸®´Â ¸Þ¼­µå
+    // [ï¿½ß°ï¿½] Undo/Redo ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ È­ï¿½ï¿½ï¿½ï¿½ ï¿½Ù½ï¿½ ï¿½×¸ï¿½ï¿½ï¿½ ï¿½Þ¼ï¿½ï¿½ï¿½
     private void OnUndoRedo()
     {
         if (_graphView != null && _currentEpisodeData != null)
@@ -183,7 +184,7 @@ public class VisualNovelEditorWindow : EditorWindow
 
         var nodeGraphData = new NodeGraph { nodes = new List<NodeData>(), connections = new List<ConnectionData>() };
 
-        // [¼öÁ¤] graphElements.OfType<NodeView>() »ç¿ë È®ÀÎ
+        // [ï¿½ï¿½ï¿½ï¿½] graphElements.OfType<NodeView>() ï¿½ï¿½ï¿½ È®ï¿½ï¿½
         _graphView.graphElements.OfType<NodeView>().ToList().ForEach(nodeView =>
         {
             var nodePosition = nodeView.GetPosition().position;
@@ -198,7 +199,7 @@ public class VisualNovelEditorWindow : EditorWindow
             });
         });
 
-        // [¼öÁ¤] graphElements.OfType<Edge>() »ç¿ë È®ÀÎ
+        // [ï¿½ï¿½ï¿½ï¿½] graphElements.OfType<Edge>() ï¿½ï¿½ï¿½ È®ï¿½ï¿½
         _graphView.graphElements.OfType<Edge>().ToList().ForEach(edge =>
         {
             var sourceNode = edge.output?.node as NodeView;
@@ -217,7 +218,7 @@ public class VisualNovelEditorWindow : EditorWindow
         });
 
         _currentEpisodeData.nodeGraphJson = JsonConvert.SerializeObject(nodeGraphData, Formatting.Indented, JsonSettings);
-        // SetDirty´Â RegisterCompleteObjectUndo¿¡ Æ÷ÇÔµÇ¾î ÀÖÀ¸¹Ç·Î Á¦°Å
+        // SetDirtyï¿½ï¿½ RegisterCompleteObjectUndoï¿½ï¿½ ï¿½ï¿½ï¿½ÔµÇ¾ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ç·ï¿½ ï¿½ï¿½ï¿½ï¿½
         // EditorUtility.SetDirty(_currentEpisodeData);
     }
 
@@ -229,7 +230,7 @@ public class VisualNovelEditorWindow : EditorWindow
         _currentFilePath = Path.GetFileName(filePath);
         if (_fileNameLabel != null) _fileNameLabel.text = _currentFilePath;
 
-        SaveGraphStateToSO(); // SaveToFile È£Ãâ ½Ã SO¿¡µµ ÀúÀåµÇµµ·Ï À¯Áö
+        SaveGraphStateToSO(); // SaveToFile È£ï¿½ï¿½ ï¿½ï¿½ SOï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Çµï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 
         var episodeData = new EpisodeData
         {
@@ -261,7 +262,7 @@ public class VisualNovelEditorWindow : EditorWindow
         string jsonString = File.ReadAllText(filePath);
         var episodeData = JsonConvert.DeserializeObject<EpisodeData>(jsonString, JsonSettings);
 
-        // Null Ã¼Å© °­È­
+        // Null Ã¼Å© ï¿½ï¿½È­
         if (episodeData == null) episodeData = new EpisodeData();
         if (episodeData.datasets == null) episodeData.datasets = new Datasets();
         if (episodeData.datasets.dialogueLines == null) episodeData.datasets.dialogueLines = new List<DialogueLine>();
@@ -269,18 +270,18 @@ public class VisualNovelEditorWindow : EditorWindow
         if (episodeData.datasets.locationPresets == null) episodeData.datasets.locationPresets = new List<LocationPreset>();
         if (episodeData.nodeGraph == null) episodeData.nodeGraph = new NodeGraph { nodes = new List<NodeData>(), connections = new List<ConnectionData>() };
 
-        // [¿ÀÅ¸ ¼öÁ¤] "V"¶ó°í ÀûÇôÀÖ´ø Àß¸øµÈ ¶óÀÎ Á¦°Å
+        // [ï¿½ï¿½Å¸ ï¿½ï¿½ï¿½ï¿½] "V"ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ö´ï¿½ ï¿½ß¸ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 
-        // Undo ±â·Ï ¾øÀÌ SO¸¦ Á÷Á¢ ¾÷µ¥ÀÌÆ®
+        // Undo ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ SOï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ®
         _currentEpisodeData.dialogueLines = episodeData.datasets.dialogueLines;
         _currentEpisodeData.episodePortraits = episodeData.datasets.episodePortraits;
         _currentEpisodeData.locationPresets = episodeData.datasets.locationPresets;
         _currentEpisodeData.nodeGraphJson = JsonConvert.SerializeObject(episodeData.nodeGraph, JsonSettings);
-        EditorUtility.SetDirty(_currentEpisodeData); // ·Îµå ÈÄ¿¡´Â SetDirty ÇÊ¿ä
+        EditorUtility.SetDirty(_currentEpisodeData); // ï¿½Îµï¿½ ï¿½Ä¿ï¿½ï¿½ï¿½ SetDirty ï¿½Ê¿ï¿½
 
         _graphView.PopulateView(_currentEpisodeData);
 
-        OnProjectReset?.Invoke(); // ´Ù¸¥ ¿¡µðÅÍ Ã¢¿¡µµ º¯°æ ¾Ë¸²
+        OnProjectReset?.Invoke(); // ï¿½Ù¸ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ Ã¢ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ë¸ï¿½
 
         Debug.Log($"Episode loaded from: {filePath}");
     }
@@ -447,16 +448,16 @@ public class VisualNovelEditorWindow : EditorWindow
         });
     }
 
-    // ¡å¡å¡å New ¹öÆ°¿¡ OnNewButtonClicked ÇÔ¼ö ¿¬°á ¡å¡å¡å (ÀÌ ¸Þ¼­µå´Â CreateAndRestoreGUI ¾È¿¡ ÀÌ¹Ì ÀÖÀ½)
+    // ï¿½ï¿½ï¿½ï¿½ New ï¿½ï¿½Æ°ï¿½ï¿½ OnNewButtonClicked ï¿½Ô¼ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ (ï¿½ï¿½ ï¿½Þ¼ï¿½ï¿½ï¿½ï¿½ CreateAndRestoreGUI ï¿½È¿ï¿½ ï¿½Ì¹ï¿½ ï¿½ï¿½ï¿½ï¿½)
     // rootVisualElement.Q<Button>("new-button").clicked += OnNewButtonClicked;
 
-    // 'New' ¹öÆ° Å¬¸¯ ½Ã È£ÃâµÇ´Â ¸Þ¼­µå
+    // 'New' ï¿½ï¿½Æ° Å¬ï¿½ï¿½ ï¿½ï¿½ È£ï¿½ï¿½Ç´ï¿½ ï¿½Þ¼ï¿½ï¿½ï¿½
     private void OnNewButtonClicked()
     {
-        bool confirmed = EditorUtility.DisplayDialog("»õ ÆÄÀÏ", "ÇöÀç ÀÛ¾÷ ³»¿ëÀ» ÀúÀåÇÏÁö ¾Ê°í ¸ðµÎ ÃÊ±âÈ­ÇÏ½Ã°Ú½À´Ï±î?", "È®ÀÎ", "Ãë¼Ò");
+        bool confirmed = EditorUtility.DisplayDialog("ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½", "ï¿½ï¿½ï¿½ï¿½ ï¿½Û¾ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ê°ï¿½ ï¿½ï¿½ï¿½ ï¿½Ê±ï¿½È­ï¿½Ï½Ã°Ú½ï¿½ï¿½Ï±ï¿½?", "È®ï¿½ï¿½", "ï¿½ï¿½ï¿½");
         if (confirmed)
         {
-            Undo.RecordObject(_currentEpisodeData, "New Episode"); // Undo ±â·Ï Ãß°¡
+            Undo.RecordObject(_currentEpisodeData, "New Episode"); // Undo ï¿½ï¿½ï¿½ ï¿½ß°ï¿½
 
             _currentEpisodeData.dialogueLines.Clear();
             _currentEpisodeData.episodePortraits.Clear();
@@ -465,13 +466,13 @@ public class VisualNovelEditorWindow : EditorWindow
             _currentFilePath = "New Episode";
             if (_fileNameLabel != null) _fileNameLabel.text = _currentFilePath;
 
-            // [¿ÀÅ¸ ¼öÁ¤] "Such_as_Two_Points:" ¶ó´Â Àß¸øµÈ ·¹ÀÌºí Á¦°Å
-            EditorUtility.SetDirty(_currentEpisodeData); // SetDirty´Â RegisterCompleteObjectUndo Àü¿¡ ÇÊ¿äÇÒ ¼ö ÀÖÀ½
-                                                         // AssetDatabase.SaveAssets(); // Áï½Ã ÀúÀåº¸´Ù´Â SetDirty À¯Áö
+            // [ï¿½ï¿½Å¸ ï¿½ï¿½ï¿½ï¿½] "Such_as_Two_Points:" ï¿½ï¿½ï¿½ ï¿½ß¸ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ìºï¿½ ï¿½ï¿½ï¿½ï¿½
+            EditorUtility.SetDirty(_currentEpisodeData); // SetDirtyï¿½ï¿½ RegisterCompleteObjectUndo ï¿½ï¿½ï¿½ï¿½ ï¿½Ê¿ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
+                                                         // AssetDatabase.SaveAssets(); // ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½åº¸ï¿½Ù´ï¿½ SetDirty ï¿½ï¿½ï¿½ï¿½
 
             _graphView.PopulateView(_currentEpisodeData);
             OnProjectReset?.Invoke();
-            Debug.Log("»õ ¿¡ÇÇ¼Òµå¸¦ ½ÃÀÛÇÕ´Ï´Ù.");
+            Debug.Log("ï¿½ï¿½ ï¿½ï¿½ï¿½Ç¼Òµå¸¦ ï¿½ï¿½ï¿½ï¿½ï¿½Õ´Ï´ï¿½.");
         }
     }
 }

@@ -310,7 +310,7 @@ namespace ProjectStS.Integration
             {
                 SetPhase(GameFlowPhase.VisualNovel);
 
-                vnBridge.PlayEpisode(eventData.eventValue, () => HandleVNCompleted(eventData));
+                vnBridge.PlayEpisode(eventData.eventValue, (VNResult result) => HandleVNCompleted(eventData, result));
 
                 Debug.Log($"[GameFlowController] VN 재생 시작. 이벤트: {eventData.id}");
             }
@@ -327,17 +327,64 @@ namespace ProjectStS.Integration
 
         /// <summary>
         /// VN 재생 완료를 처리한다.
+        /// VNResult에 포함된 Command를 순차적으로 처리한 뒤 스테이지로 복귀한다.
         /// </summary>
-        private void HandleVNCompleted(EventData eventData)
+        private void HandleVNCompleted(EventData eventData, VNResult result)
         {
+            bool isCompleted = result != null && result.IsCompleted;
+
             if (_currentStageManager != null && _currentStageManager.IsInitialized)
             {
-                _currentStageManager.OnEventCompleted(eventData.id, true);
+                _currentStageManager.OnEventCompleted(eventData.id, isCompleted);
+            }
+
+            if (result != null && result.Commands != null && result.Commands.Count > 0)
+            {
+                ProcessVNCommands(result.Commands);
             }
 
             SetPhase(GameFlowPhase.Stage);
 
-            Debug.Log($"[GameFlowController] VN 재생 완료. 이벤트: {eventData.id}");
+            Debug.Log($"[GameFlowController] VN 재생 완료. 이벤트: {eventData.id}, 완료: {isCompleted}, Command 수: {result?.Commands?.Count ?? 0}");
+        }
+
+        /// <summary>
+        /// VN 에피소드에서 수집된 Command 목록을 순차 처리한다.
+        /// 각 Command의 구체적 구현은 해당 게임 시스템 완성 후 추가한다.
+        /// </summary>
+        private void ProcessVNCommands(List<CommandRecord> commands)
+        {
+            for (int i = 0; i < commands.Count; i++)
+            {
+                CommandRecord cmd = commands[i];
+
+                switch (cmd.CommandKey)
+                {
+                    case "startBattle":
+                        // TODO: EventData를 구성하여 StartBattle() 호출
+                        Debug.Log($"[GameFlowController] VN Command — startBattle: {cmd.CommandValue}");
+                        break;
+
+                    case "nextEpisode":
+                        // TODO: 후속 VN 에피소드 재생 예약
+                        Debug.Log($"[GameFlowController] VN Command — nextEpisode: {cmd.CommandValue}");
+                        break;
+
+                    case "giveItem":
+                        // TODO: PlayerDataManager를 통해 아이템 지급
+                        Debug.Log($"[GameFlowController] VN Command — giveItem: {cmd.CommandValue}");
+                        break;
+
+                    case "setFlag":
+                        // TODO: 세이브 데이터에 플래그 설정
+                        Debug.Log($"[GameFlowController] VN Command — setFlag: {cmd.CommandValue}");
+                        break;
+
+                    default:
+                        Debug.LogWarning($"[GameFlowController] 알 수 없는 VN Command: {cmd.CommandKey} = {cmd.CommandValue}");
+                        break;
+                }
+            }
         }
 
         /// <summary>

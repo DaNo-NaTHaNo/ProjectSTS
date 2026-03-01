@@ -1,4 +1,5 @@
 using System;
+using ProjectStS.Data;
 
 namespace ProjectStS.Core
 {
@@ -15,6 +16,14 @@ namespace ProjectStS.Core
         /// <param name="episodeId">재생할 에피소드 ID (이벤트의 eventValue)</param>
         /// <param name="onCompleted">재생 완료 시 호출될 콜백</param>
         void PlayEpisode(string episodeId, Action onCompleted);
+
+        /// <summary>
+        /// 지정된 에피소드를 재생하고 완료 시 VNResult를 포함한 콜백을 호출한다.
+        /// Command 노드에서 수집된 명령과 선택지 결과를 외부 시스템이 수신할 수 있다.
+        /// </summary>
+        /// <param name="episodeId">재생할 에피소드 ID (이벤트의 eventValue)</param>
+        /// <param name="onCompleted">재생 완료 시 VNResult와 함께 호출될 콜백</param>
+        void PlayEpisode(string episodeId, Action<VNResult> onCompleted);
 
         /// <summary>
         /// 현재 VN이 재생 중인지 여부.

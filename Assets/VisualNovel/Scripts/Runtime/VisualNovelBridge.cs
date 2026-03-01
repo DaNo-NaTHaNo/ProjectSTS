@@ -3,12 +3,14 @@ using System.Collections.Generic;
 using UnityEngine;
 using Newtonsoft.Json;
 using ProjectStS.Core;
+using ProjectStS.Data;
 
 /// <summary>
 /// IVisualNovelBridge의 구현체.
 /// VisualNovelPlayer를 래핑하여 외부 시스템(GameFlowController)이
 /// 에피소드 ID만으로 VN 재생을 요청할 수 있게 한다.
 /// VN 오버레이 루트를 활성화/비활성화하여 씬 전환 없이 VN을 재생한다.
+/// 에피소드는 JSON TextAsset 기반 레지스트리에서 조회한다.
 /// </summary>
 public class VisualNovelBridge : MonoBehaviour, IVisualNovelBridge
 {
@@ -25,7 +27,7 @@ public class VisualNovelBridge : MonoBehaviour, IVisualNovelBridge
 
     #region Private Fields
 
-    private Dictionary<string, VisualNovelSO> _episodeLookup;
+    private Dictionary<string, TextAsset> _episodeLookup;
     private bool _isPlaying;
 
     #endregion
@@ -68,6 +70,16 @@ public class VisualNovelBridge : MonoBehaviour, IVisualNovelBridge
     /// <param name="onCompleted">재생 완료 시 호출될 콜백</param>
     public void PlayEpisode(string episodeId, Action onCompleted)
     {
+        PlayEpisode(episodeId, (VNResult _) => onCompleted?.Invoke());
+    }
+
+    /// <summary>
+    /// 지정된 에피소드를 재생하고 완료 시 VNResult를 포함한 콜백을 호출한다.
+    /// </summary>
+    /// <param name="episodeId">재생할 에피소드 ID</param>
+    /// <param name="onCompleted">재생 완료 시 VNResult와 함께 호출될 콜백</param>
+    public void PlayEpisode(string episodeId, Action<VNResult> onCompleted)
+    {
         if (_isPlaying)
         {
             Debug.LogWarning("[VisualNovelBridge] 이미 VN이 재생 중입니다.");
@@ -77,25 +89,25 @@ public class VisualNovelBridge : MonoBehaviour, IVisualNovelBridge
         if (_player == null)
         {
             Debug.LogError("[VisualNovelBridge] VisualNovelPlayer 참조가 없습니다.");
-            onCompleted?.Invoke();
+            onCompleted?.Invoke(null);
             return;
         }
 
-        VisualNovelSO episodeSO = FindEpisodeSO(episodeId);
+        TextAsset jsonAsset = FindEpisodeJson(episodeId);
 
-        if (episodeSO == null)
+        if (jsonAsset == null)
         {
             Debug.LogError($"[VisualNovelBridge] 에피소드를 찾을 수 없습니다: {episodeId}");
-            onCompleted?.Invoke();
+            onCompleted?.Invoke(null);
             return;
         }
 
-        EpisodeData episodeData = ConvertSOToEpisodeData(episodeSO);
+        EpisodeData episodeData = DeserializeEpisodeData(jsonAsset);
 
         if (episodeData == null)
         {
-            Debug.LogError($"[VisualNovelBridge] 에피소드 데이터 변환 실패: {episodeId}");
-            onCompleted?.Invoke();
+            Debug.LogError($"[VisualNovelBridge] 에피소드 데이터 역직렬화 실패: {episodeId}");
+            onCompleted?.Invoke(null);
             return;
         }
 
@@ -106,7 +118,7 @@ public class VisualNovelBridge : MonoBehaviour, IVisualNovelBridge
             _vnRoot.SetActive(true);
         }
 
-        _player.PlayEpisode(episodeData, () =>
+        _player.PlayEpisode(episodeData, (VNResult result) =>
         {
             _isPlaying = false;
 
@@ -115,7 +127,7 @@ public class VisualNovelBridge : MonoBehaviour, IVisualNovelBridge
                 _vnRoot.SetActive(false);
             }
 
-            onCompleted?.Invoke();
+            onCompleted?.Invoke(result);
         });
     }
 
@@ -128,20 +140,20 @@ public class VisualNovelBridge : MonoBehaviour, IVisualNovelBridge
     /// </summary>
     private void BuildEpisodeLookup()
     {
-        _episodeLookup = new Dictionary<string, VisualNovelSO>(_episodeRegistry.Count);
+        _episodeLookup = new Dictionary<string, TextAsset>(_episodeRegistry.Count);
 
         for (int i = 0; i < _episodeRegistry.Count; i++)
         {
             EpisodeRegistryEntry entry = _episodeRegistry[i];
 
-            if (string.IsNullOrEmpty(entry.episodeId) || entry.episodeSO == null)
+            if (string.IsNullOrEmpty(entry.episodeId) || entry.episodeJson == null)
             {
                 continue;
             }
 
             if (!_episodeLookup.ContainsKey(entry.episodeId))
             {
-                _episodeLookup.Add(entry.episodeId, entry.episodeSO);
+                _episodeLookup.Add(entry.episodeId, entry.episodeJson);
             }
             else
             {
@@ -151,43 +163,30 @@ public class VisualNovelBridge : MonoBehaviour, IVisualNovelBridge
     }
 
     /// <summary>
-    /// 에피소드 ID로 VisualNovelSO를 조회한다.
+    /// 에피소드 ID로 JSON TextAsset을 조회한다.
     /// </summary>
-    private VisualNovelSO FindEpisodeSO(string episodeId)
+    private TextAsset FindEpisodeJson(string episodeId)
     {
-        if (_episodeLookup != null && _episodeLookup.TryGetValue(episodeId, out VisualNovelSO so))
+        if (_episodeLookup != null && _episodeLookup.TryGetValue(episodeId, out TextAsset json))
         {
-            return so;
+            return json;
         }
 
         return null;
     }
 
     /// <summary>
-    /// VisualNovelSO를 런타임 EpisodeData로 변환한다.
-    /// 기존 VisualNovelPlayer.LoadEpisodeDataFromSO 패턴을 따른다.
+    /// JSON TextAsset을 런타임 EpisodeData로 역직렬화한다.
     /// </summary>
-    private EpisodeData ConvertSOToEpisodeData(VisualNovelSO so)
+    private EpisodeData DeserializeEpisodeData(TextAsset jsonAsset)
     {
         try
         {
-            return new EpisodeData
-            {
-                episodeInfo = new EpisodeInfo { title = so.name },
-                datasets = new Datasets
-                {
-                    dialogueLines = so.dialogueLines,
-                    episodePortraits = so.episodePortraits,
-                    locationPresets = so.locationPresets
-                },
-                nodeGraph = string.IsNullOrEmpty(so.nodeGraphJson)
-                    ? new NodeGraph { nodes = new List<NodeData>(), connections = new List<ConnectionData>() }
-                    : JsonConvert.DeserializeObject<NodeGraph>(so.nodeGraphJson)
-            };
+            return JsonConvert.DeserializeObject<EpisodeData>(jsonAsset.text);
         }
         catch (Exception ex)
         {
-            Debug.LogError($"[VisualNovelBridge] SO→EpisodeData 변환 실패: {ex.Message}");
+            Debug.LogError($"[VisualNovelBridge] JSON→EpisodeData 역직렬화 실패: {ex.Message}");
             return null;
         }
     }
@@ -197,7 +196,7 @@ public class VisualNovelBridge : MonoBehaviour, IVisualNovelBridge
     #region Nested Types
 
     /// <summary>
-    /// 에피소드 ID와 VisualNovelSO를 매핑하는 레지스트리 항목.
+    /// 에피소드 ID와 JSON TextAsset을 매핑하는 레지스트리 항목.
     /// 인스펙터에서 설정한다.
     /// </summary>
     [System.Serializable]
@@ -206,8 +205,8 @@ public class VisualNovelBridge : MonoBehaviour, IVisualNovelBridge
         /// <summary>이벤트 테이블의 eventValue에 대응하는 에피소드 ID</summary>
         public string episodeId;
 
-        /// <summary>해당 에피소드의 VisualNovelSO 에셋</summary>
-        public VisualNovelSO episodeSO;
+        /// <summary>해당 에피소드의 JSON TextAsset</summary>
+        public TextAsset episodeJson;
     }
 
     #endregion
