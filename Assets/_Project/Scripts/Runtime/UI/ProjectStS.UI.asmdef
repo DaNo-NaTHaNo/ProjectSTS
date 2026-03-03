@@ -4,6 +4,7 @@
     "references": [
         "ProjectStS.Data",
         "ProjectStS.Core",
+        "ProjectStS.Battle",
         "ProjectStS.Utils"
     ],
     "includePlatforms": [],
