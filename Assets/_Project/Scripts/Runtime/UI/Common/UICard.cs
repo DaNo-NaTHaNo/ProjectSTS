@@ -149,6 +149,7 @@ namespace ProjectStS.UI
         private void Awake()
         {
             _originalScale = transform.localScale;
+            _originalPosition = transform.localPosition;
         }
 
         private void OnDisable()
@@ -480,6 +481,9 @@ namespace ProjectStS.UI
                     _scaleTween = transform.DOScale(_originalScale, _hoverDuration)
                         .SetEase(Ease.OutQuad);
 
+                    _moveTween = transform.DOLocalMove(_originalPosition, _hoverDuration)
+                        .SetEase(Ease.OutQuad);
+
                     if (_canvasGroup != null)
                     {
                         _canvasGroup.alpha = 1f;
@@ -490,6 +494,10 @@ namespace ProjectStS.UI
                 case CardState.Hover:
                     Vector3 hoverScale = _originalScale * _hoverScale;
                     _scaleTween = transform.DOScale(hoverScale, _hoverDuration)
+                        .SetEase(Ease.OutQuad);
+
+                    Vector3 hoverPos = _originalPosition + new Vector3(0f, _hoverOffsetY, 0f);
+                    _moveTween = transform.DOLocalMove(hoverPos, _hoverDuration)
                         .SetEase(Ease.OutQuad);
 
                     if (_canvasGroup != null)

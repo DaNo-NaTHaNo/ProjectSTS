@@ -6,7 +6,8 @@
         "ProjectStS.Core",
         "ProjectStS.Battle",
         "ProjectStS.Utils",
-        "Unity.TextMeshPro"
+        "Unity.TextMeshPro",
+        "Unity.ugui"
     ],
     "includePlatforms": [],
     "excludePlatforms": [],
