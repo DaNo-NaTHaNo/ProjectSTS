@@ -243,7 +243,11 @@ namespace ProjectStS.UI
             {
                 _dimBackground.color = new Color(0f, 0f, 0f, 0f);
                 _currentSequence.Join(
-                    _dimBackground.DOFade(0.5f, _animDuration)
+                    DOTween.To(
+                        () => _dimBackground.color.a,
+                        x => { Color c = _dimBackground.color; c.a = x; _dimBackground.color = c; },
+                        0.5f, _animDuration
+                    )
                 );
             }
 
@@ -274,7 +278,11 @@ namespace ProjectStS.UI
             if (_dimBackground != null)
             {
                 _currentSequence.Join(
-                    _dimBackground.DOFade(0f, _animDuration)
+                    DOTween.To(
+                        () => _dimBackground.color.a,
+                        x => { Color c = _dimBackground.color; c.a = x; _dimBackground.color = c; },
+                        0f, _animDuration
+                    )
                 );
             }
 

@@ -70,16 +70,19 @@ namespace ProjectStS.UI
 
             if (_fillImage != null)
             {
-                _fillTween = _fillImage.DOFillAmount(ratio, _tweenDuration)
-                    .SetEase(Ease.OutQuad);
+                _fillTween = DOTween.To(
+                    () => _fillImage.fillAmount, x => _fillImage.fillAmount = x,
+                    ratio, _tweenDuration
+                ).SetEase(Ease.OutQuad);
             }
 
             if (_damageFillImage != null)
             {
                 float damageDuration = _tweenDuration * _damageTrailDurationMultiplier;
-                _damageFillTween = _damageFillImage.DOFillAmount(ratio, damageDuration)
-                    .SetDelay(_damageTrailDelay)
-                    .SetEase(Ease.InQuad);
+                _damageFillTween = DOTween.To(
+                    () => _damageFillImage.fillAmount, x => _damageFillImage.fillAmount = x,
+                    ratio, damageDuration
+                ).SetDelay(_damageTrailDelay).SetEase(Ease.InQuad);
             }
         }
 
