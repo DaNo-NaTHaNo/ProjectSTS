@@ -1,0 +1,24 @@
+{
+    "name": "DOTweenPro.Editor",
+    "rootNamespace": "",
+    "references": [
+        "DOTween.Modules",
+        "DOTweenPro.Scripts"
+    ],
+    "includePlatforms": [
+        "Editor"
+    ],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": true,
+    "precompiledReferences": [
+        "DOTween.dll",
+        "DOTweenPro.dll",
+        "DOTweenEditor.dll",
+        "DOTweenProEditor.dll"
+    ],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}
