@@ -54,7 +54,7 @@ namespace ProjectStS.UI
         /// <summary>
         /// RectTransform의 anchoredPosition을 트윈한다.
         /// </summary>
-        public static TweenerCore<Vector2, Vector2, VectorOptions> DOAnchorPos(
+        public static Tweener DOAnchorPos(
             this RectTransform target, Vector2 endValue, float duration, bool snapping = false)
         {
             return DOTween.To(
