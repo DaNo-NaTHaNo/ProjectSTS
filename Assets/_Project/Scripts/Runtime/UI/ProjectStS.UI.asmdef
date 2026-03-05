@@ -4,7 +4,10 @@
     "references": [
         "ProjectStS.Data",
         "ProjectStS.Core",
-        "ProjectStS.Utils"
+        "ProjectStS.Battle",
+        "ProjectStS.Utils",
+        "Unity.TextMeshPro",
+        "Unity.ugui"
     ],
     "includePlatforms": [],
     "excludePlatforms": [],
