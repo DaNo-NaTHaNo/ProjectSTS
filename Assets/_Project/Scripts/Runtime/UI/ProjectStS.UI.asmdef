@@ -5,6 +5,7 @@
         "ProjectStS.Data",
         "ProjectStS.Core",
         "ProjectStS.Battle",
+        "ProjectStS.Stage",
         "ProjectStS.Utils",
         "Unity.TextMeshPro",
         "Unity.ugui"
