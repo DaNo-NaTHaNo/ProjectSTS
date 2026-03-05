@@ -7,8 +7,7 @@
         "ProjectStS.Battle",
         "ProjectStS.Utils",
         "Unity.TextMeshPro",
-        "Unity.ugui",
-        "DOTween.Modules"
+        "Unity.ugui"
     ],
     "includePlatforms": [],
     "excludePlatforms": [],
