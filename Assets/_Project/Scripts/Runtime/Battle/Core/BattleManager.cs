@@ -65,6 +65,11 @@ namespace ProjectStS.Battle
         /// </summary>
         public TurnManager TurnManager => _turnManager;
 
+        /// <summary>
+        /// 덱 매니저 접근 (UI에서 덱/묘지 카운트 조회용).
+        /// </summary>
+        public DeckManager DeckManager => _deckManager;
+
         #endregion
 
         #region Events
