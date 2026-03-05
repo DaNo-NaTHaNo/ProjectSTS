@@ -2,6 +2,7 @@
   <Project Path="ProjectStS.Stage.csproj" />
   <Project Path="Assembly-CSharp-Editor.csproj" />
   <Project Path="ProjectStS.Data.csproj" />
+  <Project Path="ProjectStS.UI.csproj" />
   <Project Path="Assembly-CSharp.csproj" />
   <Project Path="ProjectStS.Battle.csproj" />
   <Project Path="ProjectStS.Integration.csproj" />
