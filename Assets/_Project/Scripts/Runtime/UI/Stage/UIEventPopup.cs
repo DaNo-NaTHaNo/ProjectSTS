@@ -5,6 +5,7 @@ using UnityEngine.UI;
 using TMPro;
 using DG.Tweening;
 using ProjectStS.Data;
+using EventType = ProjectStS.Data.EventType;
 
 namespace ProjectStS.UI
 {

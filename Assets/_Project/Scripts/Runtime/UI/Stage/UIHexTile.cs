@@ -7,6 +7,7 @@ using TMPro;
 using DG.Tweening;
 using ProjectStS.Data;
 using ProjectStS.Stage;
+using EventType = ProjectStS.Data.EventType;
 
 namespace ProjectStS.UI
 {
