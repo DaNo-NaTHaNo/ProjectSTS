@@ -3,20 +3,17 @@
     "rootNamespace": "",
     "references": [
         "DOTween.Modules",
-        "DOTweenPro.Scripts"
+        "DOTweenPro.Scripts",
+        "Unity.ugui",
+        "Unity.TextMeshPro"
     ],
     "includePlatforms": [
         "Editor"
     ],
     "excludePlatforms": [],
     "allowUnsafeCode": false,
-    "overrideReferences": true,
-    "precompiledReferences": [
-        "DOTween.dll",
-        "DOTweenPro.dll",
-        "DOTweenEditor.dll",
-        "DOTweenProEditor.dll"
-    ],
+    "overrideReferences": false,
+    "precompiledReferences": [],
     "autoReferenced": true,
     "defineConstraints": [],
     "versionDefines": [],
