@@ -108,9 +108,15 @@ UIHPBar (UIHPBar.cs)
 | `_damageTrailDurationMultiplier` | `1.5` (기본값) |
 
 **설정 포인트:**
-- Fill과 DamageFill의 Image Type을 **Filled**로 설정 (이 설정이 없으면 fillAmount가 동작하지 않음)
-- Fill Method: **Horizontal**, Fill Origin: **Left**
-- DamageFill은 Fill 뒤에 배치 (Sibling 순서: DamageFill이 Fill보다 위)
+- Fill과 DamageFill의 Image 컴포넌트 설정:
+  1. **Source Image**에 임의의 Sprite를 할당한다 (Sprite가 할당되어야 Image Type 드롭다운이 표시됨)
+  2. **Image Type** 드롭다운을 `Simple`(기본값) → **`Filled`**로 변경
+  3. Filled 선택 시 나타나는 추가 옵션:
+     - **Fill Method**: `Horizontal` 선택
+     - **Fill Origin**: `Left` 선택
+     - **Fill Amount**: `1` (초기값 — 스크립트에서 동적 변경)
+  4. 이 설정이 없으면 `Image.fillAmount` 프로퍼티가 시각적으로 동작하지 않음
+- DamageFill은 Fill 뒤에 배치 (Sibling 순서: DamageFill이 Fill보다 위 = Hierarchy에서 위쪽)
 - BlockRoot는 방어도 0일 때 비활성화됨
 
 ---
@@ -697,7 +703,7 @@ StageScene
 | Header | 필드 | 할당 대상 |
 | :---- | :---- | :---- |
 | **AP Display** | `_apText` | `APText` TextMeshProUGUI |
-| | `_apFillBar` | `APFillBar` Image (**Filled** 타입 설정 필수) |
+| | `_apFillBar` | `APFillBar` Image (Source Image에 Sprite 할당 → **Image Type: Filled**, Fill Method: Horizontal, Fill Origin: Left) |
 | | `_apPunchScale` | `1.2` (기본값) |
 | | `_apAnimDuration` | `0.3` (기본값) |
 | **Zone Info** | `_zoneNameText` | `ZoneNameText` TextMeshProUGUI |
@@ -1153,7 +1159,7 @@ CampaignScreen (CampaignUIController.cs + _screenRoot)
 - [ ] `_allyPanels` 배열 Size=3, `_enemyPanels` 배열 Size=5
 - [ ] `_cardPrefab` (UIHandArea)에 **프리팹 에셋** 할당 (씬 인스턴스가 아님)
 - [ ] `_statusIconPrefab` (UIBattleUnitPanel)에 **프리팹 에셋** 할당
-- [ ] UIHPBar의 Fill Image들이 **Filled 타입**으로 설정됨
+- [ ] UIHPBar의 Fill/DamageFill Image에 Sprite가 할당되고, **Image Type**이 `Filled`로 설정됨
 - [ ] Play 모드에서 BattleManager.InitializeBattle() 호출 시 이벤트 → UI 반영 확인
 
 ### 7-3. Phase 3.5 스테이지 UI 검증
