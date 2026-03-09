@@ -1,1 +1,4 @@
 id,effectName,description,iconPath,statusType,triggerTiming,effectType,effectElement,value,modifierType,isStackable,maxStacks,isExpendable,expendCount,duration
+SE_BURN,화상,매 턴 화상 피해,,Debuff,TurnStart,DamageOverTime,Baton,3,Additive,true,5,false,0,3
+SE_STR,공격력 증가,가하는 대미지 증가,,Buff,OnAttack,ModifyDamage,Wild,2,Additive,true,3,false,0,3
+SE_ARMOR,방어 강화,받는 대미지 감소,,Buff,OnDamage,ReduceDamage,Wild,2,Additive,true,3,false,0,3

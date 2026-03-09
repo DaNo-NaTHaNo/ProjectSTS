@@ -100,8 +100,14 @@ namespace ProjectStS.UI
 
             if (_playerData == null || _dataManager == null)
             {
-                Debug.LogWarning("[LobbyUIController] PlayerDataManager 또는 DataManager를 찾을 수 없습니다.");
+                Debug.LogError("[LobbyUIController] PlayerDataManager 또는 DataManager를 찾을 수 없습니다. " +
+                    "BootScene에서 게임을 시작했는지 확인하세요.");
                 return;
+            }
+
+            if (_playerData.GetOwnedUnits().Count == 0)
+            {
+                Debug.LogWarning("[LobbyUIController] 보유 유닛이 없습니다. 첫 실행 초기화가 수행되지 않았을 수 있습니다.");
             }
 
             // 파생 매니저 생성

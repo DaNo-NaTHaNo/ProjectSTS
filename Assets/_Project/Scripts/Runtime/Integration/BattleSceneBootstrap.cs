@@ -38,7 +38,8 @@ namespace ProjectStS.Integration
         {
             if (_battleManager == null)
             {
-                Debug.LogError("[BattleSceneBootstrap] BattleManager 참조가 없습니다.");
+                Debug.LogError("[BattleSceneBootstrap] BattleManager 참조가 없습니다. " +
+                    "BattleScene의 인스펙터에서 BattleManager 컴포넌트를 할당해주세요.");
                 return;
             }
 
@@ -48,7 +49,8 @@ namespace ProjectStS.Integration
             }
             else
             {
-                Debug.LogWarning("[BattleSceneBootstrap] GameFlowController를 찾을 수 없습니다.");
+                Debug.LogError("[BattleSceneBootstrap] GameFlowController를 찾을 수 없습니다. " +
+                    "BootScene에서 게임을 시작했는지 확인하세요.");
             }
 
             Debug.Log("[BattleSceneBootstrap] 전투 씬 부트스트랩 완료.");

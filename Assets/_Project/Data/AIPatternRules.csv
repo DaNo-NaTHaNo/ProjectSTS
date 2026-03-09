@@ -1,1 +1,4 @@
 aipatternId,ruleId,priority,actionType,cardId,targetSelection,speechLine,cutInEffect,zoomIn
+AI_BOSS,RULE_BOSS_DEF,1,PlayCard,CARD_MD_DEF1,Self,방어 태세!,,false
+AI_BOSS,RULE_BOSS_ATK,2,PlayCard,CARD_MD_ATK2,LowestHp,,,false
+AI_BASIC,RULE_BASIC_ATK,1,PlayCard,CARD_SW_ATK1,LowestHp,,,false

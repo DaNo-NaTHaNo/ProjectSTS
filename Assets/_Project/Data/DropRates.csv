@@ -1,1 +1,5 @@
 cathegory,rarity,dropValue
+SpawnEvent,Common,0.6
+SpawnEvent,Rare,0.2
+EventReward,Common,0.5
+EventReward,Rare,0.3

@@ -1,1 +1,16 @@
 id,cardName,description,artworkPath,rarity,element,cost,cardEffectId,cardType,targetType,targetFilter,targetSelectionRule,targetCount,isDisposable
+CARD_SW_ATK1,바람의 일격,적에게 10 대미지,,Common,Sword,1,CE_DMG_10,Attack,Enemy,None,Manual,1,false
+CARD_SW_ATK2,질풍참,적에게 15 대미지,,Common,Sword,2,CE_DMG_15,Attack,Enemy,None,Manual,1,false
+CARD_SW_DEF1,바람 방벽,8 방어도,,Common,Sword,1,CE_BLK_8,Defend,Ally,OnlySelf,Self,1,false
+CARD_SW_DRAW,순풍,카드 1장 드로우,,Uncommon,Sword,0,CE_DRAW_1,InHandEffect,Ally,OnlySelf,Self,1,false
+CARD_SW_ATK3,폭풍의 검,적에게 20 대미지,,Rare,Sword,3,CE_DMG_20,Attack,Enemy,None,Manual,1,false
+CARD_BT_ATK1,불꽃 타격,적에게 10 대미지,,Common,Baton,1,CE_DMG_10,Attack,Enemy,None,Manual,1,false
+CARD_BT_ATK2,화염 돌진,적에게 15 대미지,,Common,Baton,2,CE_DMG_15,Attack,Enemy,None,Manual,1,false
+CARD_BT_DEF1,화염 방패,8 방어도,,Common,Baton,1,CE_BLK_8,Defend,Ally,OnlySelf,Self,1,false
+CARD_BT_BURN,방화,화상 부여,,Uncommon,Baton,1,CE_STATUS_BURN,StatusEffect,Enemy,None,Manual,1,false
+CARD_BT_ATK3,대화염,적에게 20 대미지,,Rare,Baton,3,CE_DMG_20,Attack,Enemy,None,Manual,1,false
+CARD_MD_ATK1,대지의 일격,적에게 10 대미지,,Common,Medal,1,CE_DMG_10,Attack,Enemy,None,Manual,1,false
+CARD_MD_ATK2,지진,적에게 15 대미지,,Common,Medal,2,CE_DMG_15,Attack,Enemy,None,Manual,1,false
+CARD_MD_DEF1,대지의 방패,12 방어도,,Common,Medal,2,CE_BLK_12,Defend,Ally,OnlySelf,Self,1,false
+CARD_MD_HEAL,대지의 축복,5 회복,,Uncommon,Medal,1,CE_HEAL_5,Defend,Ally,OnlySelf,Self,1,false
+CARD_MD_ATK3,산사태,적에게 20 대미지,,Rare,Medal,3,CE_DMG_20,Attack,Enemy,None,Manual,1,false

@@ -55,7 +55,12 @@ namespace ProjectStS.Integration
 
             if (party == null || party.Count == 0)
             {
-                Debug.LogError("[StageSceneBootstrap] 파티 데이터가 없습니다.");
+                bool hasPlayerData = ServiceLocator.TryGet<PlayerDataManager>(out _);
+                bool hasDataManager = ServiceLocator.TryGet<DataManager>(out _);
+                Debug.LogError($"[StageSceneBootstrap] 파티 데이터가 없습니다. " +
+                    $"PlayerDataManager={hasPlayerData}, DataManager={hasDataManager}, " +
+                    $"PartyCount={party?.Count ?? 0}. " +
+                    "BootScene에서 시작했는지, GameSettings.ProtagonistUnitId가 설정되었는지 확인하세요.");
                 return;
             }
 

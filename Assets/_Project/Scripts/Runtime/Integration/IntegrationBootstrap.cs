@@ -19,6 +19,7 @@ namespace ProjectStS.Integration
         {
             InitializeIntegrationServices();
             LoadSaveData();
+            EnsurePlayerHasData();
             LoadLobbyScene();
         }
 
@@ -85,6 +86,22 @@ namespace ProjectStS.Integration
             else
             {
                 Debug.LogWarning("[IntegrationBootstrap] 매니저를 찾을 수 없어 세이브 데이터 복원을 건너뜁니다.");
+            }
+        }
+
+        /// <summary>
+        /// 세이브 데이터가 없는 최초 실행 시 주인공 유닛과 초기 인벤토리를 생성한다.
+        /// </summary>
+        private void EnsurePlayerHasData()
+        {
+            if (ServiceLocator.TryGet<PlayerDataManager>(out var playerData)
+                && ServiceLocator.TryGet<DataManager>(out var dataManager))
+            {
+                if (playerData.GetOwnedUnits().Count == 0)
+                {
+                    FirstRunInitializer.InitializeNewPlayer(playerData, dataManager);
+                    Debug.Log("[IntegrationBootstrap] 첫 실행 — 초기 플레이어 데이터 생성 완료.");
+                }
             }
         }
 

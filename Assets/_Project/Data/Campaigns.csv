@@ -1,1 +1,2 @@
 id,name,description,artworkPath,unlockType,unlockId,groupId,rewards,isCompleted,afterComplete
+CAMP_01,첫 번째 여정,첫 탐험을 완료하세요,,,,GRP_01,,false,

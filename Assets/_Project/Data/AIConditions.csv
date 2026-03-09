@@ -1,1 +1,3 @@
 ruleId,conditionType,comparisonOperator,value,divisor,remainder
+RULE_BOSS_DEF,TurnMod,Equal,,2,0
+RULE_BOSS_ATK,TurnMod,Equal,,2,1

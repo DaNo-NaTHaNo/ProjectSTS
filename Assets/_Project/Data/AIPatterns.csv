@@ -1,1 +1,3 @@
 id,patternName,description,defaultActionType,defaultCardId,defaultTargetSelection
+AI_BASIC,기본 공격,기본 공격만 수행,PlayCard,CARD_SW_ATK1,LowestHp
+AI_BOSS,보스 패턴,공격과 방어를 교대,PlayCard,CARD_MD_ATK1,LowestHp

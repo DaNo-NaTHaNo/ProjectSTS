@@ -1,1 +1,4 @@
 id,skillName,description,unitId,artworkPath,rarity,element,triggerTarget,triggerStatus,comparisonOperator,triggerValue,triggerElement,cardEffectId,targetType,targetFilter,targetSelectionRule,targetCount,limitType,limitValue
+SK_PROTAGONIST,연격,공격 카드 사용 시 추가 대미지,UNIT_PROTAGONIST,,Common,Sword,Self,PlayCard,Equal,,Sword,CE_DMG_10,Enemy,None,Random,1,PerTurn,1
+SK_MAGE,화염술,화상 부여 시 추가 화상,UNIT_MAGE,,Common,Baton,Enemy,HasStatusEffect,GreaterOrEqual,1,Baton,CE_STATUS_BURN,Enemy,None,Random,1,PerTurn,1
+SK_KNIGHT,철벽,방어 카드 사용 시 추가 방어,UNIT_KNIGHT,,Common,Medal,Self,PlayCard,Equal,,Medal,CE_BLK_8,Ally,OnlySelf,Self,1,PerTurn,1

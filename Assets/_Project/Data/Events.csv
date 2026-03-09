@@ -1,1 +1,5 @@
 areaId,id,eventType,eventValue,spawnTrigger,comparisonOperator,spawnTriggerValue,minLevel,maxLevel,rarity,rewardId,rewardMinCount,rewardMaxCount
+AREA_START,EVT_BATTLE_01,BattleNormal,EC_GOBLIN_1,None,,,1,3,Common,RW_01,1,2
+AREA_START,EVT_BATTLE_BOSS,BattleBoss,EC_BOSS_ORC,None,,,1,5,Rare,RW_01,2,3
+AREA_START,EVT_VN_01,VisualNovel,EP_TEST_01,None,,,1,5,Uncommon,,0,0
+AREA_FOREST,EVT_BATTLE_02,BattleNormal,EC_GOBLIN_1,None,,,2,5,Common,RW_01,1,2

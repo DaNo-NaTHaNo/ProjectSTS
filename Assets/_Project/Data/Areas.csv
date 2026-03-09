@@ -1,1 +1,3 @@
 id,name,description,areaLevelMin,areaLevelMax,areaCardinalPoint,logoImagePath,floarImagePath,skyboxPath,cellVisualNovelPath,cellEncountPath,cellBattleNormalPath,cellBattleElitePath,cellBattleBossPath,cellBattleEventPath
+AREA_START,시작의 초원,여정의 시작,1,3,N;NE;NW,,,,,,,,,
+AREA_FOREST,어두운 숲,위험한 숲,2,5,S;SE;SW,,,,,,,,,

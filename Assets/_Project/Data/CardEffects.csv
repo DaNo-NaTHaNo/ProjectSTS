@@ -1,1 +1,9 @@
 id,effectType,value,statusEffectId,modificationType,modDuration,cardTargetSelection,targetCardType,addCardId
+CE_DMG_10,Damage,10,,,,,,
+CE_DMG_15,Damage,15,,,,,,
+CE_DMG_20,Damage,20,,,,,,
+CE_BLK_8,Block,8,,,,,,
+CE_BLK_12,Block,12,,,,,,
+CE_HEAL_5,Heal,5,,,,,,
+CE_STATUS_BURN,ApplyStatus,1,SE_BURN,,,,,
+CE_DRAW_1,Draw,1,,,,,,
