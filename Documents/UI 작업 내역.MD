@@ -331,10 +331,141 @@ Phase Common 프리팹 생성 과정에서 발견된 MCP for Unity 도구 관련
 
 ---
 
-## 후속 작업 (미착수)
+## Phase 3.5 — 스테이지 씬 UI 배치
 
-Phase Common 프리팹 완성으로 이후 에디터 작업의 전제 조건이 충족됨:
+**작업일**: 2026.03.09
+**작업 도구**: MCP for Unity (manage_gameobject, manage_components, manage_prefabs, manage_scene, batch_execute)
+**작업 씬**: `Assets/_Project/Scenes/StageScene.unity`
+**참조 문서**: `Documents/UI 에디터 작업 매뉴얼.MD` — Phase 3.5 섹션 (4-1 ~ 4-8)
+
+### 작업 환경
+
+- 활성 씬: StageScene (build_index: 2)
+- 기존 오브젝트: StageSceneBootstrap + StageManager만 존재
+- 작업 후 콘솔 에러: **0건**
+
+### 생성된 프리팹
+
+| 프리팹 | 경로 | GUID | SerializeField |
+|--------|------|------|:-:|
+| UIHexTile | `Assets/_Project/Prefabs/UI/Stage/UIHexTile.prefab` | `c8d16788bfc28cd44b7e8e47356debc9` | 5개 |
+
+**UIHexTile 계층 구조:**
+```
+UIHexTile (Image + CanvasGroup + UIHexTile.cs)
+├── EventIcon (Image)
+├── EventIconLabel (TextMeshProUGUI)
+└── HighlightBorder (Image — 시작 시 비활성)
+```
+
+### 씬 배치 계층 구조
+
+```
+StageScene
+├── StageSceneBootstrap (기존)
+├── StageManager (기존)
+├── Canvas (Screen Space Overlay, CanvasScaler 1920×1080, matchWidthOrHeight=0.5)
+│   ├── StageUIRoot (Image[투명] + StageUIController.cs)
+│   │   ├── WorldMap (Image[#1A1A26] + ScrollRect + UIWorldMap.cs)
+│   │   │   └── Viewport (Image + Mask)
+│   │   │       └── MapContainer (Image[투명], 5000×5000)
+│   │   ├── StageHUD (Image[투명] + UIStageHUD.cs)
+│   │   │   ├── APArea (Image[투명])
+│   │   │   │   ├── APFillBar (Image — Filled, Horizontal, Left, 녹색 #4CAF50)
+│   │   │   │   └── APText (TMP)
+│   │   │   ├── ZoneInfo (Image[투명] + CanvasGroup)
+│   │   │   │   ├── ZoneNameText (TMP)
+│   │   │   │   └── ZoneDescText (TMP)
+│   │   │   └── EventCountText (TMP)
+│   │   ├── BagPanel (Image[투명] + UIBagPanel.cs)
+│   │   │   ├── ToggleButton (Image + Button)
+│   │   │   │   └── ToggleButtonText (TMP — "가방 (0)")
+│   │   │   └── PanelRoot (Image + CanvasGroup[alpha=0])
+│   │   │       └── ItemContainer (Image[투명] + GridLayoutGroup[64×64, spacing 8])
+│   │   ├── EventPopup (Image[투명] + UIEventPopup.cs — **시작 시 비활성**)
+│   │   │   ├── EventPopupDim (Image — rgba(0,0,0,0.5))
+│   │   │   └── EventPopupPanel (Image — #2A2A33)
+│   │   │       ├── EventTypeBanner (Image)
+│   │   │       ├── EventTypeLabel (TMP)
+│   │   │       ├── EventNameText (TMP)
+│   │   │       ├── EventConfirmBtn (Image[#4CAF50] + Button)
+│   │   │       │   └── EventConfirmText (TMP — "진입")
+│   │   │       └── EventCancelBtn (Image[#F44336] + Button)
+│   │   │           └── EventCancelText (TMP — "취소")
+│   │   └── StageResult (Image[투명] + UIStageResult.cs — **시작 시 비활성**)
+│   │       ├── StageResultDim (Image — rgba(0,0,0,0.5))
+│   │       └── ResultPanel (Image — #2A2A33)
+│   │           ├── ResultTitle (TMP)
+│   │           ├── ResultReasonText (TMP)
+│   │           ├── ResultBanner (Image)
+│   │           ├── FixedRewardArea (Image[투명])
+│   │           │   ├── FixedRewardLabel (TMP — "보상 선택")
+│   │           │   └── FixedRewardContainer (Image[투명] + GridLayoutGroup[64×64, spacing 8])
+│   │           ├── CompletionRewardArea (Image[투명])
+│   │           │   ├── CompletionRewardLabel (TMP — "완료 보상")
+│   │           │   └── CompletionRewardContainer (Image[투명] + GridLayoutGroup[64×64, spacing 8])
+│   │           ├── BonusRewardArea (Image[투명])
+│   │           │   ├── BonusRewardLabel (TMP — "추가 보상")
+│   │           │   └── BonusRewardContainer (Image[투명] + GridLayoutGroup[64×64, spacing 8])
+│   │           └── ResultConfirmBtn (Image[#4CAF50] + Button)
+│   │               └── ResultConfirmText (TMP — "확인")
+│   └── UIPopup (Common 프리팹 인스턴스)
+├── EventSystem (EventSystem + StandaloneInputModule)
+└── UITooltip (Common 프리팹 인스턴스 — Canvas Sort Order 999)
+```
+
+### SerializeField 할당 요약
+
+| 컴포넌트 | 명시 할당 | 기본값 스킵 | 합계 |
+|----------|:-:|:-:|:-:|
+| UIHexTile (프리팹) | 5 | 1 | 6 |
+| StageUIController | 6 | 0 | 6 |
+| UIWorldMap | 3 | 8 | 11 |
+| UIStageHUD | 6 | 3 | 9 |
+| UIBagPanel | 6 | 4 | 10 |
+| UIEventPopup | 10 | 3 | 13 |
+| UIStageResult | 18 | 3 | 21 |
+| **합계** | **54** | **22** | **76** |
+
+### 프리팹 참조
+
+| SerializeField | 프리팹 | GUID |
+|----------------|--------|------|
+| UIWorldMap._tilePrefab | UIHexTile.prefab | `c8d16788bfc28cd44b7e8e47356debc9` |
+| UIBagPanel._itemIconPrefab | UIItemIcon.prefab | `067c0b2c8fdebff4b941994c119c9755` |
+| UIStageResult._rewardIconPrefab | UIItemIcon.prefab | `067c0b2c8fdebff4b941994c119c9755` |
+
+### 비활성 오브젝트
+
+- `EventPopup`: SetActive(false) — 이벤트 진입 시 스크립트에서 활성화
+- `StageResult`: SetActive(false) — 스테이지 결과 표시 시 스크립트에서 활성화
+
+### MCP 추가 이슈
+
+#### 이슈 6: 프리팹 에셋 참조 GUID 정확성
+
+- **현상**: `_tilePrefab` 할당 시 잘못된 GUID를 사용하면 "Failed to convert value" 에러 발생
+- **해결**: `manage_asset get_info`로 정확한 GUID를 먼저 조회한 후 `{"guid": "정확한GUID"}` 형태로 전달
+
+#### 이슈 7: manage_gameobject target 타입 (modify)
+
+- **현상**: `manage_gameobject modify`의 `target`에 정수 instanceID 전달 시 pydantic string 타입 검증 실패
+- **해결**: 문자열 이름으로 전달 (예: `"EventPopup"`)
+
+---
+
+## 총 작업 요약 (누적)
+
+| 항목 | Phase Common | Phase 3.5 | 합계 |
+|------|:-:|:-:|:-:|
+| 생성된 프리팹 | 8개 | 1개 | 9개 |
+| SerializeField 할당 | 58개 | 54개 | 112개 |
+| 씬 배치 오브젝트 | — | 38개 | 38개 |
+| 콘솔 에러 | 0건 | 0건 | 0건 |
+
+---
+
+## 후속 작업
 
 - [ ] **Phase 2.5 에디터**: 전투 씬 Canvas + 프리팹 배치, SerializeField 할당
-- [ ] **Phase 3.5 에디터**: 스테이지 씬 Canvas + 프리팹 배치, UIHexTile 프리팹 생성
 - [ ] **Phase 4 UI 에디터**: 로비 씬 Canvas + 프리팹 배치, 파티/인벤토리/캠페인 UI 구성
