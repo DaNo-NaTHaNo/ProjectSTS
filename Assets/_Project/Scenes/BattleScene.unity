@@ -1548,7 +1548,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: ProjectStS.UI::ProjectStS.UI.UIHandArea
   _cardContainer: {fileID: 1573265537}
-  _cardPrefab: {fileID: 0}
+  _cardPrefab: {fileID: 7784816218781262696, guid: c15e3d138c407a6429e2de2b663eef6f, type: 3}
   _cardSpacing: 120
   _rearrangeDuration: 0.2
   _drawStartPosition: {x: -500, y: -200, z: 0}

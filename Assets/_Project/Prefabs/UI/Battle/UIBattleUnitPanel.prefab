@@ -1043,7 +1043,7 @@ MonoBehaviour:
   _portrait: {fileID: 1031816006506098509}
   _hpBar: {fileID: 1604883095855286466}
   _statusIconContainer: {fileID: 8577231566995040697}
-  _statusIconPrefab: {fileID: 0}
+  _statusIconPrefab: {fileID: 1726589919334013419, guid: a12d84700289038449ea05f39340089b, type: 3}
   _skillRoot: {fileID: 6634705936155334382}
   _skillIcon: {fileID: 6890522959691260254}
   _skillElementBackground: {fileID: 6202554809288604862}

@@ -1,6 +1,6 @@
 # UI 에디터 작업 내역
 
-*마지막 업데이트: 2026.03.09 (Phase 2.5 에디터 작업 확인 반영)*
+*마지막 업데이트: 2026.03.10 (Phase 2.5 프리팹 참조 미할당 2건 완료)*
 
 이 문서는 MCP for Unity를 활용한 UI 프리팹 에디터 작업의 상세 내역을 기록합니다.
 
@@ -755,21 +755,21 @@ BattleScene
 | SerializeField | 프리팹 | 상태 |
 |----------------|--------|------|
 | UISkillNotify._elementBadge | UIElementBadge.prefab (인스턴스) | 할당됨 |
-| UIHandArea._cardPrefab | UICard.prefab | **미할당 (null)** |
-| UIBattleUnitPanel._statusIconPrefab | UIStatusIcon.prefab | **미할당 (null)** |
+| UIHandArea._cardPrefab | UICard.prefab | **할당됨** |
+| UIBattleUnitPanel._statusIconPrefab | UIStatusIcon.prefab | **할당됨** |
 
 ### 비활성 오브젝트
 
 - `BattleResult`: 전투 결과 표시 시 스크립트에서 활성화
 
-### 미완료 항목 (2건)
+### 미완료 항목 — 모두 완료
 
-| 컴포넌트 | 필드 | 필요한 프리팹 | GUID |
-|----------|------|---------------|------|
-| UIHandArea | `_cardPrefab` | UICard.prefab | `c15e3d138c407a6429e2de2b663eef6f` |
-| UIBattleUnitPanel | `_statusIconPrefab` | UIStatusIcon.prefab | `a12d84700289038449ea05f39340089b` |
+~~2건의 프리팹 참조 미할당이 2026.03.10 작업으로 모두 해소됨.~~
 
-이 2건은 프리팹 에셋 GUID 참조를 할당해야 런타임에 오브젝트 풀링이 정상 작동한다.
+| 컴포넌트 | 필드 | 프리팹 | GUID | 상태 |
+|----------|------|--------|------|------|
+| UIHandArea | `_cardPrefab` | UICard.prefab | `c15e3d138c407a6429e2de2b663eef6f` | **완료** |
+| UIBattleUnitPanel | `_statusIconPrefab` | UIStatusIcon.prefab | `a12d84700289038449ea05f39340089b` | **완료** (프리팹 원본 할당) |
 
 ---
 
@@ -780,7 +780,7 @@ BattleScene
 | 생성된 프리팹 | 8개 | 1개 | 1개 | 2개 | 12개 |
 | SerializeField 할당 | 58개 | ~63개 | 54개 | ~126개 | ~301개 |
 | 씬 배치 오브젝트 | — | ~33개 | 38개 | ~80개 | ~151개 |
-| 프리팹 참조 할당 | — | 1개 (2개 미할당) | 3개 | 5개 | 9개 (+2 미할당) |
+| 프리팹 참조 할당 | — | 3개 | 3개 | 5개 | 11개 |
 | Common 프리팹 인스턴스 | — | 3개 | 2개 | 2개 | 7개 |
 | 비활성 오브젝트 | — | 1개 | 2개 | 8개 | 11개 |
 | 콘솔 에러 | 0건 | 0건 | 0건 | 0건 | 0건 |
@@ -789,7 +789,7 @@ BattleScene
 
 ## 후속 작업
 
-- [x] ~~**Phase 2.5 에디터**: 전투 씬 Canvas + 프리팹 배치, SerializeField 할당~~ (대부분 완료, 아래 2건 잔여)
-  - [ ] UIHandArea._cardPrefab에 UICard.prefab GUID 할당
-  - [ ] UIBattleUnitPanel._statusIconPrefab에 UIStatusIcon.prefab GUID 할당
+- [x] ~~**Phase 2.5 에디터**: 전투 씬 Canvas + 프리팹 배치, SerializeField 할당~~ ✅ 모두 완료
+  - [x] UIHandArea._cardPrefab에 UICard.prefab GUID 할당
+  - [x] UIBattleUnitPanel._statusIconPrefab에 UIStatusIcon.prefab GUID 할당
 - [x] ~~**Phase 4 UI 에디터**: 로비 씬 Canvas + 프리팹 배치, 파티/인벤토리/캠페인 UI 구성~~
