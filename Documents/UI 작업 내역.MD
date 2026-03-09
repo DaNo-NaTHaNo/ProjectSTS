@@ -1,6 +1,6 @@
 # UI 에디터 작업 내역
 
-*마지막 업데이트: 2026.03.09*
+*마지막 업데이트: 2026.03.09 (Phase 2.5 에디터 작업 확인 반영)*
 
 이 문서는 MCP for Unity를 활용한 UI 프리팹 에디터 작업의 상세 내역을 기록합니다.
 
@@ -454,18 +454,342 @@ StageScene
 
 ---
 
+## Phase 4 UI — 로비 씬 UI 배치
+
+**작업일**: 2026.03.09
+**작업 도구**: MCP for Unity (manage_gameobject, manage_components, manage_prefabs, manage_scene, manage_asset, batch_execute)
+**작업 씬**: `Assets/_Project/Scenes/LobbyScene.unity`
+**참조 문서**: `Documents/UI 에디터 작업 매뉴얼.MD` — Section 5 (5-0 ~ 5-5)
+
+### 작업 환경
+
+- 활성 씬: LobbyScene
+- 기존 오브젝트: PlayerDataManager만 존재
+- 작업 후 콘솔 에러: **0건**
+
+### 생성된 프리팹
+
+| 프리팹 | 경로 | GUID | SerializeField |
+|--------|------|------|:-:|
+| CampaignEntry | `Assets/_Project/Prefabs/UI/Lobby/CampaignEntry.prefab` | `a6281bed31549b743b1b6b87187d1c64` | 2개 |
+| GoalEntry | `Assets/_Project/Prefabs/UI/Lobby/GoalEntry.prefab` | `b54671dfe63b1024bab9b3b438fcab2d` | 2개 |
+
+**CampaignEntry 계층 구조:**
+```
+CampaignEntry (Button + Image)
+├── CampaignName (TextMeshProUGUI)
+└── ProgressText (TextMeshProUGUI — "2/5")
+```
+
+**GoalEntry 계층 구조:**
+```
+GoalEntry (HorizontalLayoutGroup)
+├── StatusIcon (TextMeshProUGUI — "□")
+└── GoalText (TextMeshProUGUI)
+```
+
+### 씬 배치 계층 구조
+
+```
+LobbyScene
+├── PlayerDataManager (기존)
+├── Canvas (Screen Space Overlay, CanvasScaler 1920×1080, matchWidthOrHeight=0.5)
+│   ├── LobbyUIRoot (Image[투명] + LobbyUIController.cs)
+│   │   ├── MainScreen
+│   │   │   ├── PartyPreview (HorizontalLayoutGroup)
+│   │   │   │   ├── PreviewPortrait_0 (UIUnitPortrait 프리팹 인스턴스)
+│   │   │   │   ├── PreviewPortrait_1 (UIUnitPortrait 프리팹 인스턴스)
+│   │   │   │   └── PreviewPortrait_2 (UIUnitPortrait 프리팹 인스턴스)
+│   │   │   ├── NavigationButtons
+│   │   │   │   ├── PartyEditButton (Button — "파티 편성")
+│   │   │   │   ├── InventoryButton (Button — "인벤토리")
+│   │   │   │   └── CampaignButton (Button — "캠페인")
+│   │   │   ├── ExpeditionButton (Button — "탐험 개시")
+│   │   │   │   └── ExpeditionButtonText (TMP)
+│   │   │   └── CampaignTracker (UICampaignTracker.cs)
+│   │   │       └── TrackerPanel (CanvasGroup)
+│   │   │           ├── CampaignNameText (TMP)
+│   │   │           └── CurrentGoalText (TMP)
+│   │   ├── PartyEditScreen (PartyEditUIController.cs — **시작 시 비활성**)
+│   │   │   ├── PE_BackButton (Button)
+│   │   │   ├── PartySlotArea (HorizontalLayoutGroup)
+│   │   │   │   ├── PartySlot_1 (UIPartySlot.cs)
+│   │   │   │   │   ├── PositionLabel_1 (TMP)
+│   │   │   │   │   ├── FilledState_1
+│   │   │   │   │   │   ├── SlotPortrait_1 (UIUnitPortrait 프리팹 인스턴스)
+│   │   │   │   │   │   ├── SlotItem1_1 (UIItemIcon 프리팹 인스턴스)
+│   │   │   │   │   │   └── SlotItem2_1 (UIItemIcon 프리팹 인스턴스)
+│   │   │   │   │   └── EmptyState_1
+│   │   │   │   │       └── EmptyLabel_1 (TMP — "빈 슬롯")
+│   │   │   │   ├── PartySlot_2 (UIPartySlot.cs — 동일 구조)
+│   │   │   │   └── PartySlot_3 (UIPartySlot.cs — 동일 구조)
+│   │   │   ├── UnitListArea
+│   │   │   │   └── UnitListScrollRect (ScrollRect)
+│   │   │   │       └── UL_Viewport (Image + Mask)
+│   │   │   │           └── UnitListContainer
+│   │   │   └── UnitEditPanel (UIUnitEditPanel.cs + CanvasGroup)
+│   │   │       ├── UE_UnitInfo
+│   │   │       │   ├── UE_UnitPortrait (UIUnitPortrait 프리팹 인스턴스)
+│   │   │       │   ├── UnitNameText (TMP)
+│   │   │       │   └── UE_ElementBadge (UIElementBadge 프리팹 인스턴스)
+│   │   │       ├── DeckArea
+│   │   │       │   ├── DeckSlot_0~5 (UICard 프리팹 인스턴스 ×6)
+│   │   │       │   └── DeckCountText (TMP — "0/6")
+│   │   │       ├── SkillArea
+│   │   │       │   ├── SkillNameText (TMP)
+│   │   │       │   ├── SkillElementBadge (UIElementBadge 프리팹 인스턴스)
+│   │   │       │   └── SkillButton (Button)
+│   │   │       ├── ItemArea
+│   │   │       │   ├── ItemSlot1 (UIItemIcon 프리팹 인스턴스 + Button)
+│   │   │       │   └── ItemSlot2 (UIItemIcon 프리팹 인스턴스 + Button)
+│   │   │       ├── CardSelectionRoot (**시작 시 비활성**)
+│   │   │       │   └── CardSelectionContainer
+│   │   │       ├── SkillSelectionRoot (**시작 시 비활성**)
+│   │   │       │   └── SkillSelectionContainer
+│   │   │       └── UE_PanelRoot (**시작 시 비활성**)
+│   │   ├── InventoryScreen (InventoryUIController.cs — **시작 시 비활성**)
+│   │   │   ├── INV_BackButton (Button)
+│   │   │   │   └── INV_BackButtonText (TMP — "뒤로")
+│   │   │   ├── FilterArea (UIInventoryFilter.cs)
+│   │   │   │   ├── TabButtons
+│   │   │   │   │   ├── CardTab (Button + Image)
+│   │   │   │   │   └── ItemTab (Button + Image)
+│   │   │   │   ├── CardFilterRoot
+│   │   │   │   │   ├── ElementDropdown (TMP_Dropdown)
+│   │   │   │   │   ├── CostDropdown (TMP_Dropdown)
+│   │   │   │   │   └── CardTypeDropdown (TMP_Dropdown)
+│   │   │   │   ├── ItemFilterRoot
+│   │   │   │   │   ├── ItemTypeDropdown (TMP_Dropdown)
+│   │   │   │   │   └── TargetStatusDropdown (TMP_Dropdown)
+│   │   │   │   └── SortArea
+│   │   │   │       ├── SortDropdown (TMP_Dropdown)
+│   │   │   │       ├── SortOrderButton (Button)
+│   │   │   │       └── SortOrderLabel (TMP)
+│   │   │   ├── GridArea (UIInventoryGrid.cs)
+│   │   │   │   └── GridContainer (GridLayoutGroup 64×64, spacing 8)
+│   │   │   └── ItemDetailPanel (UIItemDetail.cs + CanvasGroup)
+│   │   │       ├── ID_PanelRoot (**시작 시 비활성**)
+│   │   │       │   ├── NameText (TMP)
+│   │   │       │   ├── DescriptionText (TMP)
+│   │   │       │   ├── RarityText (TMP)
+│   │   │       │   ├── ArtworkImage (Image)
+│   │   │       │   ├── ID_ElementBadge (UIElementBadge 프리팹 인스턴스)
+│   │   │       │   ├── CardInfoRoot
+│   │   │       │   │   ├── CostText (TMP)
+│   │   │       │   │   └── CardTypeText (TMP)
+│   │   │       │   ├── ItemInfoRoot
+│   │   │       │   │   ├── ItemTypeText (TMP)
+│   │   │       │   │   ├── TargetStatusText (TMP)
+│   │   │       │   │   └── DisposableText (TMP)
+│   │   │       │   └── QuantityText (TMP)
+│   │   └── CampaignScreen (CampaignUIController.cs — **시작 시 비활성**)
+│   │       ├── CP_BackButton (Button)
+│   │       │   └── CP_BackButtonText (TMP — "뒤로")
+│   │       ├── CampaignList (UICampaignList.cs)
+│   │       │   ├── ActiveHeader (TMP — "진행 중 캠페인")
+│   │       │   ├── ActiveListContainer
+│   │       │   ├── EmptyActiveText (TMP — "진행 중인 캠페인이 없습니다")
+│   │       │   ├── CompletedHeader (TMP — "완료된 캠페인")
+│   │       │   ├── CompletedListContainer
+│   │       │   └── EmptyCompletedText (TMP — "완료된 캠페인이 없습니다")
+│   │       └── CampaignDetail (UICampaignDetail.cs)
+│   │           └── CD_PanelRoot (CanvasGroup — **시작 시 비활성**)
+│   │               ├── CD_NameText (TMP)
+│   │               ├── CD_DescriptionText (TMP)
+│   │               ├── GoalContainer
+│   │               ├── TrackButton (Button)
+│   │               │   └── TrackButtonText (TMP — "추적")
+│   │               └── CloseButton (Button)
+│   └── UIPopup (Common 프리팹 인스턴스)
+├── EventSystem (EventSystem + StandaloneInputModule)
+└── UITooltip (Common 프리팹 인스턴스 — Canvas Sort Order 999)
+```
+
+### SerializeField 할당 요약
+
+| 컴포넌트 | 명시 할당 | 비고 |
+|----------|:-:|:--|
+| UICampaignTracker (MainScreen) | 4 | _panelRoot, _canvasGroup, _campaignNameText, _currentGoalText |
+| PartyEditUIController | 7 | _partySlots(배열3), _unitListScrollRect, _unitListContainer, _unitPortraitPrefab(GUID), _unitEditPanel, _backButton, _screenRoot |
+| UIPartySlot ×3 | 24 (8×3) | _positionLabel, _portrait, _itemIcon1, _itemIcon2, _filledState, _emptyState, _slotIndex, _emptyLabel |
+| UIUnitEditPanel | 21 | _unitPortrait, _unitNameText, _elementBadge, _deckSlots(배열6), _deckCountText, _skillNameText, _skillElementBadge, _skillButton, _itemSlot1/2, _itemButton1/2, _cardSelectionRoot/Container, _cardSelectionPrefab(GUID), _skillSelectionRoot/Container, _panelRoot, _canvasGroup |
+| InventoryUIController | 5 | _filter, _grid, _itemDetail, _backButton, _screenRoot |
+| UIInventoryFilter | 14 | _cardTabButton, _itemTabButton, _cardTabHighlight, _itemTabHighlight, _cardFilterRoot, _itemFilterRoot, _elementDropdown, _costDropdown, _cardTypeDropdown, _itemTypeDropdown, _targetStatusDropdown, _sortDropdown, _sortOrderButton, _sortOrderLabel |
+| UIInventoryGrid | 2 | _iconPrefab(GUID), _gridContainer |
+| UIItemDetail | 16 | _panelRoot, _canvasGroup, _panelTransform, _nameText, _descriptionText, _rarityText, _artworkImage, _elementBadge, _cardInfoRoot, _costText, _cardTypeText, _itemInfoRoot, _itemTypeText, _targetStatusText, _disposableText, _quantityText |
+| CampaignUIController | 5 | _campaignList, _campaignDetail, _campaignTracker, _backButton, _screenRoot |
+| UICampaignList | 7 | _activeListContainer, _activeHeaderText, _completedListContainer, _completedHeaderText, _campaignEntryPrefab(GUID), _emptyActiveText, _emptyCompletedText |
+| UICampaignDetail | 9 | _panelRoot, _canvasGroup, _nameText, _descriptionText, _goalContainer, _goalEntryPrefab(GUID), _trackButton, _trackButtonText, _closeButton |
+| LobbyUIController | 12 | _partyEditController, _inventoryController, _campaignController, _mainScreenRoot, _partyPreviewPortraits(배열3), _campaignTracker, _partyEditButton, _inventoryButton, _campaignButton, _expeditionButton, _expeditionButtonText, _popup |
+| **합계** | **~126** | |
+
+### 프리팹 참조
+
+| SerializeField | 프리팹 | GUID |
+|----------------|--------|------|
+| PartyEditUIController._unitPortraitPrefab | UIUnitPortrait.prefab | `857ed3a43d9781a4bb5a400f880991a6` |
+| UIUnitEditPanel._cardSelectionPrefab | UICard.prefab | `c15e3d138c407a6429e2de2b663eef6f` |
+| UIInventoryGrid._iconPrefab | UIItemIcon.prefab | `067c0b2c8fdebff4b941994c119c9755` |
+| UICampaignList._campaignEntryPrefab | CampaignEntry.prefab | `a6281bed31549b743b1b6b87187d1c64` |
+| UICampaignDetail._goalEntryPrefab | GoalEntry.prefab | `b54671dfe63b1024bab9b3b438fcab2d` |
+
+### 비활성 오브젝트
+
+- `PartyEditScreen`: SetActive(false) — 파티 편성 화면 전환 시 스크립트에서 활성화
+- `InventoryScreen`: SetActive(false) — 인벤토리 화면 전환 시 스크립트에서 활성화
+- `CampaignScreen`: SetActive(false) — 캠페인 화면 전환 시 스크립트에서 활성화
+- `CardSelectionRoot`: SetActive(false) — 카드 교체 시 스크립트에서 활성화
+- `SkillSelectionRoot`: SetActive(false) — 스킬 교체 시 스크립트에서 활성화
+- `UE_PanelRoot`: SetActive(false) — 유닛 편집 시 스크립트에서 활성화
+- `ID_PanelRoot`: SetActive(false) — 아이템 상세 표시 시 스크립트에서 활성화
+- `CD_PanelRoot`: SetActive(false) — 캠페인 상세 표시 시 스크립트에서 활성화
+
+### MCP 추가 이슈
+
+#### 이슈 8: 배열 SerializeField 할당 방법
+
+- **현상**: `_partySlots.Array.data[0]` / `_partySlots.Array.size` 등 Unity SerializedProperty 경로 방식 사용 시 "Property not found" 에러
+- **해결**: 배열을 직접 JSON 리스트로 전달. 예: `property: "_partySlots", value: [{"instanceID": -25960}, {"instanceID": -25984}, {"instanceID": -26008}]`
+
+#### 이슈 9: manage_gameobject modify에 search_method 필수
+
+- **현상**: `manage_gameobject modify`의 `target`에 instanceID 문자열 전달 시 기본 search_method가 이름 검색을 시도하여 "not found" 에러
+- **해결**: `search_method: "by_id"` 파라미터 명시 필수
+
+---
+
+## Phase 2.5 — 전투 씬 UI 배치
+
+**작업일**: 2026.03.09 (확인일 기준)
+**작업 도구**: MCP for Unity (manage_gameobject, manage_components, manage_prefabs, manage_scene, batch_execute)
+**작업 씬**: `Assets/_Project/Scenes/BattleScene.unity`
+**참조 문서**: `Documents/UI 에디터 작업 매뉴얼.MD` — Phase 2.5 섹션 (3-1 ~ 3-9)
+
+### 작업 환경
+
+- 활성 씬: BattleScene
+- 기존 오브젝트: BattleSceneBootstrap + BattleManager
+- 작업 후 콘솔 에러: **0건**
+
+### 생성된 프리팹
+
+| 프리팹 | 경로 | GUID | SerializeField |
+|--------|------|------|:-:|
+| UIBattleUnitPanel | `Assets/_Project/Prefabs/UI/Battle/UIBattleUnitPanel.prefab` | `401f6be2df21d974aa22c8ca807964e4` | 16개 |
+
+**UIBattleUnitPanel 프리팹 계층 구조:**
+```
+UIBattleUnitPanel (Image + CanvasGroup + UIBattleUnitPanel.cs)
+├── Portrait (UIUnitPortrait)
+├── HPBar (UIHPBar)
+├── StatusIconContainer
+├── SkillRoot
+│   ├── SkillIcon (Image)
+│   ├── SkillElementBackground (Image)
+│   └── SkillCooldownText (TMP)
+├── EnemyIntent (UIEnemyIntent.cs)
+├── FloatingTextAnchor
+└── TargetHighlight (Image)
+```
+
+### 씬 배치 계층 구조
+
+```
+BattleScene
+├── BattleSceneBootstrap (기존)
+├── BattleManager (기존)
+├── Canvas (Screen Space Overlay, CanvasScaler 1920×1080, matchWidthOrHeight=0.5)
+│   ├── BattleUIRoot (Image[투명] + BattleUIController.cs)
+│   │   ├── AllyPanelArea
+│   │   │   ├── UIBattleUnitPanel (프리팹 인스턴스 ×3)
+│   │   ├── EnemyPanelArea
+│   │   │   ├── UIBattleUnitPanel (프리팹 인스턴스 ×5)
+│   │   ├── HandArea (Image[투명] + UIHandArea.cs)
+│   │   │   └── CardContainer
+│   │   ├── EnergyDisplay (Image[#26263380] + UIEnergyDisplay.cs)
+│   │   │   └── PunchTarget
+│   │   │       └── EnergyText (TMP)
+│   │   ├── SkillNotify (Image[투명] + UISkillNotify.cs)
+│   │   │   └── NotifyRoot
+│   │   │       └── Panel
+│   │   │           ├── UnitNameText (TMP)
+│   │   │           ├── SkillNameText (TMP)
+│   │   │           └── UIElementBadge (Common 프리팹 인스턴스)
+│   │   ├── DeckCounter (Image[#26263380] + UIDeckCounter.cs)
+│   │   │   ├── DrawPileText (TMP)
+│   │   │   └── DiscardPileText (TMP)
+│   │   ├── BattleActions (Image[투명] + UIBattleActions.cs)
+│   │   │   ├── EndTurnButton (Image + Button)
+│   │   │   │   └── EndTurnText (TMP)
+│   │   │   └── SurrenderButton (Image + Button)
+│   │   │       └── SurrenderText (TMP)
+│   │   └── BattleResult (Image[투명] + CanvasGroup + UIBattleResult.cs — **시작 시 비활성**)
+│   │       └── ResultRoot
+│   │           ├── DimBackground (Image)
+│   │           └── ResultPanel (Image)
+│   │               ├── ResultTitleText (TMP)
+│   │               ├── ReasonText (TMP)
+│   │               └── ConfirmButton (Image + Button)
+│   │                   └── ConfirmText (TMP)
+│   └── UIPopup (Common 프리팹 인스턴스)
+├── EventSystem (EventSystem + StandaloneInputModule)
+└── UITooltip (Common 프리팹 인스턴스 — Canvas Sort Order 999)
+```
+
+### SerializeField 할당 요약
+
+| 컴포넌트 | 명시 할당 | 기본값 | 합계 |
+|----------|:-:|:-:|:-:|
+| UIBattleUnitPanel (프리팹) | 12 | 4 | 16 |
+| BattleUIController | 10 | 0 | 10 |
+| UIHandArea | 2 | 6 | 8 |
+| UIEnergyDisplay | 2 | 4 | 6 |
+| UISkillNotify | 5 | 4 | 9 |
+| UIBattleResult | 7 | 3 | 10 |
+| UIDeckCounter | 2 | 0 | 2 |
+| UIBattleActions | 2 | 0 | 2 |
+| **합계** | **42** | **21** | **63** |
+
+### 프리팹 참조
+
+| SerializeField | 프리팹 | 상태 |
+|----------------|--------|------|
+| UISkillNotify._elementBadge | UIElementBadge.prefab (인스턴스) | 할당됨 |
+| UIHandArea._cardPrefab | UICard.prefab | **미할당 (null)** |
+| UIBattleUnitPanel._statusIconPrefab | UIStatusIcon.prefab | **미할당 (null)** |
+
+### 비활성 오브젝트
+
+- `BattleResult`: 전투 결과 표시 시 스크립트에서 활성화
+
+### 미완료 항목 (2건)
+
+| 컴포넌트 | 필드 | 필요한 프리팹 | GUID |
+|----------|------|---------------|------|
+| UIHandArea | `_cardPrefab` | UICard.prefab | `c15e3d138c407a6429e2de2b663eef6f` |
+| UIBattleUnitPanel | `_statusIconPrefab` | UIStatusIcon.prefab | `a12d84700289038449ea05f39340089b` |
+
+이 2건은 프리팹 에셋 GUID 참조를 할당해야 런타임에 오브젝트 풀링이 정상 작동한다.
+
+---
+
 ## 총 작업 요약 (누적)
 
-| 항목 | Phase Common | Phase 3.5 | 합계 |
-|------|:-:|:-:|:-:|
-| 생성된 프리팹 | 8개 | 1개 | 9개 |
-| SerializeField 할당 | 58개 | 54개 | 112개 |
-| 씬 배치 오브젝트 | — | 38개 | 38개 |
-| 콘솔 에러 | 0건 | 0건 | 0건 |
+| 항목 | Phase Common | Phase 2.5 | Phase 3.5 | Phase 4 | 합계 |
+|------|:-:|:-:|:-:|:-:|:-:|
+| 생성된 프리팹 | 8개 | 1개 | 1개 | 2개 | 12개 |
+| SerializeField 할당 | 58개 | ~63개 | 54개 | ~126개 | ~301개 |
+| 씬 배치 오브젝트 | — | ~33개 | 38개 | ~80개 | ~151개 |
+| 프리팹 참조 할당 | — | 1개 (2개 미할당) | 3개 | 5개 | 9개 (+2 미할당) |
+| Common 프리팹 인스턴스 | — | 3개 | 2개 | 2개 | 7개 |
+| 비활성 오브젝트 | — | 1개 | 2개 | 8개 | 11개 |
+| 콘솔 에러 | 0건 | 0건 | 0건 | 0건 | 0건 |
 
 ---
 
 ## 후속 작업
 
-- [ ] **Phase 2.5 에디터**: 전투 씬 Canvas + 프리팹 배치, SerializeField 할당
-- [ ] **Phase 4 UI 에디터**: 로비 씬 Canvas + 프리팹 배치, 파티/인벤토리/캠페인 UI 구성
+- [x] ~~**Phase 2.5 에디터**: 전투 씬 Canvas + 프리팹 배치, SerializeField 할당~~ (대부분 완료, 아래 2건 잔여)
+  - [ ] UIHandArea._cardPrefab에 UICard.prefab GUID 할당
+  - [ ] UIBattleUnitPanel._statusIconPrefab에 UIStatusIcon.prefab GUID 할당
+- [x] ~~**Phase 4 UI 에디터**: 로비 씬 Canvas + 프리팹 배치, 파티/인벤토리/캠페인 UI 구성~~
